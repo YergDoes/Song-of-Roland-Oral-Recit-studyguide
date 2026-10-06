@@ -3,1041 +3,1350 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>English 4 Reviewer — Detailed Flashcards &amp; Quiz</title>
+<title>Reviewer: Medieval Period &amp; The Song of Roland</title>
 <style>
   :root{
-    --bg:#0d1024;
-    --surface:#1c2144;
-    --surface2:#252b55;
-    --line:#333a6b;
-    --text:#e9ebf8;
-    --muted:#9aa3c9;
-    --accent:#f5b731;
-    --accent2:#7c5cff;
-    --correct:#2ecc71;
-    --wrong:#ff5c5c;
-    --radius:16px;
+    --parchment:#fdf6e3;
+    --parchment-dark:#f5e9c9;
+    --ink:#2b2118;
+    --ink-soft:#4a3d30;
+    --gold:#b8860b;
+    --gold-light:#d4a72c;
+    --crimson:#8b1a1a;
+    --crimson-light:#b03030;
+    --blue:#1f3a5f;
+    --border:#d8c9a3;
+    --shadow:rgba(90,70,40,.15);
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
+
+  *{box-sizing:border-box;}
+
   body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background:radial-gradient(1200px 700px at 15% -10%, #2a2160 0%, transparent 55%),
-               radial-gradient(1000px 600px at 90% 0%, #123a5c 0%, transparent 50%),
-               var(--bg);
-    color:var(--text);
-    min-height:100vh;
-    padding:22px 16px 60px;
-    line-height:1.55;
+    margin:0;
+    padding:0;
+    background:
+      radial-gradient(circle at 20% 10%, #fffdf5 0%, transparent 60%),
+      radial-gradient(circle at 80% 80%, #fffdf5 0%, transparent 60%),
+      var(--parchment);
+    color:var(--ink);
+    font-family:"Georgia","Cambria","Times New Roman",serif;
+    font-size:16px;
+    line-height:1.65;
   }
-  .app{max-width:960px;margin:0 auto;}
 
-  header{text-align:center;margin-bottom:24px;}
+  /* ---------- HEADER ---------- */
+  header{
+    background:linear-gradient(135deg,#3d2b1f 0%,#5a3d28 50%,#3d2b1f 100%);
+    color:var(--parchment);
+    padding:32px 20px 26px;
+    text-align:center;
+    border-bottom:5px solid var(--gold);
+    box-shadow:0 4px 18px var(--shadow);
+    position:relative;
+    overflow:hidden;
+  }
+  header::before{
+    content:"⚜";
+    position:absolute;
+    font-size:220px;
+    opacity:.05;
+    top:-60px;left:50%;
+    transform:translateX(-50%);
+    pointer-events:none;
+  }
   header h1{
-    font-size:clamp(1.5rem,4.5vw,2.2rem);
-    letter-spacing:-.5px;
-    background:linear-gradient(90deg,var(--accent),#ffd97a,var(--accent2));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    font-weight:800;
+    margin:0 0 6px;
+    font-size:clamp(1.4rem,4vw,2.3rem);
+    letter-spacing:1px;
+    text-shadow:1px 2px 4px rgba(0,0,0,.5);
   }
-  header p{color:var(--muted);font-size:.85rem;margin-top:6px;}
-
-  .tabs{display:flex;gap:10px;justify-content:center;margin-bottom:26px;flex-wrap:wrap;}
-  .tabs button{
-    background:var(--surface);
-    border:1px solid var(--line);
-    color:var(--muted);
-    padding:11px 26px;
-    border-radius:999px;
+  header .sub{
     font-size:.95rem;
-    font-weight:600;
-    cursor:pointer;
-    transition:.22s;
-  }
-  .tabs button:hover{color:var(--text);border-color:var(--accent2);}
-  .tabs button.active{
-    background:linear-gradient(135deg,var(--accent2),#5a3fd6);
-    color:#fff;border-color:transparent;
-    box-shadow:0 6px 20px -6px var(--accent2);
-  }
-
-  .panel{display:none;animation:fade .3s ease;}
-  .panel.active{display:block;}
-  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-
-  /* DECK BAR */
-  .deck-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px;}
-  .deck-bar button{
-    background:var(--surface);
-    border:1px solid var(--line);
-    color:var(--muted);
-    padding:7px 15px;
-    border-radius:999px;
-    font-size:.78rem;
-    font-weight:600;
-    cursor:pointer;
-    transition:.2s;
-  }
-  .deck-bar button:hover{color:var(--text);}
-  .deck-bar button.active{
-    background:var(--accent);
-    color:#221a00;
-    border-color:var(--accent);
-  }
-
-  /* FLASHCARD */
-  .card{
-    perspective:1400px;
-    height:420px;
-    cursor:pointer;
-    margin-bottom:18px;
-  }
-  .card-inner{
-    position:relative;width:100%;height:100%;
-    transition:transform .62s cubic-bezier(.4,.2,.2,1);
-    transform-style:preserve-3d;
-  }
-  .card.flipped .card-inner{transform:rotateY(180deg);}
-  .card-face{
-    position:absolute;inset:0;
-    backface-visibility:hidden;
-    -webkit-backface-visibility:hidden;
-    border-radius:var(--radius);
-    display:flex;align-items:center;justify-content:center;
-    padding:30px 26px;
-    overflow-y:auto;
-    border:1px solid var(--line);
-    box-shadow:0 18px 45px -20px #000;
-  }
-  .card-front{
-    background:linear-gradient(160deg,var(--surface2),var(--surface));
-  }
-  .card-back{
-    background:linear-gradient(160deg,#20315a,#1a2447);
-    transform:rotateY(180deg);
-    border-color:#3c5a99;
-  }
-  .card-face > div{max-width:100%;}
-  .card-label{
-    display:block;
-    font-size:.7rem;
-    letter-spacing:2px;
+    color:var(--gold-light);
+    letter-spacing:3px;
     text-transform:uppercase;
-    color:var(--accent);
-    font-weight:700;
-    margin-bottom:12px;
-    text-align:center;
+    font-style:italic;
   }
-  .card-back .card-label{color:#7fd3ff;}
-  .card-face p{
-    font-size:clamp(.95rem,2.2vw,1.1rem);
-    text-align:center;
-    font-weight:500;
-  }
-  .card-face ul{
-    text-align:left;
-    font-size:.92rem;
-    padding-left:20px;
-    margin-top:8px;
-  }
-  .card-face ul li{margin-bottom:5px;}
-  .card-hint{
-    text-align:center;color:var(--muted);font-size:.75rem;
-    margin-top:8px;margin-bottom:14px;
+  header .tagline{
+    margin-top:12px;
+    font-size:.88rem;
+    color:#e8dcc0;
+    opacity:.85;
   }
 
-  .fc-controls{
-    display:flex;align-items:center;justify-content:center;gap:14px;
-    flex-wrap:wrap;
+  /* ---------- LAYOUT ---------- */
+  .wrap{
+    max-width:1000px;
+    margin:0 auto;
+    padding:20px 16px 80px;
   }
-  .fc-controls button{
-    background:var(--surface);
-    border:1px solid var(--line);
-    color:var(--text);
-    padding:10px 20px;
-    border-radius:12px;
-    font-size:.85rem;
-    font-weight:600;
-    cursor:pointer;
+
+  /* ---------- NAV ---------- */
+  nav.toc{
+    background:var(--parchment-dark);
+    border:2px solid var(--border);
+    border-radius:10px;
+    padding:16px 20px;
+    margin:22px 0 30px;
+    box-shadow:0 2px 10px var(--shadow);
+  }
+  nav.toc h2{
+    margin:0 0 10px;
+    font-size:1.05rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--crimson);
+    border-bottom:1px dashed var(--border);
+    padding-bottom:6px;
+  }
+  nav.toc ul{
+    margin:0;
+    padding:0;
+    list-style:none;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:6px 18px;
+  }
+  nav.toc a{
+    color:var(--blue);
+    text-decoration:none;
+    font-size:.94rem;
+    display:block;
+    padding:4px 0;
+    border-bottom:1px solid transparent;
     transition:.2s;
   }
-  .fc-controls button:hover{background:var(--surface2);border-color:var(--accent2);}
-  .fc-controls button:disabled{opacity:.35;cursor:not-allowed;}
-  #fcCounter{
-    font-size:.85rem;color:var(--muted);font-weight:700;
-    min-width:78px;text-align:center;
-    font-variant-numeric:tabular-nums;
+  nav.toc a:hover{
+    color:var(--crimson);
+    border-bottom-color:var(--gold);
+    padding-left:6px;
+  }
+  nav.toc a::before{
+    content:"§ ";
+    color:var(--gold);
+    font-weight:bold;
   }
 
-  /* QUIZ */
-  .quiz-top{
-    display:flex;justify-content:space-between;align-items:center;
-    margin-bottom:12px;font-size:.82rem;color:var(--muted);font-weight:600;
+  /* ---------- SECTIONS ---------- */
+  section{
+    margin-bottom:34px;
+    scroll-margin-top:16px;
   }
-  .bar{height:7px;background:var(--surface);border-radius:99px;overflow:hidden;margin-bottom:22px;}
-  .bar-fill{
-    height:100%;width:0%;
-    background:linear-gradient(90deg,var(--accent2),var(--accent));
-    border-radius:99px;transition:width .35s ease;
-  }
-  .q-box{
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:26px 24px;
-    margin-bottom:18px;
-  }
-  .q-tag{
-    display:inline-block;
-    font-size:.66rem;letter-spacing:1.6px;text-transform:uppercase;
-    color:var(--accent);font-weight:700;
-    background:#f5b7311a;
-    padding:4px 11px;border-radius:99px;margin-bottom:14px;
-  }
-  .q-text{font-size:1.05rem;font-weight:600;line-height:1.6;}
-  .opts{display:flex;flex-direction:column;gap:10px;}
-  .opt{
-    background:var(--surface);
-    border:1px solid var(--line);
-    color:var(--text);
-    padding:14px 18px;
-    border-radius:12px;
-    font-size:.92rem;
-    text-align:left;
-    cursor:pointer;
-    transition:.18s;
-    font-family:inherit;
-    line-height:1.5;
-    display:flex;gap:12px;align-items:flex-start;
-  }
-  .opt:hover:not(.locked){background:var(--surface2);border-color:var(--accent2);transform:translateX(3px);}
-  .opt .letter{
-    font-weight:800;color:var(--accent);flex-shrink:0;min-width:18px;
-  }
-  .opt.correct{background:#1e5c3a;border-color:var(--correct);}
-  .opt.correct .letter{color:#8affc1;}
-  .opt.wrong{background:#5c1e1e;border-color:var(--wrong);}
-  .opt.wrong .letter{color:#ffb3b3;}
-  .opt.locked{cursor:default;}
 
-  .explain{
-    margin-top:16px;
-    background:#0e1330;
-    border-left:3px solid var(--accent);
-    padding:13px 16px;
-    border-radius:0 10px 10px 0;
-    font-size:.87rem;
-    color:#c3caea;
-    display:none;
+  h2.sec-title{
+    font-size:1.3rem;
+    color:#fff;
+    background:linear-gradient(90deg,var(--crimson) 0%,var(--crimson-light) 70%,transparent 100%);
+    padding:10px 18px;
+    margin:0 0 18px;
+    border-radius:6px 0 0 6px;
+    letter-spacing:.5px;
+    box-shadow:0 3px 8px var(--shadow);
   }
-  .explain.show{display:block;animation:fade .25s ease;}
-  .explain strong{color:var(--accent);}
 
-  #nextQ{
-    display:none;
-    margin-top:18px;
+  h3{
+    color:var(--blue);
+    font-size:1.08rem;
+    margin:22px 0 8px;
+    border-left:4px solid var(--gold);
+    padding-left:10px;
+  }
+
+  h4{
+    color:var(--crimson);
+    font-size:.98rem;
+    margin:16px 0 6px;
+    letter-spacing:.3px;
+  }
+
+  /* ---------- CARDS ---------- */
+  .card{
+    background:#fffdf7;
+    border:1.5px solid var(--border);
+    border-radius:8px;
+    padding:16px 20px;
+    margin:14px 0;
+    box-shadow:0 2px 8px var(--shadow);
+  }
+
+  .card.gold{
+    border-left:6px solid var(--gold);
+    background:linear-gradient(180deg,#fffdf5,#fdf8e8);
+  }
+  .card.crimson{
+    border-left:6px solid var(--crimson);
+    background:linear-gradient(180deg,#fffafa,#fdf2f2);
+  }
+  .card.blue{
+    border-left:6px solid var(--blue);
+    background:linear-gradient(180deg,#fafcff,#f2f6fc);
+  }
+
+  /* ---------- TABLES ---------- */
+  table{
     width:100%;
-    background:linear-gradient(135deg,var(--accent2),#5a3fd6);
-    border:none;color:#fff;
-    padding:14px;border-radius:12px;
-    font-size:.95rem;font-weight:700;
-    cursor:pointer;font-family:inherit;
+    border-collapse:collapse;
+    margin:14px 0;
+    font-size:.92rem;
+    background:#fffdf7;
+    box-shadow:0 2px 8px var(--shadow);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  caption{
+    caption-side:top;
+    text-align:left;
+    font-weight:bold;
+    color:var(--blue);
+    padding:6px 0;
+    font-size:.95rem;
+  }
+  th{
+    background:linear-gradient(180deg,#5a3d28,#3d2b1f);
+    color:var(--parchment);
+    text-align:left;
+    padding:9px 12px;
+    font-size:.88rem;
+    letter-spacing:.4px;
+  }
+  td{
+    padding:8px 12px;
+    border-bottom:1px solid var(--border);
+    vertical-align:top;
+  }
+  tr:nth-child(even) td{background:#fdf8ec;}
+  tr:last-child td{border-bottom:none;}
+  td strong{color:var(--crimson);}
+
+  /* ---------- QUOTES ---------- */
+  blockquote{
+    margin:14px 0;
+    padding:14px 20px 14px 26px;
+    background:linear-gradient(180deg,#fffbee,#fdf3d8);
+    border-left:5px solid var(--gold);
+    border-radius:0 8px 8px 0;
+    font-style:italic;
+    color:var(--ink-soft);
+    position:relative;
+    box-shadow:0 2px 8px var(--shadow);
+  }
+  blockquote::before{
+    content:"“";
+    position:absolute;
+    left:8px;top:-6px;
+    font-size:3rem;
+    color:var(--gold-light);
+    opacity:.5;
+    font-family:Georgia,serif;
+  }
+  blockquote cite{
+    display:block;
+    margin-top:8px;
+    font-size:.82rem;
+    font-style:normal;
+    color:var(--crimson);
+    letter-spacing:.5px;
+  }
+
+  /* ---------- LISTS ---------- */
+  ul.checklist{list-style:none;padding-left:4px;}
+  ul.checklist li{padding:3px 0 3px 26px;position:relative;}
+  ul.checklist li::before{
+    content:"✔";
+    position:absolute;left:0;
+    color:var(--gold);
+    font-weight:bold;
+  }
+
+  ul.plain{padding-left:22px;}
+  ul.plain li{margin:4px 0;}
+
+  /* ---------- COLLAPSIBLE Q&A ---------- */
+  details{
+    background:#fffdf7;
+    border:1.5px solid var(--border);
+    border-radius:8px;
+    margin:10px 0;
+    box-shadow:0 2px 6px var(--shadow);
+    overflow:hidden;
     transition:.2s;
   }
-  #nextQ:hover{filter:brightness(1.15);}
-  #nextQ.show{display:block;}
+  details[open]{
+    border-color:var(--gold);
+    box-shadow:0 3px 12px rgba(184,134,11,.2);
+  }
+  summary{
+    cursor:pointer;
+    padding:12px 16px;
+    font-weight:bold;
+    color:var(--blue);
+    list-style:none;
+    position:relative;
+    padding-right:44px;
+    user-select:none;
+    transition:.2s;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary:hover{background:#fdf6e3;color:var(--crimson);}
+  summary::after{
+    content:"+";
+    position:absolute;
+    right:16px;top:50%;
+    transform:translateY(-50%);
+    font-size:1.3rem;
+    color:var(--gold);
+    font-weight:bold;
+    transition:.25s;
+  }
+  details[open] summary::after{
+    content:"−";
+    transform:translateY(-50%) rotate(180deg);
+    color:var(--crimson);
+  }
+  details .answer{
+    padding:0 18px 16px;
+    border-top:1px dashed var(--border);
+    margin-top:2px;
+    padding-top:12px;
+    color:var(--ink-soft);
+    font-size:.94rem;
+    animation:fade .25s ease;
+  }
+  @keyframes fade{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
 
-  /* RESULTS */
-  .result{
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:40px 26px;
+  /* ---------- BADGES ---------- */
+  .badge{
+    display:inline-block;
+    background:var(--gold);
+    color:#fff;
+    font-size:.7rem;
+    padding:2px 9px;
+    border-radius:20px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    vertical-align:middle;
+    margin-left:8px;
+    font-family:system-ui,sans-serif;
+  }
+  .badge.red{background:var(--crimson);}
+  .badge.blue{background:var(--blue);}
+
+  /* ---------- GRID ---------- */
+  .grid2{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:14px;
+  }
+
+  /* ---------- HIGHLIGHT BOX ---------- */
+  .highlight{
+    background:linear-gradient(135deg,#fff8e1,#fdf0c9);
+    border:2px dashed var(--gold);
+    border-radius:10px;
+    padding:16px 20px;
+    margin:16px 0;
+  }
+  .highlight h4{margin-top:0;color:var(--crimson);}
+
+  .tip{
+    background:linear-gradient(135deg,#eef4ff,#e3ecfb);
+    border-left:6px solid var(--blue);
+    padding:14px 18px;
+    border-radius:0 8px 8px 0;
+    margin:14px 0;
+    font-size:.93rem;
+  }
+  .tip strong{color:var(--blue);}
+
+  /* ---------- BUTTONS ---------- */
+  .toolbar{
+    position:fixed;
+    right:18px;bottom:18px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    z-index:50;
+  }
+  .toolbar button{
+    background:linear-gradient(180deg,#5a3d28,#3d2b1f);
+    color:var(--parchment);
+    border:2px solid var(--gold);
+    border-radius:50%;
+    width:48px;height:48px;
+    font-size:1.15rem;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,.3);
+    transition:.2s;
+    font-family:inherit;
+  }
+  .toolbar button:hover{
+    background:var(--gold);
+    color:#2b2118;
+    transform:scale(1.08);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
     text-align:center;
-    display:none;
+    padding:26px 16px;
+    background:#3d2b1f;
+    color:#c9b896;
+    font-size:.82rem;
+    letter-spacing:1px;
+    border-top:4px solid var(--gold);
   }
-  .result.show{display:block;animation:fade .4s ease;}
-  .score-ring{
-    font-size:3.4rem;font-weight:800;
-    background:linear-gradient(90deg,var(--accent),var(--accent2));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    line-height:1.1;
-  }
-  .result h2{margin:10px 0 6px;font-size:1.3rem;}
-  .result p{color:var(--muted);font-size:.9rem;margin-bottom:8px;}
-  .result .msg{
-    font-size:1rem;margin:18px 0 26px;color:var(--text);font-weight:600;
-  }
-  .result button{
-    background:linear-gradient(135deg,var(--accent2),#5a3fd6);
-    border:none;color:#fff;
-    padding:13px 32px;border-radius:12px;
-    font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;
-    transition:.2s;
-  }
-  .result button:hover{filter:brightness(1.15);}
+  footer strong{color:var(--gold-light);}
 
-  @media(max-width:600px){
-    .card{height:360px;}
-    .card-face{padding:22px 18px;}
-    .q-box{padding:20px 16px;}
+  /* ---------- PRINT ---------- */
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    header{background:#3d2b1f !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .toolbar,nav.toc{display:none;}
+    details{border:1px solid #999;page-break-inside:avoid;}
+    details .answer{display:block !important;}
+    details[open] .answer{display:block;}
+    summary::after{display:none;}
+    section{page-break-inside:auto;}
+    h2.sec-title{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    th{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .card,table,blockquote{page-break-inside:avoid;}
+  }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width:560px){
+    .wrap{padding:14px 10px 70px;}
+    header{padding:22px 12px 18px;}
+    table{font-size:.83rem;}
+    th,td{padding:6px 8px;}
+    h2.sec-title{font-size:1.05rem;padding:9px 12px;}
   }
 </style>
 </head>
 <body>
-<div class="app">
-  <header>
-    <h1>English 4 Reviewer</h1>
-    <p>Detailed Story Summaries · Flashcards · Quiz · 1st Quarter</p>
-  </header>
 
-  <nav class="tabs">
-    <button data-tab="flash" class="active">📇 Flashcards</button>
-    <button data-tab="quiz">📝 Quiz</button>
+<header>
+  <div class="sub">English 4 · 2nd Grading</div>
+  <h1>The Medieval Period &amp; The Song of Roland</h1>
+  <div class="tagline">Oral Recitation Reviewer · Interactive Study Guide</div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ TABLE OF CONTENTS ============ -->
+  <nav class="toc">
+    <h2>Contents</h2>
+    <ul>
+      <li><a href="#s1">1. The Medieval Period</a></li>
+      <li><a href="#s2">2. Feudalism &amp; Manor System</a></li>
+      <li><a href="#s3">3. Background of the Epic</a></li>
+      <li><a href="#s4">4. Characters</a></li>
+      <li><a href="#s5">5. Plot Summary</a></li>
+      <li><a href="#s6">6. Key Quotes</a></li>
+      <li><a href="#s7">7. Themes &amp; Values</a></li>
+      <li><a href="#s8">8. Practice Q&amp;A</a></li>
+      <li><a href="#s9">9. Cheat Sheet</a></li>
+      <li><a href="#s10">10. Recit Tips</a></li>
+    </ul>
   </nav>
 
-  <!-- FLASHCARDS -->
-  <section id="flash" class="panel active">
-    <div class="deck-bar" id="deckBar"></div>
-    <div class="card" id="card">
-      <div class="card-inner">
-        <div class="card-face card-front">
-          <div>
-            <span class="card-label">Question</span>
-            <p id="fcQ">Loading…</p>
-          </div>
-        </div>
-        <div class="card-face card-back">
-          <div>
-            <span class="card-label">Answer</span>
-            <div id="fcA"></div>
-          </div>
-        </div>
-      </div>
+  <!-- ============ 1. MEDIEVAL PERIOD ============ -->
+  <section id="s1">
+    <h2 class="sec-title">1 · The Medieval Period</h2>
+
+    <div class="card gold">
+      <table>
+        <caption>Quick Facts</caption>
+        <tr><th style="width:34%">Aspect</th><th>Details</th></tr>
+        <tr><td><strong>Other names</strong></td><td>Middle Ages, Dark Ages</td></tr>
+        <tr><td><strong>Timeframe</strong></td><td>Between the <em>fall of the Roman Empire</em> and the <em>Renaissance</em></td></tr>
+        <tr><td><strong>Key event</strong></td><td>Decline of Roman power → Germanic tribes invaded</td></tr>
+        <tr><td><strong>Germanic tribes</strong></td><td>Saxons, Goths, Vandals</td></tr>
+        <tr><td><strong>Result</strong></td><td>Disunited tribes, no central authority, loyalty only to local leaders</td></tr>
+      </table>
     </div>
-    <p class="card-hint">Click the card to flip · Use ← → keys to navigate</p>
-    <div class="fc-controls">
-      <button id="prevBtn">← Prev</button>
-      <span id="fcCounter">1 / 1</span>
-      <button id="nextBtn">Next →</button>
-      <button id="shuffleBtn">🔀 Shuffle</button>
+
+    <h3>The Catholic Church</h3>
+    <div class="card">
+      <ul class="plain">
+        <li>Survived the fall of Rome.</li>
+        <li>Sent out <strong>missionaries</strong> on conversion missions.</li>
+        <li><strong>Seized territories</strong> that refused Church authority.</li>
+        <li>Became the <strong>unifying institution</strong> in a fragmented Europe.</li>
+        <li>Fought against the growing influence of <strong>Islam</strong>.</li>
+        <li>Launched the <strong>Crusades</strong> — holy wars.</li>
+      </ul>
+    </div>
+
+    <div class="card crimson">
+      <h4>The First Crusade (1095 AD)</h4>
+      <ul class="plain">
+        <li>Ordered by <strong>Pope Urban II</strong>.</li>
+        <li>Promised <strong>eternal salvation</strong> and <strong>pardon of sins</strong> to soldiers.</li>
+        <li>Goal: reclaim Holy Lands; fight "infidels and pagans."</li>
+        <li>Long, violent history between Christians and Muslims.</li>
+        <li>Effects still felt today — racial discrimination and religious oppression.</li>
+      </ul>
+    </div>
+
+    <h3>Rise of Nations</h3>
+    <div class="card blue">
+      <ul class="plain">
+        <li>Germanic tribes brought their own traditions, culture, and beliefs.</li>
+        <li>Mingling, coexistence, and conflict → cultural diversity and unity.</li>
+        <li>Territorial claims + sense of similarity → concept of <strong>"nation"</strong> and <strong>nationalism</strong>.</li>
+        <li>Gave rise to modern European nations: <strong>France, Germany, Spain</strong>.</li>
+        <li>Shared culture, beliefs, language — yet each has a distinct identity.</li>
+      </ul>
     </div>
   </section>
 
-  <!-- QUIZ -->
-  <section id="quiz" class="panel">
-    <div id="quizArea">
-      <div class="quiz-top">
-        <span id="qProgress">Question 1 of 70</span>
-        <span id="qScore">Score: 0</span>
-      </div>
-      <div class="bar"><div class="bar-fill" id="barFill"></div></div>
-      <div class="q-box">
-        <span class="q-tag" id="qTag">Topic</span>
-        <p class="q-text" id="qText"></p>
-      </div>
-      <div class="opts" id="opts"></div>
-      <div class="explain" id="explain"></div>
-      <button id="nextQ">Next Question →</button>
+  <!-- ============ 2. FEUDALISM ============ -->
+  <section id="s2">
+    <h2 class="sec-title">2 · Feudalism &amp; the Manor System</h2>
+
+    <div class="highlight">
+      <h4>Feudalism — Definition</h4>
+      A political-economic system that revolves around <strong>land ownership</strong> and <strong>alliances</strong>.
     </div>
 
-    <div class="result" id="result">
-      <div class="score-ring" id="scoreRing">0%</div>
-      <h2 id="resultTitle">Quiz Complete!</h2>
-      <p id="resultSub"></p>
-      <p class="msg" id="resultMsg"></p>
-      <button id="retryBtn">🔄 Retake Quiz</button>
+    <table>
+      <caption>The Feudal Pyramid (top → bottom)</caption>
+      <tr><th style="width:28%">Rank</th><th>Role</th></tr>
+      <tr><td><strong>King</strong></td><td>Supreme ruler; grants land.</td></tr>
+      <tr><td><strong>Church Official</strong></td><td>Religious authority; often powerful landowners.</td></tr>
+      <tr><td><strong>Noble</strong></td><td>Wealthy, powerful individuals — usually nobles or church officials.</td></tr>
+      <tr><td><strong>Knights</strong></td><td>Mounted horsemen; pledge military service to their lord in exchange for a fief.</td></tr>
+      <tr><td><strong>Peasants</strong></td><td>Landless; work the land on the manor.</td></tr>
+    </table>
+
+    <h3>Key Terms</h3>
+    <div class="grid2">
+      <div class="card">
+        <h4>Lord</h4>
+        Landowner who grants a <em>fief</em> to a vassal in exchange for protection and other services.
+      </div>
+      <div class="card">
+        <h4>Vassal</h4>
+        Wealthy and powerful individual — usually a noble or church official — who receives the fief.
+      </div>
+      <div class="card">
+        <h4>Fief</h4>
+        The land granted by a lord to a vassal.
+      </div>
+      <div class="card">
+        <h4>Knight</h4>
+        Mounted horseman who pledges allegiance and military service to his lord in exchange for a fief.
+      </div>
+      <div class="card">
+        <h4>Peasant</h4>
+        Landless worker who works the land on the manor.
+      </div>
+      <div class="card">
+        <h4>Manor</h4>
+        The lord's estate.
+      </div>
+    </div>
+
+    <h3>The Manor System</h3>
+    <div class="card gold">
+      <table>
+        <tr><th style="width:50%">The Lord Provides</th><th>The Peasants Give</th></tr>
+        <tr>
+          <td>
+            <ul class="plain">
+              <li>Protection</li>
+              <li>House</li>
+              <li>Farmland</li>
+            </ul>
+          </td>
+          <td>
+            <ul class="plain">
+              <li>Tend the lord's estate, land, and animals</li>
+              <li>A portion of their earnings</li>
+              <li>Other services to keep the lord's household efficient</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>Chivalry</h3>
+    <div class="card blue">
+      A code of principles followed by <strong>knights</strong> — bravery, honor, loyalty, service to lord, protection of the weak. In <em>The Song of Roland</em>, chivalry appears through Roland's bravery, Oliver's wisdom, and Turpin's religious devotion.
+    </div>
+
+    <div class="tip">
+      <strong>Summary of the Medieval Period:</strong> It saw the fall of the Roman Empire and the migration of Germanic tribes. These led to (1) the increased influence and power of the Catholic Church; (2) the development of feudalism and the manor system; and (3) the code of chivalry that knights were supposed to follow.
     </div>
   </section>
+
+  <!-- ============ 3. BACKGROUND ============ -->
+  <section id="s3">
+    <h2 class="sec-title">3 · Background of <em>The Song of Roland</em></h2>
+
+    <div class="card gold">
+      <table>
+        <caption>Quick Facts</caption>
+        <tr><th style="width:32%">Aspect</th><th>Details</th></tr>
+        <tr><td><strong>Title</strong></td><td><em>La Chanson de Roland</em> / <em>The Song of Roland</em></td></tr>
+        <tr><td><strong>Genre</strong></td><td><em>Chanson de geste</em> — "song of deeds"</td></tr>
+        <tr><td><strong>Subject</strong></td><td>Reign of Holy Roman Emperor <strong>Charlemagne</strong></td></tr>
+        <tr><td><strong>Nature</strong></td><td>Contains historical truths, but context is usually <strong>embellished</strong></td></tr>
+        <tr><td><strong>Author</strong></td><td><strong>Unknown</strong> — name <strong>Turold</strong> mentioned at the end</td></tr>
+        <tr><td><strong>Oldest manuscript</strong></td><td>Old French, dated <strong>1129–1165 AD</strong>, kept at <strong>Oxford University</strong></td></tr>
+        <tr><td><strong>Structure</strong></td><td>Epic; structured for <strong>oral performance</strong></td></tr>
+        <tr><td><strong>Style</strong></td><td>Unequal stanza lengths; <strong>assonance</strong> instead of rhyme</td></tr>
+        <tr><td><strong>Performer</strong></td><td><strong>Jongleur</strong> — folk song singer</td></tr>
+      </table>
+    </div>
+
+    <h3>Historical Basis</h3>
+    <div class="card crimson">
+      <h4>The Real Event: Battle of Roncevaux Pass (778 AD)</h4>
+      <ul class="plain">
+        <li>Charlemagne and troops were in Spain to intervene in a conflict between two Muslim rulers.</li>
+        <li>Called back to France to address an uprising.</li>
+        <li>On the way back, Charlemagne <strong>laid waste to several towns</strong>.</li>
+        <li>His <strong>rear guard</strong> was ambushed and killed by <strong>Christian Basques</strong> who suffered from his harsh treatment.</li>
+        <li>Rear guard led by: <strong>Roland</strong> (Charlemagne's nephew), <strong>Eggihard</strong> (seneschal), and <strong>Anselm</strong> (count palatine).</li>
+      </ul>
+    </div>
+
+    <table>
+      <caption>Fact vs. Fiction</caption>
+      <tr><th style="width:50%">Historical Fact</th><th>Epic Version</th></tr>
+      <tr><td>Attackers were <strong>Christian Basques</strong></td><td>Attackers are <strong>Saracens / Muslims</strong></td></tr>
+      <tr><td>Roland accompanied by <strong>Eggihard and Anselm</strong></td><td>Roland accompanied by <strong>Oliver and Archbishop Turpin</strong></td></tr>
+      <tr><td>Political conflict</td><td>Religious war — Christians vs. Muslims</td></tr>
+    </table>
+
+    <div class="tip">
+      <strong>Why the changes?</strong> To fit the <em>Crusading spirit</em> of the time, to portray the Christian French as more heroic, and to demonize Muslims as pagans and traitors.
+    </div>
+
+    <h3>Manuscript &amp; Author</h3>
+    <div class="card">
+      <ul class="plain">
+        <li><strong>Date written:</strong> Unknown.</li>
+        <li><strong>Existing manuscripts:</strong> Several fragments exist.</li>
+        <li><strong>Oldest existing manuscript:</strong> Old French, 1129–1165 AD, Oxford University.</li>
+        <li><strong>Author:</strong> Unknown. The ending says: <em>"Ci falt la geste que Turoldus declinet"</em> — "Thus concludes the deeds of which Turold..."</li>
+        <li><strong>Problem:</strong> "Declinet" could mean "translate," "compose," or "recite." We know Turold is connected, but not how.</li>
+      </ul>
+    </div>
+
+    <h3>Structure &amp; Performance</h3>
+    <div class="grid2">
+      <div class="card blue">
+        <h4>Epic</h4>
+        Long narrative poem about heroic deeds.
+      </div>
+      <div class="card blue">
+        <h4>Oral Performance</h4>
+        Meant to be sung or recited by a <em>jongleur</em>.
+      </div>
+      <div class="card blue">
+        <h4>Unequal Stanzas</h4>
+        Allows the jongleur to add his own twist.
+      </div>
+      <div class="card blue">
+        <h4>Assonance</h4>
+        Repetition of vowel sounds; every stanza has a different assonance.
+      </div>
+      <div class="card blue">
+        <h4>No Rhyme</h4>
+        Lines do not rhyme.
+      </div>
+      <div class="card blue">
+        <h4>Signals</h4>
+        Assonance changes signal the audience that the stanza has changed.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. CHARACTERS ============ -->
+  <section id="s4">
+    <h2 class="sec-title">4 · Characters</h2>
+
+    <table>
+      <tr>
+        <th style="width:20%">Character</th>
+        <th style="width:38%">Description</th>
+        <th>Role in Story</th>
+      </tr>
+      <tr>
+        <td><strong>Charlemagne</strong></td>
+        <td>King/Emperor; Roland's uncle and lord; mighty ruler</td>
+        <td>Conquers Spain; sends Ganelon; avenges Roland</td>
+      </tr>
+      <tr>
+        <td><strong>Roland</strong></td>
+        <td>Hero; brave, loyal, but <strong>prideful</strong>; leader of rear guard</td>
+        <td>Refuses to blow horn; dies as martyr</td>
+      </tr>
+      <tr>
+        <td><strong>Ganelon</strong></td>
+        <td>Roland's stepfather; <strong>betrayer</strong></td>
+        <td>Plots revenge; tells Muslims how to ambush; executed</td>
+      </tr>
+      <tr>
+        <td><strong>Oliver</strong></td>
+        <td>Roland's friend; <strong>wise and cautious</strong></td>
+        <td>Urges Roland to blow horn; represents wisdom</td>
+      </tr>
+      <tr>
+        <td><strong>Archbishop Turpin</strong></td>
+        <td>Religious leader</td>
+        <td>Encourages soldiers; promises Paradise; dies with them</td>
+      </tr>
+      <tr>
+        <td><strong>King Marsilion</strong></td>
+        <td>Muslim king of <strong>Saragossa</strong></td>
+        <td>Offers false peace; escapes</td>
+      </tr>
+      <tr>
+        <td><strong>Blancandrin</strong></td>
+        <td>Marsilion's envoy</td>
+        <td>Befriends Ganelon; helps plot betrayal</td>
+      </tr>
+    </table>
+
+    <h3>Character Analysis</h3>
+
+    <div class="card crimson">
+      <h4>Roland <span class="badge red">Tragic Hero</span></h4>
+      <ul class="plain">
+        <li><strong>Brave:</strong> Fights to the death; refuses to retreat.</li>
+        <li><strong>Loyal:</strong> To king, God, and France.</li>
+        <li><strong>Prideful:</strong> Refuses to blow the horn; believes he can win; doesn't want to lose his "good name."</li>
+        <li><strong>Flaw:</strong> Pride / hubris → causes destruction of the rear guard.</li>
+        <li><strong>Hero status:</strong> Dies as a martyr; angels take his soul to Paradise.</li>
+      </ul>
+    </div>
+
+    <div class="card crimson">
+      <h4>Ganelon <span class="badge red">Villain</span></h4>
+      <ul class="plain">
+        <li><strong>Fears death:</strong> Scared of going to Marsilion.</li>
+        <li><strong>Revengeful:</strong> Angry at Roland for volunteering him.</li>
+        <li><strong>Traitorous:</strong> Tells Muslims how to ambush; lies to Charlemagne.</li>
+        <li><strong>Villain status:</strong> Punished by being torn apart; "died a traitor's death."</li>
+      </ul>
+    </div>
+
+    <div class="grid2">
+      <div class="card blue">
+        <h4>Oliver</h4>
+        <ul class="plain">
+          <li><strong>Wise:</strong> Sees the Saracens; knows they are outnumbered.</li>
+          <li><strong>Cautious:</strong> Urges Roland to blow the horn.</li>
+          <li><strong>Contrast to Roland:</strong> Represents <em>wisdom</em> vs. Roland's <em>pride</em>.</li>
+        </ul>
+      </div>
+      <div class="card blue">
+        <h4>Archbishop Turpin</h4>
+        <ul class="plain">
+          <li><strong>Religious:</strong> Preaches duty to king and God.</li>
+          <li><strong>Encouraging:</strong> Promises absolution and Paradise.</li>
+          <li><strong>Brave:</strong> Fights alongside the French.</li>
+          <li><strong>Represents:</strong> The Church's role in the Crusades.</li>
+        </ul>
+      </div>
+      <div class="card blue">
+        <h4>Charlemagne</h4>
+        <ul class="plain">
+          <li><strong>Mighty:</strong> Conquered many lands.</li>
+          <li><strong>Grieving:</strong> Weeps for Roland; pulls his beard.</li>
+          <li><strong>Just:</strong> Avenges Roland; punishes Ganelon.</li>
+        </ul>
+      </div>
+      <div class="card blue">
+        <h4>King Marsilion</h4>
+        <ul class="plain">
+          <li><strong>Scheming:</strong> Offers false peace.</li>
+          <li><strong>Terrified:</strong> Of Charlemagne's power.</li>
+          <li><strong>Defeated:</strong> Loses his right hand; escapes.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. PLOT ============ -->
+  <section id="s5">
+    <h2 class="sec-title">5 · Plot Summary</h2>
+
+    <h3>Full Synopsis</h3>
+
+    <div class="card gold">
+      <h4>Part 1 — The Peace Offer</h4>
+      <ul class="plain">
+        <li>Charlemagne has conquered Spain for <strong>7 years</strong>.</li>
+        <li>Only <strong>Saragossa</strong> (under King Marsilion) remains under Muslim rule.</li>
+        <li>Marsilion, terrified of Charlemagne, sends a messenger offering riches, conversion to Christianity, and peace.</li>
+        <li>Charlemagne agrees; looks for a messenger to relay the decision.</li>
+      </ul>
+    </div>
+
+    <div class="card crimson">
+      <h4>Part 2 — Ganelon's Betrayal</h4>
+      <ul class="plain">
+        <li><strong>Roland nominates his stepfather Ganelon</strong> as messenger.</li>
+        <li>Ganelon is <strong>enraged</strong> — fears he will die at the hands of Muslims; suspects Roland wants him dead.</li>
+        <li>On the way to Saragossa, Ganelon befriends <strong>Blancandrin</strong> (Marsilion's envoy).</li>
+        <li>Ganelon tells Marsilion <strong>how to ambush the rear guard</strong>.</li>
+        <li>Marsilion gives Ganelon <strong>great treasures</strong>.</li>
+        <li>Ganelon returns with "good news" — Marsilion will keep his promise.</li>
+      </ul>
+    </div>
+
+    <div class="card gold">
+      <h4>Part 3 — The Ambush</h4>
+      <ul class="plain">
+        <li>Ganelon volunteers Roland for <strong>rear-guard duty</strong>.</li>
+        <li>Charlemagne is angry, but Roland accepts.</li>
+        <li>At <strong>Roncevaux Pass</strong>, Oliver sees the Saracens coming.</li>
+        <li>Oliver urges Roland to <strong>blow the olifant</strong> so Charlemagne can return.</li>
+        <li>Roland <strong>refuses</strong> — believes they can win; doesn't want to lose his good name.</li>
+      </ul>
+    </div>
+
+    <div class="card gold">
+      <h4>Part 4 — The Battle</h4>
+      <ul class="plain">
+        <li><strong>Archbishop Turpin</strong> preaches: duty to king and God; promises <strong>Paradise</strong> to those who die.</li>
+        <li>The French fight bravely but are <strong>outnumbered</strong>.</li>
+        <li>Roland finally blows the horn — <strong>too late</strong>.</li>
+        <li>Roland's temples burst; blood pours from his mouth.</li>
+        <li>Charlemagne hears, but Ganelon tries to dissuade him.</li>
+        <li>Charlemagne realizes Ganelon's betrayal.</li>
+      </ul>
+    </div>
+
+    <div class="card crimson">
+      <h4>Part 5 — Roland's Death</h4>
+      <ul class="plain">
+        <li>Roland dies on a hill beneath a pine tree, facing Spain.</li>
+        <li>Angels <strong>Cherubin, Michael, and Gabriel</strong> carry his soul to Paradise.</li>
+        <li>Charlemagne grieves and rages.</li>
+      </ul>
+    </div>
+
+    <div class="card crimson">
+      <h4>Part 6 — Vengeance</h4>
+      <ul class="plain">
+        <li>Charlemagne defeats the Muslims; captures Saragossa.</li>
+        <li>Ganelon is tried and sentenced to death.</li>
+        <li><strong>Punishment:</strong> Tied to four war horses; <strong>torn limb from limb</strong>.</li>
+        <li>"Ganelon died a traitor's and recreant's death."</li>
+      </ul>
+    </div>
+
+    <h3>Plot in 10 Beats <span class="badge">Quick Review</span></h3>
+    <div class="highlight">
+      <ol style="margin:0;padding-left:22px;">
+        <li>Charlemagne conquers Spain; only Saragossa remains.</li>
+        <li>Marsilion offers false peace.</li>
+        <li>Roland warns; Ganelon advises accepting.</li>
+        <li>Ganelon sent as messenger; plots revenge.</li>
+        <li>Ganelon tells Marsilion how to ambush rear guard.</li>
+        <li>Ganelon volunteers Roland for rear guard.</li>
+        <li>Oliver sees Saracens; urges Roland to blow horn.</li>
+        <li>Roland refuses out of pride; Turpin preaches.</li>
+        <li>Roland blows horn too late; dies; soul to Paradise.</li>
+        <li>Charlemagne avenges; Ganelon executed.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 6. QUOTES ============ -->
+  <section id="s6">
+    <h2 class="sec-title">6 · Key Quotes &amp; Analysis</h2>
+
+    <h3>Turpin's Sermon <span class="badge blue">Lai 89</span></h3>
+    <blockquote>
+      "Barons, my lords, Charles left us in this place. We know our duty: to die like good men for our King. Fight to defend the holy Christian faith. Now you will have a battle, you know it now, you see the Saracens with your own eyes. Confess your sins, pray to the Lord for mercy. I will absolve you all, to save your souls. If you die here, you will stand up holy martyrs, you will have seats in highest Paradise."
+    </blockquote>
+    <div class="card">
+      <h4>Analysis</h4>
+      <ul class="plain">
+        <li>Combines <strong>feudal duty</strong> (die for your King) with <strong>religious duty</strong> (defend the Christian faith).</li>
+        <li>Promises <strong>absolution</strong> and <strong>Paradise</strong> — gives soldiers hope.</li>
+        <li>Reflects the <strong>Crusading spirit</strong> of the Medieval Period.</li>
+        <li>"He commands them to do one penance: strike" — fighting is presented as a religious act.</li>
+      </ul>
+    </div>
+
+    <h3>Roland's Refusal <span class="badge blue">Lai 83</span></h3>
+    <blockquote>
+      "I'd be a fool to do it. I would lose my good name all through sweet France. I will strike now, I'll strike with Durendal, the blade will be bloody to the gold from striking! These pagan traitors came to these passes doomed! I promise you, they are marked men, they'll die."
+    </blockquote>
+    <div class="card">
+      <h4>Analysis</h4>
+      <ul class="plain">
+        <li>Shows Roland's <strong>pride</strong> — fears losing his reputation more than death.</li>
+        <li><strong>Durendal</strong> — Roland's sword; represents his honor and prowess.</li>
+        <li>"Pagan traitors" — reflects Christian bias against Muslims.</li>
+        <li>This decision leads to the destruction of the rear guard.</li>
+      </ul>
+    </div>
+
+    <h3>Roland's Refusal <span class="badge blue">Lai 87</span></h3>
+    <blockquote>
+      "Don't speak such foolishness — shame on the heart gone coward in the chest. We'll hold our ground, we'll stand firm — we're the ones! We'll fight with spears, we'll fight them hand to hand!"
+    </blockquote>
+    <div class="card">
+      <h4>Analysis</h4>
+      <ul class="plain">
+        <li>Roland accuses Oliver of <strong>cowardice</strong> — ironic, since Oliver is the wise one.</li>
+        <li>Shows Roland's <strong>reckless bravery</strong>.</li>
+        <li>"Shame on the heart gone coward" — reflects chivalric values.</li>
+      </ul>
+    </div>
+
+    <h3>Ganelon's Punishment <span class="badge blue">Lai 289</span></h3>
+    <blockquote>
+      "Ganelon must die, and in amazing pain. Four war horses are led out and brought forward; then they attach his two feet, his two hands. These battle horses are swift and spirited, four sergeants come and drive them on ahead toward a river in the midst of a field. Ganelon is brought to terrible perdition, all his mighty sinews are pulled to pieces, and the limbs of his body burst apart; on the green grass flows that bright and famous blood. Ganelon died a traitor's and recreant's death."
+    </blockquote>
+    <div class="card">
+      <h4>Analysis</h4>
+      <ul class="plain">
+        <li>Shows <strong>medieval justice</strong> — severe punishment for treachery.</li>
+        <li><strong>Public execution</strong> — deterrence and shame.</li>
+        <li>"Traitor's and recreant's death" — reinforces the gravity of betrayal.</li>
+        <li>Contrast with Roland's death: Roland dies as a <strong>martyr</strong>; Ganelon dies as a <strong>traitor</strong>.</li>
+      </ul>
+    </div>
+
+    <h3>Oliver's Warning <span class="badge blue">Lai 82</span></h3>
+    <blockquote>
+      "I saw the Saracens, no man on earth saw more of them — one hundred thousand, with their shields, up in front, helmets laced on, hauberks blazing on them, the shafts straight up, the iron heads like flames — you'll get a battle, nothing like it before. My lords, my French, may God give you the strength. Hold your ground now! Let them not defeat us!"
+    </blockquote>
+    <div class="card">
+      <h4>Analysis</h4>
+      <ul class="plain">
+        <li><strong>Foreshadowing</strong> — Oliver knows they are outnumbered.</li>
+        <li>"One hundred thousand" — exaggeration typical of epic.</li>
+        <li>Oliver's <strong>wisdom</strong> contrasts with Roland's <strong>pride</strong>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 7. THEMES ============ -->
+  <section id="s7">
+    <h2 class="sec-title">7 · Themes &amp; Medieval Values</h2>
+
+    <table>
+      <caption>Major Themes</caption>
+      <tr><th style="width:24%">Theme</th><th style="width:38%">Explanation</th><th>Evidence</th></tr>
+      <tr>
+        <td><strong>Loyalty vs. Betrayal</strong></td>
+        <td>Roland is loyal to king and God; Ganelon betrays them.</td>
+        <td>Ganelon tells Muslims how to ambush; Roland fights to the death.</td>
+      </tr>
+      <tr>
+        <td><strong>Pride / Hubris</strong></td>
+        <td>Roland's refusal to blow the horn causes destruction.</td>
+        <td>"I'd be a fool to do it. I would lose my good name."</td>
+      </tr>
+      <tr>
+        <td><strong>Chivalry</strong></td>
+        <td>Bravery, honor, service to lord.</td>
+        <td>Roland accepts rear-guard duty; fights bravely.</td>
+      </tr>
+      <tr>
+        <td><strong>Religious Devotion / Crusades</strong></td>
+        <td>Christians vs. Muslims; dying in battle earns salvation.</td>
+        <td>Turpin's sermon; angels take Roland's soul.</td>
+      </tr>
+      <tr>
+        <td><strong>Feudalism</strong></td>
+        <td>Lord-vassal relationship; loyalty and service.</td>
+        <td>Roland serves Charlemagne; Ganelon violates his oath.</td>
+      </tr>
+      <tr>
+        <td><strong>Good vs. Evil</strong></td>
+        <td>Christians portrayed as heroic; Muslims as pagans/traitors.</td>
+        <td>"Pagan traitors came to these passes doomed."</td>
+      </tr>
+      <tr>
+        <td><strong>Justice</strong></td>
+        <td>Treachery is severely punished.</td>
+        <td>Ganelon torn limb from limb.</td>
+      </tr>
+      <tr>
+        <td><strong>Oral Tradition</strong></td>
+        <td>Assonance, unequal stanzas, jongleur performance.</td>
+        <td>Structure of the epic.</td>
+      </tr>
+    </table>
+
+    <h3>Medieval Values in the Epic</h3>
+    <div class="grid2">
+      <div class="card gold">
+        <h4>Feudalism</h4>
+        Roland is Charlemagne's vassal; owes military service. Ganelon's betrayal violates the feudal oath.
+      </div>
+      <div class="card gold">
+        <h4>Chivalry</h4>
+        Roland's bravery, Oliver's wisdom, Turpin's devotion.
+      </div>
+      <div class="card gold">
+        <h4>Religious Devotion</h4>
+        Turpin promises Paradise; Roland's soul taken to heaven.
+      </div>
+      <div class="card gold">
+        <h4>Crusading Spirit</h4>
+        Muslims portrayed as enemies of Christ; war is holy.
+      </div>
+      <div class="card gold">
+        <h4>Patriarchy</h4>
+        Male-dominated society; women are absent or background figures.
+      </div>
+      <div class="card gold">
+        <h4>Honor / Reputation</h4>
+        Roland fears losing his "good name" more than death.
+      </div>
+      <div class="card gold">
+        <h4>Justice</h4>
+        Trial by combat; Ganelon's execution.
+      </div>
+      <div class="card gold">
+        <h4>Martyrdom</h4>
+        Dying in battle for God and king earns eternal salvation.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. Q&A ============ -->
+  <section id="s8">
+    <h2 class="sec-title">8 · Practice Q&amp;A <span class="badge">Tap to Reveal</span></h2>
+
+    <h3>A · The Medieval Period</h3>
+
+    <details>
+      <summary>What is the Medieval Period also known as?</summary>
+      <div class="answer">The Middle Ages or Dark Ages.</div>
+    </details>
+
+    <details>
+      <summary>What event marked the beginning of the Medieval Period?</summary>
+      <div class="answer">The fall of the Roman Empire.</div>
+    </details>
+
+    <details>
+      <summary>What institution became the unifying force in fragmented Europe?</summary>
+      <div class="answer">The Roman Catholic Church.</div>
+    </details>
+
+    <details>
+      <summary>What were the Crusades?</summary>
+      <div class="answer">Holy wars between Christians and Muslims, started in <strong>1095 AD</strong> by <strong>Pope Urban II</strong>. He promised eternal salvation and pardon of sins to soldiers who would reclaim the Holy Lands.</div>
+    </details>
+
+    <details>
+      <summary>What is feudalism?</summary>
+      <div class="answer">A political-economic system based on <strong>land ownership and alliances</strong>. Lords grant fiefs to vassals in exchange for protection and services.</div>
+    </details>
+
+    <details>
+      <summary>What is the manor system?</summary>
+      <div class="answer">An economic system where the <strong>lord</strong> provides peasants with protection, house, and farmland in exchange for their labor, a portion of their earnings, and other services.</div>
+    </details>
+
+    <details>
+      <summary>What is chivalry?</summary>
+      <div class="answer">A code of principles followed by knights — bravery, honor, loyalty, and service.</div>
+    </details>
+
+    <details>
+      <summary>What role did the Catholic Church play during the Medieval Period?</summary>
+      <div class="answer">It was the <strong>unifying institution</strong>; sent missionaries, seized territories, fought against Islam, and launched the Crusades.</div>
+    </details>
+
+    <details>
+      <summary>How did the concept of "nation" emerge?</summary>
+      <div class="answer">Through territorial claims, cultural similarity, and unity among Germanic tribes. This gave rise to modern European nations like France, Germany, and Spain.</div>
+    </details>
+
+    <details>
+      <summary>What are the three main social classes in feudalism?</summary>
+      <div class="answer">Nobility (lords/vassals), knights, and peasants.</div>
+    </details>
+
+    <h3>B · The Song of Roland</h3>
+
+    <details>
+      <summary>What is a <em>chanson de geste</em>?</summary>
+      <div class="answer">A "song of deeds" — an epic poem about Charlemagne's reign, performed orally by a jongleur.</div>
+    </details>
+
+    <details>
+      <summary>What historical event is <em>The Song of Roland</em> based on?</summary>
+      <div class="answer">The <strong>Battle of Roncevaux Pass in 778 AD</strong>.</div>
+    </details>
+
+    <details>
+      <summary>How does the epic differ from history?</summary>
+      <div class="answer">Historically, <strong>Christian Basques</strong> attacked the rear guard; the epic changes them to <strong>Saracens/Muslims</strong>. Eggihard and Anselm are replaced by <strong>Oliver and Turpin</strong>.</div>
+    </details>
+
+    <details>
+      <summary>Who is the author of <em>The Song of Roland</em>?</summary>
+      <div class="answer"><strong>Unknown.</strong> The name <strong>Turold</strong> is mentioned at the end, but his connection is unclear — "declinet" could mean translate, compose, or recite.</div>
+    </details>
+
+    <details>
+      <summary>Where is the oldest existing manuscript kept?</summary>
+      <div class="answer"><strong>Oxford University.</strong> Old French, dated 1129–1165 AD.</div>
+    </details>
+
+    <details>
+      <summary>What is the structure of the epic?</summary>
+      <div class="answer">Unequal stanzas, <strong>assonance</strong> instead of rhyme, performed by a <strong>jongleur</strong>.</div>
+    </details>
+
+    <details>
+      <summary>Why does Ganelon betray Roland?</summary>
+      <div class="answer">Roland volunteers him as messenger to Marsilion, putting his life in danger. Ganelon seeks <strong>revenge</strong>.</div>
+    </details>
+
+    <details>
+      <summary>Why does Roland refuse to blow the olifant?</summary>
+      <div class="answer">Out of <strong>pride</strong> — he fears losing his good name and believes they can win.</div>
+    </details>
+
+    <details>
+      <summary>What is Roland's flaw?</summary>
+      <div class="answer"><strong>Pride / hubris.</strong></div>
+    </details>
+
+    <details>
+      <summary>How does Turpin motivate the French?</summary>
+      <div class="answer">He reminds them of duty to king and God and promises <strong>absolution and Paradise</strong> if they die.</div>
+    </details>
+
+    <details>
+      <summary>How is Ganelon punished?</summary>
+      <div class="answer">He is <strong>torn limb from limb</strong> by four horses.</div>
+    </details>
+
+    <details>
+      <summary>What is the significance of Roland's death?</summary>
+      <div class="answer">He dies as a <strong>martyr/hero</strong>; his soul is taken to Paradise; his death inspires Charlemagne's revenge.</div>
+    </details>
+
+    <details>
+      <summary>How does the epic portray Muslims?</summary>
+      <div class="answer">As <strong>pagans and treacherous enemies</strong> of Christ — reflects Crusade propaganda.</div>
+    </details>
+
+    <details>
+      <summary>What is assonance?</summary>
+      <div class="answer">Repetition of vowel sounds; used instead of rhyme in <em>The Song of Roland</em>.</div>
+    </details>
+
+    <details>
+      <summary>Who is Oliver? How does he contrast with Roland?</summary>
+      <div class="answer">Oliver is Roland's friend and the <strong>wise, cautious</strong> one. He urges Roland to blow the horn. He contrasts with Roland's <strong>pride and recklessness</strong>.</div>
+    </details>
+
+    <details>
+      <summary>What is the significance of the olifant?</summary>
+      <div class="answer">It is Roland's horn, used to call for help. His refusal to blow it represents his <strong>pride</strong>; his eventual blowing of it is <strong>too late</strong>.</div>
+    </details>
+
+    <details>
+      <summary>What is Durendal?</summary>
+      <div class="answer">Roland's sword; represents his <strong>honor and prowess</strong>. He tries to break it on a rock so it won't fall into pagan hands.</div>
+    </details>
+
+    <details>
+      <summary>How does the epic end?</summary>
+      <div class="answer">Charlemagne defeats the Muslims, captures Saragossa, and executes Ganelon. Roland's soul is taken to Paradise.</div>
+    </details>
+
+    <details>
+      <summary>What is the role of Archbishop Turpin?</summary>
+      <div class="answer">He encourages the French, promises them Paradise, and fights alongside them. He represents the <strong>Church's role in the Crusades</strong>.</div>
+    </details>
+
+    <details>
+      <summary>What are the main themes of <em>The Song of Roland</em>?</summary>
+      <div class="answer">Loyalty vs. betrayal, pride/hubris, chivalry, religious devotion, feudalism, good vs. evil, and justice.</div>
+    </details>
+  </section>
+
+  <!-- ============ 9. CHEAT SHEET ============ -->
+  <section id="s9">
+    <h2 class="sec-title">9 · Cheat Sheet <span class="badge red">Last-Minute Review</span></h2>
+
+    <div class="grid2">
+      <div class="card gold">
+        <h4>Names to Know</h4>
+        <ul class="checklist">
+          <li><strong>Charlemagne</strong> — King/Emperor; Roland's uncle</li>
+          <li><strong>Roland</strong> — Hero; prideful; dies at Roncevaux</li>
+          <li><strong>Ganelon</strong> — Stepfather; betrayer; executed</li>
+          <li><strong>Oliver</strong> — Wise friend; urges Roland to blow horn</li>
+          <li><strong>Turpin</strong> — Archbishop; promises Paradise</li>
+          <li><strong>Marsilion</strong> — Muslim king of Saragossa</li>
+          <li><strong>Blancandrin</strong> — Marsilion's envoy</li>
+        </ul>
+      </div>
+
+      <div class="card gold">
+        <h4>Places to Know</h4>
+        <ul class="checklist">
+          <li><strong>Roncevaux Pass</strong> — Where the ambush happens</li>
+          <li><strong>Saragossa</strong> — Marsilion's kingdom</li>
+          <li><strong>Spain</strong> — Setting of the epic</li>
+          <li><strong>France</strong> — Charlemagne's kingdom</li>
+        </ul>
+      </div>
+
+      <div class="card gold">
+        <h4>Terms to Know</h4>
+        <ul class="checklist">
+          <li><strong>Chanson de geste</strong> — "Song of deeds"</li>
+          <li><strong>Feudalism</strong> — Land ownership and alliances</li>
+          <li><strong>Chivalry</strong> — Knight's code</li>
+          <li><strong>Manor system</strong> — Lord-peasant economic system</li>
+          <li><strong>Assonance</strong> — Vowel repetition</li>
+          <li><strong>Jongleur</strong> — Folk song singer</li>
+          <li><strong>Crusades</strong> — Holy wars</li>
+          <li><strong>Trial by combat</strong> — Legal duel</li>
+          <li><strong>Olifant</strong> — Roland's horn</li>
+          <li><strong>Durendal</strong> — Roland's sword</li>
+        </ul>
+      </div>
+
+      <div class="card gold">
+        <h4>Dates to Know</h4>
+        <ul class="checklist">
+          <li><strong>778 AD</strong> — Battle of Roncevaux Pass</li>
+          <li><strong>1095 AD</strong> — First Crusade</li>
+          <li><strong>1129–1165 AD</strong> — Oldest manuscript</li>
+        </ul>
+      </div>
+
+      <div class="card crimson">
+        <h4>Flaws &amp; Virtues</h4>
+        <ul class="checklist">
+          <li><strong>Roland</strong> — Pride (flaw); bravery (virtue)</li>
+          <li><strong>Ganelon</strong> — Betrayal (flaw)</li>
+          <li><strong>Oliver</strong> — Wisdom (virtue)</li>
+          <li><strong>Turpin</strong> — Faith (virtue)</li>
+        </ul>
+      </div>
+
+      <div class="card crimson">
+        <h4>Quotes to Memorize</h4>
+        <ol class="plain" style="padding-left:20px;">
+          <li><strong>Turpin:</strong> "If you die here, you will stand up holy martyrs, you will have seats in highest Paradise."</li>
+          <li><strong>Roland:</strong> "I'd be a fool to do it. I would lose my good name all through sweet France."</li>
+          <li><strong>Ganelon's punishment:</strong> "Ganelon died a traitor's and recreant's death."</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. TIPS ============ -->
+  <section id="s10">
+    <h2 class="sec-title">10 · Oral Recit Tips</h2>
+
+    <h3>How to Answer — Use P-E-S</h3>
+    <div class="grid2">
+      <div class="card blue">
+        <h4>P — Point</h4>
+        State your answer clearly.
+      </div>
+      <div class="card blue">
+        <h4>E — Evidence</h4>
+        Give a quote or detail from the text.
+      </div>
+      <div class="card blue">
+        <h4>S — Significance</h4>
+        Explain why it matters — connect to the Medieval Period or a theme.
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>Example:</strong><br>
+      <strong>Q: Why does Roland refuse to blow the olifant?</strong><br>
+      <strong>P:</strong> Roland refuses out of pride.<br>
+      <strong>E:</strong> He says, "I'd be a fool to do it. I would lose my good name all through sweet France."<br>
+      <strong>S:</strong> This shows his <em>hubris</em> — he values his reputation more than the safety of his men. This flaw leads to the destruction of the rear guard, making him a tragic hero.
+    </div>
+
+    <h3>Key Connections to Make</h3>
+    <div class="card gold">
+      <ul class="checklist">
+        <li>Connect <strong>Roland's pride</strong> to the <strong>tragic hero</strong> concept.</li>
+        <li>Connect <strong>Ganelon's betrayal</strong> to <strong>feudal disloyalty</strong> and <strong>medieval justice</strong>.</li>
+        <li>Connect <strong>Turpin's sermon</strong> to the <strong>Crusading spirit</strong> and <strong>religious devotion</strong>.</li>
+        <li>Connect <strong>the epic's portrayal of Muslims</strong> to <strong>Crusade propaganda</strong> and <strong>medieval bias</strong>.</li>
+        <li>Connect <strong>Roland's death</strong> to <strong>martyrdom</strong> and <strong>salvation</strong>.</li>
+      </ul>
+    </div>
+
+    <h3>What to Do If You Get Stuck</h3>
+    <div class="card crimson">
+      <ul class="plain">
+        <li>Summarize the plot briefly.</li>
+        <li>Define a key term (feudalism, chanson de geste, etc.).</li>
+        <li>Compare two characters (Roland vs. Oliver; Roland vs. Ganelon).</li>
+        <li>Connect to a theme (loyalty, pride, chivalry).</li>
+        <li>Use a quote you remember.</li>
+      </ul>
+    </div>
+
+    <h3>Final Review Checklist</h3>
+    <div class="card gold">
+      <ul class="checklist">
+        <li>Can I define the Medieval Period and its key features?</li>
+        <li>Can I explain feudalism, the manor system, and chivalry?</li>
+        <li>Can I summarize the plot of <em>The Song of Roland</em> in 10 beats?</li>
+        <li>Can I describe the main characters and their roles?</li>
+        <li>Can I quote Turpin's sermon and Roland's refusal?</li>
+        <li>Can I explain Roland's flaw and Ganelon's betrayal?</li>
+        <li>Can I connect the epic to Medieval values?</li>
+        <li>Can I answer the practice Q&amp;A?</li>
+      </ul>
+    </div>
+  </section>
+
 </div>
 
+<!-- FLOATING TOOLBAR -->
+<div class="toolbar">
+  <button onclick="expandAll()" title="Expand all answers">＋</button>
+  <button onclick="collapseAll()" title="Collapse all answers">−</button>
+  <button onclick="window.print()" title="Print / Save as PDF">🖨</button>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+</div>
+
+<footer>
+  <strong>English 4 · Reviewer</strong><br>
+  Medieval Period &amp; The Song of Roland<br>
+  <em>Good luck on your oral recitation!</em>
+</footer>
+
 <script>
-/* =========================================================
-   FLASHCARD DECKS — DETAILED
-   ========================================================= */
-const DECKS = {
-
-  "Gilgamesh (Detailed)": [
-    {q:"Who were Gilgamesh's parents?", a:"His mother was the goddess Ninsun; his father was the mortal king Lugalbanda. He was two-thirds divine and one-third human."},
-    {q:"What city did Gilgamesh rule, and what was significant about its walls?", a:"He ruled Uruk, a great walled city. He built magnificent walls that become symbolic of his legacy. The epic opens and closes with praise for Uruk's walls."},
-    {q:"How did Gilgamesh oppress the people of Uruk?", a:"He forced young men to labor endlessly on his building projects; he claimed the right to sleep with every new bride before her husband (droit du seigneur); he exhausted his subjects; no one could challenge him."},
-    {q:"Who did the people of Uruk pray to for relief?", a:"Anu, the sky god and father of the gods."},
-    {q:"Who created Enkidu, and from what?", a:"Aruru, the goddess of creation, fashioned him from clay as a wild man."},
-    {q:"Describe Enkidu before civilization.", a:"Covered in hair like an animal; ate grass with gazelles; drank from watering holes with wild beasts; lived in the wilderness; protected animals by destroying hunters' traps."},
-    {q:"Who was Shamhat, and what was her role?", a:"A temple prostitute (hierodule/sacred servant of Ishtar). She was sent by Gilgamesh to civilize Enkidu at the watering hole."},
-    {q:"What happened to Enkidu after six days and seven nights with Shamhat?", a:"The wild animals fled from him; he could no longer run with the gazelles; but he gained understanding, wisdom, and capacity for human connection. Shamhat taught him to eat bread, drink beer, wear clothes, and anoint with oil."},
-    {q:"What were Gilgamesh's two prophetic dreams?", a:"1) A meteor fell from the sky that Gilgamesh loved like a wife. 2) He found an axe in the street and loved it. Ninsun interpreted both as the coming of a companion like a brother."},
-    {q:"Describe the wrestling match between Gilgamesh and Enkidu.", a:"They grappled through the streets; doorposts shook and walls trembled; neither could gain advantage — perfectly matched. It ended in a draw; they embraced and became inseparable friends."},
-    {q:"Who adopted Enkidu, making him and Gilgamesh brothers?", a:"Ninsun, Gilgamesh's mother, adopted Enkidu as her own son."},
-    {q:"Why did Gilgamesh want to go to the Cedar Forest?", a:"He sought eternal fame through heroic deeds, since he could not achieve immortality. He said: 'Who can scale heaven? Only the gods live forever. As for mankind, numbered are their days. Whatever they achieve is but the wind.'"},
-    {q:"Who was Humbaba?", a:"A fearsome monster appointed by Enlil to guard the Cedar Forest. His voice was like thunder, his breath was fire, his presence caused paralysis and death; he was said to be immortal."},
-    {q:"Who helped Gilgamesh and Enkidu in the battle against Humbaba?", a:"Shamash, the sun god, sent thirteen winds to blind and confuse Humbaba."},
-    {q:"What did Humbaba do before he died?", a:"He pleaded for his life, promising to serve Gilgamesh. Enkidu urged Gilgamesh not to listen. Humbaba cursed Enkidu, saying Enkidu would not live long after this deed."},
-    {q:"What did Gilgamesh and Enkidu do after killing Humbaba?", a:"They cut down the sacred cedars and floated them down the Euphrates River to Uruk."},
-    {q:"Who proposed marriage to Gilgamesh after his return?", a:"Ishtar, the goddess of love and war."},
-    {q:"How did Gilgamesh reject Ishtar?", a:"With a blistering insult, reciting her former lovers and how she destroyed each: Tammuz (condemned to underworld), the lion (trapped in pits), the horse (bridle and spur), the shepherd (turned into a wolf), the gardener (turned into a frog)."},
-    {q:"What did Ishtar demand from Anu, and what threat did she make?", a:"She demanded the Bull of Heaven to punish Gilgamesh; she threatened to break open the gates of the underworld and release the dead to devour the living if Anu refused."},
-    {q:"Describe the destruction caused by the Bull of Heaven.", a:"Its first snort opened a pit swallowing one hundred men; second snort swallowed two hundred; third snort threatened to swallow Enkidu."},
-    {q:"How was the Bull of Heaven killed?", a:"Enkidu grabbed it by the horns; Gilgamesh drove his sword into its neck. They cut out its heart and offered it to Shamash."},
-    {q:"What did Enkidu do when Ishtar cursed them?", a:"He threw a piece of the bull's thigh at her and shouted insults, saying he would do the same to her if he could."},
-    {q:"What did the divine council decide after the killing of Humbaba and the Bull?", a:"Enlil argued Enkidu must die, but Gilgamesh should be spared. Shamash protested, but Enlil was adamant: 'Enkidu must die.'"},
-    {q:"How long did Enkidu suffer before dying?", a:"Twelve days. He was tormented by nightmares of the underworld — a place of dust and darkness where the dead eat clay and drink mud."},
-    {q:"How did Gilgamesh grieve for Enkidu?", a:"He refused to allow anyone to bury his friend for seven days and seven nights. He wept: 'My friend, whom I loved, has turned to clay. Shall I not be like him?'"},
-    {q:"Who was Utnapishtim?", a:"The only mortal granted immortality by the gods. Gilgamesh sought him to learn the secret of eternal life."},
-    {q:"What obstacles did Gilgamesh face on his journey to Utnapishtim?", a:"Scorpion-men guarding a mountain pass; a tunnel of darkness (twelve leagues); a garden of jewels; the great sea that encircles the world."},
-    {q:"Who was Siduri, and what advice did she give?", a:"A divine tavern keeper by the sea. She advised: 'When the gods created man, they allotted to him death, but life they retained. Fill your belly with good things; day and night, dance and be merry, feast and rejoice... for this too is the lot of man.'"},
-    {q:"Who was Urshanabi?", a:"The boatman of Utnapishtim who ferried Gilgamesh across the waters of death."},
-    {q:"What was Utnapishtim's former city?", a:"Shurrupak, which stood on the banks of the Euphrates River."},
-    {q:"Why did the gods decide to send the flood?", a:"The world had become too noisy — the clamor of humans disturbed the gods' sleep. Enlil convinced the divine council to send a flood."},
-    {q:"How did Ea warn Utnapishtim?", a:"He whispered the secret through the walls of Utnapishtim's reed house: 'Reed-house, reed-house! Wall, O wall... tear down your house and build a boat, abandon possessions and look for life.'"},
-    {q:"What were the dimensions of Utnapishtim's boat?", a:"A perfect cube, each side 120 cubits (approximately 180 feet), with seven decks, divided into nine sections."},
-    {q:"What did Utnapishtim load into the boat?", a:"All his gold and silver, his family and relatives, the seeds of all living creatures, wild and tame animals, and the craftsmen who helped build the boat."},
-    {q:"How long did the flood storm rage?", a:"Six days and six nights. On the seventh day, the storm subsided and the sea grew calm."},
-    {q:"Where did Utnapishtim's boat land?", a:"On Mount Nisir (also called Nimush). The boat held fast for seven days."},
-    {q:"What three birds did Utnapishtim send out, and what happened?", a:"1) Dove — found no resting place, returned. 2) Swallow — found no resting place, returned. 3) Raven — saw waters retreated, ate, flew around, cawed, and did not return."},
-    {q:"What did Utnapishtim do after the flood?", a:"He opened the boat to the four winds, made a sacrifice on the mountain top — seven cauldrons, wood, cane, cedar, and myrtle. The gods smelled the sweet savor and gathered like flies."},
-    {q:"What did Ishtar do at the sacrifice?", a:"She swore by her necklace of lapis lazuli that she would remember these days, and invited all the gods except Enlil, who brought the flood without reflection."},
-    {q:"How did Ea rebuke Enlil?", a:"'How could you so senselessly bring down the flood? Lay upon the sinner his sin... Would that a lion had ravaged mankind rather than the flood... Would that pestilence had wasted mankind rather than the flood.'"},
-    {q:"What reward did Enlil give Utnapishtim?", a:"He blessed Utnapishtim and his wife: 'Henceforth he and his wife shall live in the distance at the mouth of the rivers.' They were granted immortality."},
-    {q:"What test did Utnapishtim give Gilgamesh?", a:"To prevail against sleep for six days and seven nights. Gilgamesh immediately fell asleep. Utnapishtim's wife baked a loaf each day and marked the wall."},
-    {q:"What did the loaves show?", a:"The first was hard, second like leather, third soggy, fourth moldy, fifth mildewed, sixth fresh, seventh still on the embers — proving Gilgamesh slept the entire time."},
-    {q:"What secret did Utnapishtim reveal about a plant?", a:"A plant that grows under the water, with a prickle like a thorn, that restores lost youth to a man. It would not grant immortality, but renewal."},
-    {q:"How did Gilgamesh retrieve the plant?", a:"He opened the sluices, tied heavy stones to his feet, dragged himself to the water-bed, saw the plant, took it despite the pricks, cut the stones, and was thrown onto the shore."},
-    {q:"What happened to the youth-restoring plant?", a:"While Gilgamesh bathed in a cool well, a serpent sensed the sweetness, rose from the water, snatched the plant, and immediately sloughed its skin — symbolizing the renewal Gilgamesh sought."},
-    {q:"What did Gilgamesh learn about immortality?", a:"True immortality is not living forever but the lasting legacy of one's works — the walls of Uruk, the city, the story itself."},
-    {q:"What are the central themes of the Epic of Gilgamesh?", a:"1) The inevitability of death. 2) The value of friendship. 3) The search for meaning. 4) The limits of human power. 5) Legacy as immortality."},
-    {q:"What did the narrator say about Gilgamesh at the end?", a:"'He was wise, he saw mysteries and knew secret things, he brought us a tale of the days before the flood. He went a long journey, was weary, worn out with labor, and returning engraved on a stone the whole story.'"}
-  ],
-
-  "Book of Job (Detailed)": [
-    {q:"How is Job described at the opening of the book?", a:"'Blameless and upright, one who feared God and turned away from evil.' He was the greatest of all the people of the east."},
-    {q:"How many children did Job have?", a:"Seven sons and three daughters (symbolizing completeness)."},
-    {q:"What was Job's initial wealth?", a:"7,000 sheep, 3,000 camels, 500 yoke of oxen, 500 she-asses, and very many servants."},
-    {q:"What did Job do after his sons held feasts?", a:"He sent for them to sanctify them, rose early, and offered burnt offerings for each — saying 'It may be that my sons have sinned and cursed God in their hearts.' He even sacrificed for sins of thought."},
-    {q:"What is the 'divine council' scene?", a:"The sons of God (heavenly beings) present themselves before the LORD, and Satan (the Accuser/Adversary) comes among them. He functions as a prosecuting attorney in the divine court."},
-    {q:"What did God say to Satan about Job?", a:"'Have you considered my servant Job, that there is none like him on the earth, a blameless and upright man, who fears God and turns away from evil?'"},
-    {q:"What was Satan's challenge to God?", a:"'Does Job fear God for nought? You have blessed the work of his hands... Put forth your hand now, and touch all that he has, and he will curse you to your face.' — Job's faith was transactional, not genuine."},
-    {q:"What was the first wager?", a:"God gave Satan power over all Job's possessions but forbade touching Job himself."},
-    {q:"Who brought the four messages of disaster?", a:"Four messengers, each arriving while the previous was still speaking."},
-    {q:"What did the first messenger report?", a:"The Sabeans fell upon the oxen and asses, took them, and slew the servants."},
-    {q:"What did the second messenger report?", a:"The fire of God fell from heaven and burned up the sheep and the servants."},
-    {q:"What did the third messenger report?", a:"The Chaldeans formed three companies, raided the camels, and slew the servants."},
-    {q:"What did the fourth messenger report?", a:"A great wind came across the wilderness, struck the four corners of the house, and it fell on the young people — all ten children died."},
-    {q:"How did Job respond to the first wave of disasters?", a:"He arose, rent his robe, shaved his head, fell upon the ground, and worshiped: 'Naked I came from my mother's womb, and naked shall I return; the LORD gave, and the LORD has taken away; blessed be the name of the LORD.' He did not sin or charge God with wrong."},
-    {q:"What was the second wager?", a:"Satan said: 'Skin for skin! All that a man has he will give for his life. Touch his bone and his flesh, and he will curse you to your face.' God permitted it but forbade death."},
-    {q:"How was Job afflicted in the second test?", a:"With loathsome sores (boils) from the sole of his foot to the crown of his head. He sat among the ashes, scraping himself with a potsherd."},
-    {q:"What did Job's wife say to him?", a:"'Do you still hold fast your integrity? Curse God, and die.' (The Hebrew literally says 'bless God' — a euphemism for cursing, a bitter irony.)"},
-    {q:"How did Job answer his wife?", a:"'You speak as one of the foolish women would speak. Shall we receive good at the hand of God, and shall we not receive evil?' He did not sin with his lips."},
-    {q:"Who were Job's three friends?", a:"Eliphaz the Temanite, Bildad the Shuhite, and Zophar the Naamathite."},
-    {q:"What did the friends do when they first saw Job?", a:"They did not recognize him, raised their voices and wept, rent their robes, sprinkled dust on their heads, and sat with him on the ground for seven days and seven nights without speaking a word."},
-    {q:"What did Job do in Chapter 3?", a:"He cursed the day of his birth, called for darkness to swallow it, longed for death, and asked why life is given to those in misery. He did not curse God directly."},
-    {q:"What was Eliphaz's main argument?", a:"The innocent do not perish; those who plow iniquity reap the same. If Job is suffering, he must have sinned. He claimed a night vision revealed that no mortal can be righteous before God."},
-    {q:"What was Bildad's main argument?", a:"God does not pervert justice. Job's children died for their transgression. If Job repents, God will restore him. He appealed to the wisdom of the ancients."},
-    {q:"What was Zophar's main argument?", a:"Job is full of talk and should be shamed. God exacts less than Job's guilt deserves — Job is getting off easy. He urged Job to repent."},
-    {q:"How did Job respond to his friends' arguments?", a:"With raw honesty and sarcasm: 'No doubt you are the people, and wisdom will die with you.' He maintained his innocence and longed for a mediator between himself and God."},
-    {q:"What did Job call his friends?", a:"'Miserable comforters' — 'Shall windy words have an end?' He said they were like a treacherous torrent-bed, offering no real help."},
-    {q:"What important declaration does Job make in Job 19:25-27?", a:"'For I know that my Redeemer lives, and at last he will stand upon the earth; and after my skin has been thus destroyed, yet in my flesh I shall see God.' — A hope that a Vindicator will stand up for him."},
-    {q:"How does Job challenge the friends' theology in Chapter 21?", a:"'Why do the wicked live, reach old age, and grow mighty in power?' He points out that wicked people often prosper, contradicting the retributive justice principle."},
-    {q:"What false accusations does Eliphaz make in Chapter 22?", a:"That Job exacted pledges from brothers, stripped the naked, withheld water from the weary, and withheld bread from the hungry."},
-    {q:"What does Job long for in Chapter 23?", a:"'Oh, that I knew where I might find him, that I might come even to his seat! I would lay my case before him.' But God is hidden — 'I go forward, but he is not there.'"},
-    {q:"What is Job's Oath of Innocence in Chapter 31?", a:"A list of sins he has NOT committed: falsehood, adultery, injustice to servants, neglect of the poor, greed, idolatry, vindictiveness, inhospitality. He signs his defense and demands the Almighty answer."},
-    {q:"Who is Elihu, and what is his perspective?", a:"A young man, son of Barachel the Buzite, who was angry at Job and the three friends. He argued: 1) Suffering is God's discipline. 2) God's justice is beyond human understanding. 3) Humans should not demand explanations from God."},
-    {q:"How does God answer Job?", a:"Out of the whirlwind. God does not answer Job's questions directly but asks a torrent of rhetorical questions demonstrating divine wisdom and human limitation."},
-    {q:"What are some of God's questions about creation?", a:"'Where were you when I laid the foundation of the earth? Who shut in the sea with doors? Have you commanded the morning? Have you entered the storehouses of the snow? Can you bind the chains of the Pleiades?'"},
-    {q:"What animals does God ask about in Chapter 39?", a:"Mountain goats, wild ass, wild ox, ostrich, horse, hawk, and eagle — demonstrating God's wisdom encompasses all creation."},
-    {q:"How does Job respond to God's first speech?", a:"'Behold, I am of small account; what shall I answer thee? I lay my hand on my mouth. I have spoken once, and I will not answer; twice, but I will proceed no further.'"},
-    {q:"What does God say about Behemoth?", a:"A fearsome creature made by God, with bones like tubes of bronze and limbs like bars of iron — 'the first of the works of God.' Humans cannot control it."},
-    {q:"What does God say about Leviathan?", a:"A fearsome creature of chaos that cannot be tamed by humans but is part of God's creation. God's point: if Job cannot control these creatures, how can he judge God's governance?"},
-    {q:"What is Job's final response to God?", a:"'I know that thou canst do all things... I have uttered what I did not understand... I had heard of thee by the hearing of the ear, but now my eye sees thee; therefore I despise myself, and repent in dust and ashes.'"},
-    {q:"How does God judge the three friends?", a:"'My wrath is kindled against you... for you have not spoken of me what is right, as my servant Job has.' He ordered them to offer seven bulls and seven rams, and Job prayed for them."},
-    {q:"How was Job restored?", a:"When he prayed for his friends, the LORD restored his fortunes and gave him twice as much as before: 14,000 sheep, 6,000 camels, 1,000 yoke of oxen, 1,000 she-asses."},
-    {q:"What were the names of Job's three daughters?", a:"Jemimah ('dove'), Keziah ('cassia' or 'cinnamon'), and Keren-happuch ('horn of eye-paint'). They were the most beautiful women in all the land."},
-    {q:"What unusual thing did Job do for his daughters?", a:"He gave them an inheritance among their brothers — normally daughters did not inherit."},
-    {q:"How long did Job live after his restoration?", a:"140 years. He saw his sons, and his sons' sons, four generations. He died an old man, full of days."},
-    {q:"What are the central themes of the Book of Job?", a:"1) The problem of innocent suffering. 2) The limits of human wisdom. 3) The nature of true faith (not transactional). 4) The danger of theological arrogance. 5) The possibility of encounter with God. 6) The vindication of the sufferer."}
-  ],
-
-  "Oedipus Rex (Detailed)": [
-    {q:"Who wrote Oedipus Rex, and when?", a:"Sophocles, around 429 BCE. It was first runner-up at the festival of Dionysus in Athens."},
-    {q:"What was the curse on Laius?", a:"Laius had wronged Pelops, son of King Tantalus. Pelops cursed Laius: if he ever had a son, that son would kill him."},
-    {q:"What did the Delphic Oracle tell Laius?", a:"His son would kill him and marry his own mother."},
-    {q:"Why was Oedipus abandoned as a baby?", a:"Laius pierced the infant's ankles (Oedipus means 'swollen foot') and gave him to a shepherd to expose on Mount Cithaeron."},
-    {q:"How was Oedipus saved?", a:"The shepherd pitied the child and gave him to another shepherd from Corinth, who brought him to King Polybus and Queen Merope, who raised him as their own."},
-    {q:"What did the Oracle tell Oedipus as a young man?", a:"That he was fated to kill his father and marry his mother. Horrified, he fled Corinth."},
-    {q:"What happened at the crossroads?", a:"Oedipus encountered Laius in a chariot. Laius tried to push him off the road. Oedipus, in a rage, killed Laius and his servants — not knowing Laius was his father."},
-    {q:"What was the Sphinx, and what was her riddle?", a:"A monster with a woman's head, lion's body, and eagle's wings. Her riddle: 'What walks on four legs in the morning, two legs at noon, and three legs in the evening?'"},
-    {q:"How did Oedipus solve the Sphinx's riddle?", a:"He answered 'Man' — who crawls as a baby, walks upright as an adult, and uses a cane in old age. The Sphinx killed herself."},
-    {q:"What happened after Oedipus saved Thebes?", a:"He was made king and married the widowed queen, Jocasta — not knowing she was his mother. They had four children: Eteocles, Polynices, Antigone, and Ismene."},
-    {q:"What is the situation at the opening of the play?", a:"A plague has struck Thebes. Citizens gather at the altars with suppliant branches, led by a priest of Zeus, seeking divine aid."},
-    {q:"What does the priest say about the plague?", a:"'A blight is on the fruitful plants of the earth... a deadly pestilence is on our town... the house of Cadmus is emptied of its people while black Death grows rich in groaning and lamentation.'"},
-    {q:"What action has Oedipus already taken?", a:"He has sent Creon, his brother-in-law, to the Delphic Oracle to learn how the city might be saved."},
-    {q:"What does Creon report from the Oracle?", a:"The murderer of Laius must be found and punished. Only then will the plague be lifted."},
-    {q:"What did the survivor of Laius's attack claim?", a:"That robbers — many men — killed Laius at a crossroads."},
-    {q:"Why was the murder not investigated at the time?", a:"The Sphinx was terrorizing the city, and all attention was focused on solving her riddle."},
-    {q:"What does Oedipus vow?", a:"'I will bring this to light again... I will be an ally, a champion of my country and the God.'"},
-    {q:"Who is Tiresias?", a:"A blind prophet who is said to see more than any sighted person. He is reluctant to reveal what he knows."},
-    {q:"What does Tiresias finally reveal?", a:"'I say you are the murderer of the king whose murderer you seek.'"},
-    {q:"How does Oedipus react to Tiresias?", a:"With outrage. He accuses Tiresias and Creon of plotting to seize power, mocks Tiresias's blindness, and boasts of solving the Sphinx's riddle by his own wit."},
-    {q:"What is Tiresias's devastating prophecy?", a:"'You have your eyes but see not where you are in sin... You are an enemy to kith and kin... A deadly footed, double striking curse shall drive you forth... He shall be proved father and brother both to his own children; to her that gave him birth, a son and husband both.'"},
-    {q:"What does Oedipus accuse Creon of?", a:"Conspiracy — plotting with Tiresias to seize power."},
-    {q:"How does Creon defend himself?", a:"'May I die accursed, if I have been guilty of one tittle of the charge you bring against me!' He argues logically and refuses to be provoked."},
-    {q:"Who intervenes in the quarrel?", a:"Jocasta, Oedipus's wife and Creon's sister, who tries to make peace."},
-    {q:"How does Jocasta try to comfort Oedipus?", a:"By dismissing prophecy: 'Human beings have no part in the craft of prophecy.' She tells him the oracle about Laius was false — Laius was killed by robbers, not by his son."},
-    {q:"What details of Laius's death alarm Oedipus?", a:"The murder happened at a crossroads in Phocis; Laius was tall with grizzled hair; there were five people including a herald and one carriage."},
-    {q:"What is Oedipus's story about his past?", a:"Polybus was his father, Merope his mother. A drunk accused him of being a bastard. He went to Delphi and was told he would kill his father and marry his mother. He fled Corinth to avoid this fate."},
-    {q:"What happened at the crossroads according to Oedipus?", a:"He was encountered by a herald and a carriage. The old man struck him on the head with a goad. Oedipus became angry and killed them all."},
-    {q:"What hope remains for Oedipus?", a:"The survivor said robbers — many men — killed Laius. If there were many killers, Oedipus could not be the murderer."},
-    {q:"Who arrives from Corinth, and what news?", a:"A messenger arrives with news that Polybus is dead. Jocasta is overjoyed, thinking the prophecy is proven false."},
-    {q:"What does the messenger reveal?", a:"That Polybus was not Oedipus's biological father. The messenger himself gave Oedipus to Polybus as a gift. Oedipus was found on Cithaeron's slopes."},
-    {q:"What evidence of Oedipus's identity does the messenger cite?", a:"The scars on Oedipus's ankles — the tendons of his feet were pierced and fettered, which is why he is called Oedipus ('swollen foot')."},
-    {q:"What does Jocasta realize?", a:"She realizes the truth before Oedipus does. She begs him: 'I beg you — do not hunt this out — I beg you, if you have any care for your own life.'"},
-    {q:"How does Oedipus misunderstand Jocasta's plea?", a:"He thinks she is ashamed of his low birth: 'Keep up your heart, Jocasta. Though I'm proved a slave, thrice slave, you'll not be shown to be of lowly lineage.'"},
-    {q:"What does Jocasta cry out before running into the palace?", a:"'O Oedipus, God help you! God keep you from the knowledge of who you are!'"},
-    {q:"Who is brought forward to testify?", a:"The old herdsman — the same man who was the survivor of Laius's attack."},
-    {q:"What does the herdsman finally reveal?", a:"He gave the child to the messenger. The child was from the house of Laius. Jocasta gave him the child to 'make away with it' through fear of evil oracles. He pitied the child and gave it to the messenger."},
-    {q:"What does Oedipus cry out when the truth is complete?", a:"'O, O, O, they will all come, all come out clearly! Light of the sun, let me look upon you no more after today! I who first saw the light bred of a match accursed... cursed in my killing.'"},
-    {q:"How does Jocasta die?", a:"She hangs herself in the marriage bed, tearing her hair and cursing the bed where she brought forth husband by her husband, children by her own child."},
-    {q:"How does Oedipus blind himself?", a:"He tore the gold brooches from Jocasta's robe and dashed them on his own eyeballs, shrieking that they would never see the crime he had committed. He struck again and again until the bleeding eyeballs gushed."},
-    {q:"What does Oedipus say about his blinding?", a:"'It was Apollo, friends, Apollo, that brought this bitter bitterness. But the hand that struck me was none but my own. Why should I see whose vision showed me nothing sweet to see?'"},
-    {q:"Who becomes ruler of Thebes at the end?", a:"Creon, Jocasta's brother."},
-    {q:"What does Oedipus ask Creon to do?", a:"Drive him out of Thebes; let him live on Mount Cithaeron where he should have died as a child. He also asks Creon to bury Jocasta and protect his daughters, Antigone and Ismene."},
-    {q:"What does Oedipus say about his daughters?", a:"'I weep for you — I cannot see your faces... who will marry you? No one, my children; clearly you are doomed to waste away in barrenness unmarried.'"},
-    {q:"What are the central themes of Oedipus Rex?", a:"1) Fate vs. free will. 2) Blindness vs. sight (Tiresias blind but sees truth; Oedipus sighted but blind to truth). 3) Hubris (pride). 4) The quest for truth. 5) The limits of human intelligence. 6) The tragic hero. 7) Guilt and innocence."},
-    {q:"What is the famous final line of the play?", a:"'Count no man happy until he has passed beyond life's final day.'"}
-  ],
-
-  "Greek Tragedy Terms": [
-    {q:"What is hamartia?", a:"The hero's flaw that leads to his tragic downfall — a personal error or decision, not an accident."},
-    {q:"What is hubris?", a:"The hero's arrogance or excessive pride — a disrespect for the natural order of the world."},
-    {q:"What is peripeteia?", a:"The reversal of fate or fortune — the hero's experience of a complete reversal."},
-    {q:"What is anagnorisis?", a:"The pivotal moment in which the hero reaches a realization or important discovery."},
-    {q:"What is nemesis?", a:"The unavoidable fate of the hero, usually caused by his own hubris — literally 'revenge' or cosmic payback."},
-    {q:"What is catharsis?", a:"The audience's release of negative emotions such as pity and fear toward the end of the play — a purification or purging."},
-    {q:"What are the six elements of a tragedy?", a:"Plot, Characters, Thought, Diction, Song, and Spectacle."},
-    {q:"Which element is the 'soul of tragedy'?", a:"Plot — the most important element where the arrangement of incidents and actions exists."},
-    {q:"What is the prologue?", a:"The opening monologue or dialogue before the entrance of the chorus; presents the background of the play."},
-    {q:"What is the parados?", a:"The entrance of the chorus through expressive songs and dances that leads up to the main theme."},
-    {q:"What is an episode?", a:"The central part of the play where the chorus and actors interact through dialogues. Typically 3-5 episodes."},
-    {q:"What is a stasimon?", a:"The section where the chorus gives comment or reaction to the episodes."},
-    {q:"What is the exodus?", a:"The concluding part of the play and the final song of the chorus where the moral is revealed."},
-    {q:"What are the three principles of a Greek tragedy?", a:"1) It should evoke pity and fear. 2) The tragic hero must be essentially admirable and good. 3) The hero's demise must come from personal error or decision."},
-    {q:"What is the difference between simple and complex plot?", a:"Simple — consists of 'change of fortune' (catastrophe). Complex — involves both 'plot reversal' (peripeteia) and 'tragic recognition' (anagnorisis)."}
-  ],
-
-  "Gilgamesh & Job Comparisons": [
-    {q:"How does the Gilgamesh flood compare to Noah's flood?", a:"Both feature: divine decision to flood; a chosen survivor warned; a boat; birds sent out (dove, swallow, raven vs. dove, raven); a sacrifice; gods who regret. Gilgamesh's is older (Sumerian)."},
-    {q:"What do Gilgamesh and Job have in common?", a:"Both are righteous/good men who suffer greatly. Both question the gods/God. Both receive a form of restoration. Both explore the meaning of suffering."},
-    {q:"How do Gilgamesh and Job differ in their responses to suffering?", a:"Gilgamesh grieves and seeks immortality. Job grieves and demands an explanation. Gilgamesh learns to accept mortality. Job learns humility and encounters God."},
-    {q:"What is theodicy?", a:"The question of why a good God permits suffering — a central theme in the Book of Job."},
-    {q:"What is the key difference between Gilgamesh's and Job's endings?", a:"Gilgamesh returns to Uruk with wisdom and accepts mortality. Job is restored with double wealth and lives 140 more years."},
-    {q:"How are both stories similar in their view of the divine?", a:"Both show gods/God as powerful and beyond human understanding. Both show that humans cannot fully comprehend divine purposes."}
-  ],
-
-  "Business & Resume": [
-    {q:"What is a business letter?", a:"A formal correspondence serving as written communication among customers, clients, stakeholders, investors, and other commercial purposes."},
-    {q:"What are the seven parts of a business letter?", a:"Heading, Date Line, Inside Address, Salutation, Body, Complimentary Close, and Signature."},
-    {q:"What are the four business letter styles?", a:"Full Block, Modified Block, Semi-Block, and Simplified."},
-    {q:"Describe the Full Block style.", a:"Every component is aligned to the left. It is the most popular because of its simplicity."},
-    {q:"Describe the Modified Block style.", a:"The date line, complimentary close, and signature are typed at the right side of the page."},
-    {q:"Resume vs. CV?", a:"Resume — concise (1-2 pages) of experiences, education, and skills. CV ('course life') — in-depth (2+ pages) covering career path, distinctions, publications, awards; static."},
-    {q:"What are the three resume formats?", a:"Chronological, Functional, and Combination (Hybrid)."},
-    {q:"When should you use the chronological format?", a:"When demonstrating career progress, showing little work experience gaps, or applying for related work."},
-    {q:"When is the functional format best?", a:"For students with fewer work experiences but relevant skills, career shifts, or multiple gaps."},
-    {q:"What are the parts of an email?", a:"Sender (From), Recipient (To), Subject Line, Salutation, Body, Attachment, and Closing."},
-    {q:"What does Cc stand for?", a:"Carbon copy — allows recipients to see other recipients who received a copy."},
-    {q:"What does Bcc stand for?", a:"Blind carbon copy — prevents recipients from knowing other recipients."},
-    {q:"What does P.S. stand for?", a:"Postscript — an additional remark other than the message in the body."},
-    {q:"What are the four body paragraphs of an application letter?", a:"Opening (position + how you learned of it), Second (interest + skills), Third (why best fit + refer to resume), Closing (gratitude + contact details)."},
-    {q:"Hard skills vs. Soft skills?", a:"Hard skills — abilities acquired through training (technical). Soft skills — natural personal traits (integrity, teamwork, adaptability)."}
-  ]
-};
-
-/* =========================================================
-   QUIZ QUESTIONS — DETAILED
-   ========================================================= */
-const QUIZ = [
-  /* GILGAMESH */
-  {t:"Gilgamesh", q:"Who were Gilgamesh's parents?", o:["Ninsun and Lugalbanda","Ishtar and Anu","Aruru and Enlil","Siduri and Utnapishtim"], c:0,
-   e:"His mother was the goddess Ninsun; his father was the mortal king Lugalbanda. He was two-thirds divine and one-third human."},
-
-  {t:"Gilgamesh", q:"Who created Enkidu, and from what?", o:["Enlil, from fire","Aruru, from clay","Ea, from water","Shamash, from light"], c:1,
-   e:"Aruru, the goddess of creation, fashioned Enkidu from clay as a wild man."},
-
-  {t:"Gilgamesh", q:"Who was Shamhat?", o:["A goddess of love","A temple prostitute sent to civilize Enkidu","A boatman","Utnapishtim's wife"], c:1,
-   e:"Shamhat was a temple prostitute (hierodule/sacred servant of Ishtar) sent by Gilgamesh to civilize Enkidu."},
-
-  {t:"Gilgamesh", q:"What happened to Enkidu after six days and seven nights with Shamhat?", o:["He became king","The wild animals fled from him; he gained understanding and wisdom","He lost his strength entirely","He returned to the wilderness forever"], c:1,
-   e:"The wild animals fled from him; he could no longer run with the gazelles; but he gained understanding, wisdom, and capacity for human connection."},
-
-  {t:"Gilgamesh", q:"How did the wrestling match between Gilgamesh and Enkidu end?", o:["Gilgamesh won","Enkidu won","It ended in a draw; they became friends","They killed each other"], c:2,
-   e:"Neither could gain advantage — they were perfectly matched. They embraced and became inseparable friends."},
-
-  {t:"Gilgamesh", q:"Who adopted Enkidu, making him and Gilgamesh brothers?", o:["Ishtar","Shamhat","Ninsun","Siduri"], c:2,
-   e:"Ninsun, Gilgamesh's mother, adopted Enkidu as her own son."},
-
-  {t:"Gilgamesh", q:"Who was Humbaba?", o:["A god of the underworld","A monster appointed by Enlil to guard the Cedar Forest","A boatman","The first king of Uruk"], c:1,
-   e:"Humbaba was a fearsome monster appointed by Enlil to guard the Cedar Forest. His voice was thunder, his breath fire, his presence caused paralysis and death."},
-
-  {t:"Gilgamesh", q:"Who helped Gilgamesh and Enkidu in the battle against Humbaba?", o:["Ishtar","Shamash sent thirteen winds","Anu","Ea"], c:1,
-   e:"Shamash, the sun god, sent thirteen winds to blind and confuse Humbaba."},
-
-  {t:"Gilgamesh", q:"What did Humbaba do before he died?", o:["He blessed Gilgamesh","He cursed Enkidu, saying he would not live long","He promised to serve Ishtar","He revealed the secret of immortality"], c:1,
-   e:"Humbaba cursed Enkidu before he died, saying Enkidu would not live long after this deed."},
-
-  {t:"Gilgamesh", q:"Who proposed marriage to Gilgamesh after his return?", o:["Shamhat","Ninsun","Ishtar","Siduri"], c:2,
-   e:"Ishtar, the goddess of love and war, proposed marriage to Gilgamesh."},
-
-  {t:"Gilgamesh", q:"How did Gilgamesh reject Ishtar?", o:["Politely declining","With a blistering insult reciting her destroyed lovers","By ignoring her","By offering her gold"], c:1,
-   e:"He recited her former lovers and how she destroyed each: Tammuz, the lion, the horse, the shepherd, the gardener."},
-
-  {t:"Gilgamesh", q:"What did Ishtar demand from Anu?", o:["The Cedar Forest","The Bull of Heaven","Eternal life","The throne of Uruk"], c:1,
-   e:"She demanded the Bull of Heaven to punish Gilgamesh, threatening to release the dead if refused."},
-
-  {t:"Gilgamesh", q:"How was the Bull of Heaven killed?", o:["Shamash struck it with lightning","Enkidu grabbed it by the horns, Gilgamesh drove his sword into its neck","It was drowned in the Euphrates","Ishtar killed it herself"], c:1,
-   e:"Enkidu grabbed it by the horns; Gilgamesh drove his sword into its neck. They cut out its heart and offered it to Shamash."},
-
-  {t:"Gilgamesh", q:"What did the divine council decide after the killings of Humbaba and the Bull?", o:["Both heroes should die","Enkidu must die, Gilgamesh spared","Gilgamesh must die, Enkidu spared","Both heroes should be rewarded"], c:1,
-   e:"Enlil argued Enkidu must die, but Gilgamesh should be spared. Shamash protested, but Enlil was adamant."},
-
-  {t:"Gilgamesh", q:"How long did Gilgamesh refuse to bury Enkidu?", o:["Three days","Seven days and seven nights","Twelve days","One month"], c:1,
-   e:"He refused to allow anyone to bury his friend for seven days and seven nights."},
-
-  {t:"Gilgamesh", q:"Who was Utnapishtim?", o:["The king of Uruk","The only mortal granted immortality","A boatman","The god of wisdom"], c:1,
-   e:"Utnapishtim was the only mortal granted immortality by the gods."},
-
-  {t:"Gilgamesh", q:"Who was Siduri?", o:["A goddess of love","A divine tavern keeper by the sea","Utnapishtim's wife","The boatman's sister"], c:1,
-   e:"Siduri was a divine tavern keeper who gave Gilgamesh advice about accepting mortality."},
-
-  {t:"Gilgamesh", q:"What advice did Siduri give Gilgamesh?", o:["Seek immortality at all costs","Fill your belly with good things; day and night, dance and be merry","Pray to Ishtar for forgiveness","Return to Uruk immediately"], c:1,
-   e:"She told him: 'When the gods created man, they allotted to him death, but life they retained. Fill your belly with good things; day and night, dance and be merry... for this too is the lot of man.'"},
-
-  {t:"Gilgamesh", q:"Who was Urshanabi?", o:["The king of Shurrupak","The boatman of Utnapishtim","A scorpion-man","The god of the sea"], c:1,
-   e:"Urshanabi was the boatman of Utnapishtim who ferried Gilgamesh across the waters of death."},
-
-  {t:"Gilgamesh", q:"Why did the gods decide to send the flood?", o:["Human wickedness","The world had become too noisy — the clamor disturbed the gods' sleep","Humans stopped sacrificing","The gods were bored"], c:1,
-   e:"The world had become too noisy — the clamor of humans disturbed the gods' sleep. Enlil convinced the council."},
-
-  {t:"Gilgamesh", q:"How did Ea warn Utnapishtim?", o:["Through a dream","By whispering through the walls of his reed house","By sending a messenger","Through a burning bush"], c:1,
-   e:"He whispered the secret through the walls of Utnapishtim's reed house: 'Reed-house, reed-house! Wall, O wall... tear down your house and build a boat.'"},
-
-  {t:"Gilgamesh", q:"What were the dimensions of Utnapishtim's boat?", o:["A perfect cube, 120 cubits each side, seven decks","A sphere, 100 cubits","A rectangle, 200 by 100 cubits","A pyramid, 150 cubits"], c:0,
-   e:"A perfect cube, each side 120 cubits (approximately 180 feet), with seven decks, divided into nine sections."},
-
-  {t:"Gilgamesh", q:"What three birds did Utnapishtim send out?", o:["Dove, swallow, raven","Dove, raven, eagle","Swallow, hawk, raven","Dove, sparrow, eagle"], c:0,
-   e:"Dove (returned), swallow (returned), raven (did not return — waters had retreated)."},
-
-  {t:"Gilgamesh", q:"What did Enlil do when he saw Utnapishtim had survived?", o:["He rejoiced","He was furious and asked how any mortal escaped","He killed Utnapishtim","He flooded the world again"], c:1,
-   e:"He was furious: 'Has any of these mortals escaped? Not one was to have survived the destruction.'"},
-
-  {t:"Gilgamesh", q:"What reward did Enlil give Utnapishtim?", o:["Gold and silver","Immortality at the mouth of the rivers","Kingship of Shurrupak","A new boat"], c:1,
-   e:"Enlil blessed Utnapishtim and his wife: 'Henceforth he and his wife shall live in the distance at the mouth of the rivers.' They were granted immortality."},
-
-  {t:"Gilgamesh", q:"What test did Utnapishtim give Gilgamesh?", o:["To fight a lion","To prevail against sleep for six days and seven nights","To swim across the sea","To climb a mountain"], c:1,
-   e:"Gilgamesh immediately fell asleep. Utnapishtim's wife baked a loaf each day and marked the wall."},
-
-  {t:"Gilgamesh", q:"What secret plant did Utnapishtim reveal?", o:["A plant that grants immortality","A plant that restores lost youth","A plant that heals all wounds","A plant that gives strength"], c:1,
-   e:"A plant that grows under the water, with a prickle like a thorn, that restores lost youth — not immortality, but renewal."},
-
-  {t:"Gilgamesh", q:"What happened to the youth-restoring plant?", o:["Gilgamesh ate it","A serpent snatched it and sloughed its skin","Urshanabi stole it","It withered and died"], c:1,
-   e:"While Gilgamesh bathed, a serpent sensed the sweetness, rose from the water, snatched the plant, and immediately sloughed its skin."},
-
-  {t:"Gilgamesh", q:"What did Gilgamesh learn about immortality?", o:["It can be achieved through heroism","It belongs only to kings","True immortality is the lasting legacy of one's works","It is found in the Cedar Forest"], c:2,
-   e:"True immortality is not living forever but the lasting legacy of one's works — the walls of Uruk, the city, the story itself."},
-
-  /* BOOK OF JOB */
-  {t:"Book of Job", q:"How is Job described at the opening?", o:["Rich and powerful","Blameless and upright, fearing God and turning from evil","Wise and learned","Strong and mighty"], c:1,
-   e:"'Blameless and upright, one who feared God and turned away from evil.' He was the greatest of all the people of the east."},
-
-  {t:"Book of Job", q:"What was Job's initial wealth?", o:["1,000 sheep, 500 camels","7,000 sheep, 3,000 camels, 500 yoke oxen, 500 she-asses","3,000 sheep, 1,000 camels","14,000 sheep, 6,000 camels"], c:1,
-   e:"7,000 sheep, 3,000 camels, 500 yoke of oxen, 500 she-asses, and very many servants."},
-
-  {t:"Book of Job", q:"What did Job do after his sons held feasts?", o:["He joined them","He offered burnt offerings for each, in case they sinned in their hearts","He ignored them","He punished them"], c:1,
-   e:"He sent for them to sanctify them, rose early, and offered burnt offerings for each — even for sins of thought."},
-
-  {t:"Book of Job", q:"What is the 'divine council' scene?", o:["A meeting of angels","The sons of God present themselves before the LORD, and Satan comes among them","A council of priests","A gathering of prophets"], c:1,
-   e:"The sons of God (heavenly beings) present themselves before the LORD, and Satan (the Accuser) comes among them."},
-
-  {t:"Book of Job", q:"What was Satan's challenge to God?", o:["Job is too strong","Job only serves God because God rewards him; take away the rewards and he will curse God","Job is secretly wicked","Job does not pray enough"], c:1,
-   e:"'Does Job fear God for nought? You have blessed the work of his hands... Put forth your hand now, and touch all that he has, and he will curse you to your face.'"},
-
-  {t:"Book of Job", q:"What was the first wager?", o:["God gave Satan power over all Job's possessions but forbade touching Job himself","God gave Satan power over Job's body","God gave Satan power over Job's family only","God gave Satan nothing"], c:0,
-   e:"God gave Satan power over all Job's possessions but forbade touching Job himself."},
-
-  {t:"Book of Job", q:"What did the first messenger report?", o:["The Sabeans stole the oxen and asses and slew the servants","Fire burned the sheep","Chaldeans stole the camels","A wind killed the children"], c:0,
-   e:"The Sabeans fell upon the oxen and asses, took them, and slew the servants."},
-
-  {t:"Book of Job", q:"What did the second messenger report?", o:["The Sabeans stole the oxen","The fire of God fell from heaven and burned the sheep and servants","Chaldeans stole the camels","A wind killed the children"], c:1,
-   e:"The fire of God fell from heaven and burned up the sheep and the servants."},
-
-  {t:"Book of Job", q:"What did the fourth messenger report?", o:["The Sabeans stole the oxen","Fire burned the sheep","Chaldeans stole the camels","A great wind collapsed the house, killing all ten children"], c:3,
-   e:"A great wind came across the wilderness, struck the four corners of the house, and it fell on the young people — all ten children died."},
-
-  {t:"Book of Job", q:"How did Job respond to the first wave of disasters?", o:["He cursed God","He rent his robe, shaved his head, fell on the ground and worshiped","He questioned God","He fell silent"], c:1,
-   e:"He arose, rent his robe, shaved his head, fell upon the ground, and worshiped: 'The LORD gave, and the LORD has taken away; blessed be the name of the LORD.'"},
-
-  {t:"Book of Job", q:"What was the second wager?", o:["Satan said: 'Skin for skin! Touch his bone and his flesh, and he will curse you'","Satan said: 'Take his family'","Satan said: 'Take his wealth'","Satan said: 'Give him more wealth'"], c:0,
-   e:"Satan said: 'Skin for skin! All that a man has he will give for his life. Touch his bone and his flesh, and he will curse you to your face.'"},
-
-  {t:"Book of Job", q:"How was Job afflicted in the second test?", o:["With fever","With boils from the sole of his foot to the crown of his head","With blindness","With paralysis"], c:1,
-   e:"He was afflicted with loathsome sores (boils) from the sole of his foot to the crown of his head. He sat among the ashes, scraping himself with a potsherd."},
-
-  {t:"Book of Job", q:"What did Job's wife say to him?", o:["Pray for healing","Curse God and die","Flee to another land","Blame his friends"], c:1,
-   e:"'Do you still hold fast your integrity? Curse God, and die.' (The Hebrew says 'bless God' — a euphemism for cursing.)"},
-
-  {t:"Book of Job", q:"How did Job answer his wife?", o:["He agreed with her","'Shall we receive good at the hand of God, and shall we not receive evil?'","He ignored her","He wept"], c:1,
-   e:"'You speak as one of the foolish women would speak. Shall we receive good at the hand of God, and shall we not receive evil?' He did not sin with his lips."},
-
-  {t:"Book of Job", q:"Who were Job's three friends?", o:["Eliphaz, Bildad, and Zophar","Elihu, Eliphaz, and Bildad","Eliphaz, Elihu, and Zophar","Bildad, Zophar, and Elihu"], c:0,
-   e:"Eliphaz the Temanite, Bildad the Shuhite, and Zophar the Naamathite."},
-
-  {t:"Book of Job", q:"What did the friends do when they first saw Job?", o:["They immediately spoke","They sat with him on the ground for seven days and seven nights without speaking","They left","They sang hymns"], c:1,
-   e:"They did not recognize him, wept, rent their robes, sprinkled dust, and sat with him for seven days and seven nights without speaking a word."},
-
-  {t:"Book of Job", q:"What did Job do in Chapter 3?", o:["He cursed God","He cursed the day of his birth and longed for death","He prayed for healing","He asked for forgiveness"], c:1,
-   e:"He cursed the day of his birth, called for darkness to swallow it, longed for death, and asked why life is given to those in misery."},
-
-  {t:"Book of Job", q:"What was Eliphaz's main argument?", o:["The innocent do not perish; if Job suffers, he must have sinned","Job should be patient","God is unjust","Suffering is random"], c:0,
-   e:"Eliphaz argued that the innocent do not perish; those who plow iniquity reap the same. He claimed a night vision revealed no mortal can be righteous before God."},
-
-  {t:"Book of Job", q:"What did Job call his friends?", o:["Faithful companions","Miserable comforters","Wise counselors","Holy men"], c:1,
-   e:"'Miserable comforters are you all.' He said they were like a treacherous torrent-bed, offering no real help."},
-
-  {t:"Book of Job", q:"What important declaration does Job make in Job 19:25-27?", o:["'I know that my Redeemer lives'","'I will never speak again'","'God is unjust'","'I have sinned'"], c:0,
-   e:"'For I know that my Redeemer lives, and at last he will stand upon the earth; and after my skin has been thus destroyed, yet in my flesh I shall see God.'"},
-
-  {t:"Book of Job", q:"Who is Elihu?", o:["A fourth friend who was older","A young man who was angry at Job and the three friends","Job's brother","A prophet"], c:1,
-   e:"Elihu, son of Barachel the Buzite, was a young man who argued suffering is God's discipline and God's justice is beyond human understanding."},
-
-  {t:"Book of Job", q:"How does God answer Job?", o:["Through a dream","Out of the whirlwind","Through an angel","Through a prophet"], c:1,
-   e:"God answered Job out of the whirlwind, asking a torrent of rhetorical questions demonstrating divine wisdom and human limitation."},
-
-  {t:"Book of Job", q:"What are some of God's questions about creation?", o:["'Where were you when I laid the foundation of the earth?'","'Why did you sin?'","'Do you love me?'","'Will you obey me?'"], c:0,
-   e:"'Where were you when I laid the foundation of the earth? Who shut in the sea with doors? Have you commanded the morning? Can you bind the chains of the Pleiades?'"},
-
-  {t:"Book of Job", q:"How does Job respond to God's first speech?", o:["He argues back","He lays his hand on his mouth and says he will proceed no further","He flees","He laughs"], c:1,
-   e:"'Behold, I am of small account; what shall I answer thee? I lay my hand on my mouth. I have spoken once, and I will not answer; twice, but I will proceed no further.'"},
-
-  {t:"Book of Job", q:"What is Job's final response to God?", o:["'I have sinned greatly'","'I had heard of thee by the hearing of the ear, but now my eye sees thee; therefore I despise myself, and repent in dust and ashes'","'You are unjust'","'I will never speak again'"], c:1,
-   e:"'I know that thou canst do all things... I have uttered what I did not understand... I had heard of thee by the hearing of the ear, but now my eye sees thee; therefore I despise myself, and repent in dust and ashes.'"},
-
-  {t:"Book of Job", q:"How does God judge the three friends?", o:["He praises them","'You have not spoken of me what is right, as my servant Job has'","He ignores them","He strikes them dead"], c:1,
-   e:"God's wrath was kindled against them. He ordered them to offer seven bulls and rams, and Job prayed for them."},
-
-  {t:"Book of Job", q:"How was Job restored?", o:["He was given back exactly what he lost","He was given twice as much as before","He was given half as much","He was not restored"], c:1,
-   e:"When he prayed for his friends, the LORD restored his fortunes and gave him twice as much: 14,000 sheep, 6,000 camels, 1,000 yoke of oxen, 1,000 she-asses."},
-
-  {t:"Book of Job", q:"What were the names of Job's three daughters?", o:["Jemimah, Keziah, and Keren-happuch","Sarah, Rebekah, and Rachel","Mary, Martha, and Elizabeth","Dinah, Tamar, and Ruth"], c:0,
-   e:"Jemimah ('dove'), Keziah ('cassia'), and Keren-happuch ('horn of eye-paint'). They were the most beautiful women in all the land."},
-
-  {t:"Book of Job", q:"What unusual thing did Job do for his daughters?", o:["Made them priestesses","Gave them an inheritance among their brothers","Sent them to another land","Married them to kings"], c:1,
-   e:"He gave them an inheritance among their brothers — normally daughters did not inherit."},
-
-  {t:"Book of Job", q:"How long did Job live after his restoration?", o:["40 years","70 years","100 years","140 years"], c:3,
-   e:"Job lived 140 years and saw four generations of descendants. He died an old man, full of days."},
-
-  /* OEDIPUS REX */
-  {t:"Oedipus Rex", q:"Who wrote Oedipus Rex, and when?", o:["Aristotle, 400 BCE","Sophocles, around 429 BCE","Euripides, 450 BCE","Aeschylus, 500 BCE"], c:1,
-   e:"Sophocles wrote Oedipus Rex around 429 BCE. It was first runner-up at the festival of Dionysus."},
-
-  {t:"Oedipus Rex", q:"What was the curse on Laius?", o:["His son would kill him and marry his mother","He would lose his throne","He would die childless","His city would be destroyed"], c:0,
-   e:"Pelops cursed Laius: if he ever had a son, that son would kill him. The Delphic Oracle confirmed the son would kill him and marry his mother."},
-
-  {t:"Oedipus Rex", q:"Why was Oedipus abandoned as a baby?", o:["He was sickly","Laius pierced his ankles and gave him to a shepherd to expose on Mount Cithaeron","His mother rejected him","The gods demanded it"], c:1,
-   e:"Laius pierced the infant's ankles (Oedipus means 'swollen foot') and gave him to a shepherd to expose on Mount Cithaeron."},
-
-  {t:"Oedipus Rex", q:"How was Oedipus saved?", o:["A god rescued him","The shepherd pitied him and gave him to another shepherd from Corinth","He was found by travelers","He crawled to safety"], c:1,
-   e:"The shepherd pitied the child and gave him to another shepherd from Corinth, who brought him to King Polybus and Queen Merope."},
-
-  {t:"Oedipus Rex", q:"What did the Oracle tell Oedipus as a young man?", o:["He would become king","He would kill his father and marry his mother","He would die young","He would be exiled"], c:1,
-   e:"The Oracle told him he was fated to kill his father and marry his mother. Horrified, he fled Corinth."},
-
-  {t:"Oedipus Rex", q:"What happened at the crossroads?", o:["Oedipus met his mother","Oedipus killed Laius and his servants in a rage","Oedipus was robbed","Oedipus met Tiresias"], c:1,
-   e:"Laius tried to push Oedipus off the road. Oedipus, in a rage, killed Laius and his servants — not knowing Laius was his father."},
-
-  {t:"Oedipus Rex", q:"What was the Sphinx's riddle?", o:["What walks on four legs in the morning, two legs at noon, and three legs in the evening?","What is the meaning of life?","What is the strongest thing in the world?","What has four legs but cannot walk?"], c:0,
-   e:"Oedipus answered 'Man' — who crawls as a baby, walks upright as an adult, and uses a cane in old age."},
-
-  {t:"Oedipus Rex", q:"What happened after Oedipus saved Thebes?", o:["He was made king and married the widowed queen, Jocasta","He was exiled","He was made a god","He left Thebes"], c:0,
-   e:"He was made king and married the widowed queen, Jocasta — not knowing she was his mother."},
-
-  {t:"Oedipus Rex", q:"What is the situation at the opening of the play?", o:["A plague has struck Thebes","A war is raging","A famine has struck","The Sphinx has returned"], c:0,
-   e:"A plague has struck Thebes. Citizens gather at the altars with suppliant branches, led by a priest of Zeus."},
-
-  {t:"Oedipus Rex", q:"What does Creon report from the Oracle?", o:["The murderer of Laius must be found and punished","The city must be abandoned","The gods are angry","A sacrifice is needed"], c:0,
-   e:"The murderer of Laius must be found and punished. Only then will the plague be lifted."},
-
-  {t:"Oedipus Rex", q:"Who is Tiresias?", o:["A blind prophet who sees more than any sighted person","A king","A messenger","A shepherd"], c:0,
-   e:"Tiresias is a blind prophet who is said to see more than any sighted person."},
-
-  {t:"Oedipus Rex", q:"What does Tiresias finally reveal?", o:["'You are the murderer of the king whose murderer you seek'","'The plague will end soon'","'Creon is the murderer'","'Jocasta is the murderer'"], c:0,
-   e:"'I say you are the murderer of the king whose murderer you seek.'"},
-
-  {t:"Oedipus Rex", q:"What is Tiresias's devastating prophecy?", o:["Oedipus will become a god","Oedipus will be proved father and brother to his own children, son and husband to his mother","Oedipus will die in battle","Oedipus will be exiled but return"], c:1,
-   e:"'You have your eyes but see not where you are in sin... He shall be proved father and brother both to his own children; to her that gave him birth, a son and husband both.'"},
-
-  {t:"Oedipus Rex", q:"How does Jocasta try to comfort Oedipus?", o:["By telling him to pray","By dismissing prophecy as false","By telling him to leave Thebes","By blaming Creon"], c:1,
-   e:"She tells him the oracle about Laius was false — Laius was killed by robbers, not by his son. She says: 'Human beings have no part in the craft of prophecy.'"},
-
-  {t:"Oedipus Rex", q:"What details of Laius's death alarm Oedipus?", o:["The murder happened at a crossroads; Laius was tall with grizzled hair; there were five people and one carriage","The murder happened in Thebes","Laius was killed by a friend","Laius was poisoned"], c:0,
-   e:"The murder happened at a crossroads in Phocis; Laius was tall with grizzled hair; there were five people including a herald and one carriage."},
-
-  {t:"Oedipus Rex", q:"What is Oedipus's story about his past?", o:["He was raised in Thebes","Polybus was his father, Merope his mother; a drunk accused him of being a bastard; the Oracle told him he would kill his father and marry his mother","He was raised by wolves","He was always an orphan"], c:1,
-   e:"Polybus was his father, Merope his mother. A drunk accused him of being a bastard. He went to Delphi and was told he would kill his father and marry his mother."},
-
-  {t:"Oedipus Rex", q:"Who arrives from Corinth, and what news?", o:["A messenger with news that Polybus is dead","A soldier with news of war","A shepherd with news of Laius","A priest with news of the gods"], c:0,
-   e:"A messenger arrives with news that Polybus is dead. Jocasta is overjoyed, thinking the prophecy is proven false."},
-
-  {t:"Oedipus Rex", q:"What does the messenger reveal?", o:["That Polybus was not Oedipus's biological father","That Jocasta is Oedipus's mother","That Laius is alive","That Tiresias is a fraud"], c:0,
-   e:"The messenger reveals that Polybus was not Oedipus's biological father. The messenger himself gave Oedipus to Polybus as a gift."},
-
-  {t:"Oedipus Rex", q:"What evidence of Oedipus's identity does the messenger cite?", o:["A birthmark","The scars on Oedipus's ankles","A ring","A letter"], c:1,
-   e:"The scars on Oedipus's ankles — the tendons of his feet were pierced and fettered, which is why he is called Oedipus ('swollen foot')."},
-
-  {t:"Oedipus Rex", q:"What does Jocasta cry out before running into the palace?", o:["'O Oedipus, God help you! God keep you from the knowledge of who you are!'","'I will kill myself'","'You are not my son'","'I will leave you'"], c:0,
-   e:"'O Oedipus, God help you! God keep you from the knowledge of who you are!'"},
-
-  {t:"Oedipus Rex", q:"What does the herdsman finally reveal?", o:["That Jocasta gave him the child to 'make away with it' through fear of evil oracles","That Laius killed the child","That the child died","That the child was given to a god"], c:0,
-   e:"Jocasta gave him the child to 'make away with it' through fear of evil oracles. He pitied the child and gave it to the messenger."},
-
-  {t:"Oedipus Rex", q:"How does Jocasta die?", o:["She is killed by Creon","She hangs herself in the marriage bed","She drinks poison","She is struck by a god"], c:1,
-   e:"She hangs herself in the marriage bed, tearing her hair and cursing the bed where she brought forth husband by her husband, children by her own child."},
-
-  {t:"Oedipus Rex", q:"How does Oedipus blind himself?", o:["With a sword","With the gold brooches from Jocasta's robe","With a stone","With fire"], c:1,
-   e:"He tore the gold brooches from Jocasta's robe and dashed them on his own eyeballs, shrieking that they would never see the crime he had committed."},
-
-  {t:"Oedipus Rex", q:"What does Oedipus say about his blinding?", o:["'It was Apollo, friends, Apollo, that brought this bitter bitterness. But the hand that struck me was none but my own.'","'The gods blinded me'","'I was cursed from birth'","'I deserve worse'"], c:0,
-   e:"'It was Apollo, friends, Apollo, that brought this bitter bitterness. But the hand that struck me was none but my own. Why should I see whose vision showed me nothing sweet to see?'"},
-
-  {t:"Oedipus Rex", q:"Who becomes ruler of Thebes at the end?", o:["Tiresias","Creon","Eteocles","Polynices"], c:1,
-   e:"Creon, Jocasta's brother, becomes ruler of Thebes at the end."},
-
-  {t:"Oedipus Rex", q:"What does Oedipus ask Creon to do?", o:["Kill him","Drive him out of Thebes; let him live on Mount Cithaeron","Make him a god","Restore his sight"], c:1,
-   e:"He asks Creon to drive him out of Thebes; let him live on Mount Cithaeron where he should have died as a child."},
-
-  {t:"Oedipus Rex", q:"What are the central themes of Oedipus Rex?", o:["Fate vs. free will; blindness vs. sight; hubris; the quest for truth","Love and marriage","War and peace","Wealth and poverty"], c:0,
-   e:"1) Fate vs. free will. 2) Blindness vs. sight (Tiresias blind but sees truth; Oedipus sighted but blind). 3) Hubris. 4) The quest for truth. 5) The limits of human intelligence. 6) The tragic hero. 7) Guilt and innocence."},
-
-  {t:"Oedipus Rex", q:"What is the famous final line of the play?", o:["'Count no man happy until he has passed beyond life's final day.'","'The gods are cruel.'","'Fate is unavoidable.'","'Knowledge is pain.'"], c:0,
-   e:"'Count no man happy until he has passed beyond life's final day.'"},
-
-  /* GREEK TRAGEDY TERMS */
-  {t:"Greek Tragedy", q:"What is hamartia?", o:["The hero's arrogance","The hero's flaw that leads to his tragic downfall","The reversal of fate","The audience's release of emotion"], c:1,
-   e:"Hamartia is the hero's flaw that leads to his tragic downfall — a personal error or decision, not an accident."},
-
-  {t:"Greek Tragedy", q:"What is anagnorisis?", o:["The hero's excessive pride","The pivotal moment of realization","The unavoidable fate of the hero","The choice of words"], c:1,
-   e:"Anagnorisis is the pivotal moment in which the hero reaches a realization or important discovery."},
-
-  {t:"Greek Tragedy", q:"What is catharsis?", o:["The hero's downfall","The audience's release of pity and fear","The reversal of fortune","The chorus's final song"], c:1,
-   e:"Catharsis is the purification or purging of feelings that Aristotle believed was the purpose of tragedy."},
-
-  {t:"Greek Tragedy", q:"Which element is considered the 'soul of tragedy'?", o:["Characters","Plot","Diction","Spectacle"], c:1,
-   e:"Plot is the most important element — the soul of tragedy where the arrangement of incidents and actions exists."},
-
-  {t:"Greek Tragedy", q:"What is the exodus?", o:["The opening monologue","The entrance of the chorus","The concluding part where the moral is revealed","The central dialogue"], c:2,
-   e:"The exodus is the concluding part of the play and the final song of the chorus where the moral is revealed."},
-
-  /* BUSINESS */
-  {t:"Business", q:"What are the seven parts of a business letter?", o:["Heading, Date, Inside Address, Salutation, Body, Complimentary Close, Signature","Date, Heading, Salutation, Body, Signature, Closing, Address","Salutation, Heading, Body, Date, Closing, Signature, Address","Inside Address, Heading, Salutation, Date, Body, Signature, Closing"], c:0,
-   e:"Heading, Date Line, Inside Address, Salutation, Body, Complimentary Close, and Signature."},
-
-  {t:"Business", q:"Which resume format is best for students with fewer work experiences?", o:["Chronological","Functional","Combination","Simplified"], c:1,
-   e:"The functional format presents skills and qualifications over experiences without revealing dates."},
-
-  {t:"Business", q:"What does Bcc stand for?", o:["Blind carbon copy","Basic carbon copy","Blind courtesy copy","Business copy"], c:0,
-   e:"Bcc (blind carbon copy) prevents recipients from knowing the other recipients of the email."},
-
-  {t:"Business", q:"What are the four body paragraphs of an application letter?", o:["Opening, Second, Third, Closing","Introduction, Body, Conclusion, Signature","Greeting, Main, Request, Thanks","Salutation, Body, Closing, P.S."], c:0,
-   e:"Opening (position + how you learned of it), Second (interest + skills), Third (why best fit + refer to resume), Closing (gratitude + contact details)."}
-];
-
-/* =========================================================
-   FLASHCARD LOGIC
-   ========================================================= */
-const deckBar = document.getElementById('deckBar');
-const cardEl = document.getElementById('card');
-const fcQ = document.getElementById('fcQ');
-const fcA = document.getElementById('fcA');
-const fcCounter = document.getElementById('fcCounter');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const shuffleBtn = document.getElementById('shuffleBtn');
-
-let currentDeck = Object.keys(DECKS)[0];
-let cardList = [...DECKS[currentDeck]];
-let cardIndex = 0;
-
-function buildDeckBar(){
-  deckBar.innerHTML = '';
-  Object.keys(DECKS).forEach(name => {
-    const b = document.createElement('button');
-    b.textContent = name + ' (' + DECKS[name].length + ')';
-    if(name === currentDeck) b.classList.add('active');
-    b.addEventListener('click', () => {
-      currentDeck = name;
-      cardList = [...DECKS[name]];
-      cardIndex = 0;
-      buildDeckBar();
-      renderCard();
+  function expandAll(){
+    document.querySelectorAll('details').forEach(d => d.open = true);
+  }
+  function collapseAll(){
+    document.querySelectorAll('details').forEach(d => d.open = false);
+  }
+  // Smooth scroll for TOC links
+  document.querySelectorAll('nav.toc a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
     });
-    deckBar.appendChild(b);
   });
-}
-
-function renderCard(){
-  cardEl.classList.remove('flipped');
-  const c = cardList[cardIndex];
-  fcQ.textContent = c.q;
-  fcA.innerHTML = typeof c.a === 'string' ? '<p>' + c.a + '</p>' : c.a;
-  fcCounter.textContent = (cardIndex + 1) + ' / ' + cardList.length;
-  prevBtn.disabled = cardIndex === 0;
-  nextBtn.disabled = cardIndex === cardList.length - 1;
-}
-
-cardEl.addEventListener('click', () => cardEl.classList.toggle('flipped'));
-prevBtn.addEventListener('click', () => { if(cardIndex > 0){ cardIndex--; renderCard(); }});
-nextBtn.addEventListener('click', () => { if(cardIndex < cardList.length - 1){ cardIndex++; renderCard(); }});
-shuffleBtn.addEventListener('click', () => {
-  for(let i = cardList.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    [cardList[i], cardList[j]] = [cardList[j], cardList[i]];
-  }
-  cardIndex = 0;
-  renderCard();
-});
-
-document.addEventListener('keydown', e => {
-  if(!document.getElementById('flash').classList.contains('active')) return;
-  if(e.key === 'ArrowLeft'){ prevBtn.click(); }
-  if(e.key === 'ArrowRight'){ nextBtn.click(); }
-  if(e.key === ' '){ e.preventDefault(); cardEl.classList.toggle('flipped'); }
-});
-
-/* =========================================================
-   QUIZ LOGIC
-   ========================================================= */
-const qText = document.getElementById('qText');
-const qTag = document.getElementById('qTag');
-const optsEl = document.getElementById('opts');
-const explainEl = document.getElementById('explain');
-const nextQ = document.getElementById('nextQ');
-const qProgress = document.getElementById('qProgress');
-const qScore = document.getElementById('qScore');
-const barFill = document.getElementById('barFill');
-const quizArea = document.getElementById('quizArea');
-const resultEl = document.getElementById('result');
-const scoreRing = document.getElementById('scoreRing');
-const resultSub = document.getElementById('resultSub');
-const resultMsg = document.getElementById('resultMsg');
-const resultTitle = document.getElementById('resultTitle');
-
-let quizOrder = [];
-let qIndex = 0;
-let score = 0;
-let answered = false;
-
-function initQuiz(){
-  quizOrder = QUIZ.map((q, i) => i);
-  for(let i = quizOrder.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    [quizOrder[i], quizOrder[j]] = [quizOrder[j], quizOrder[i]];
-  }
-  qIndex = 0; score = 0; answered = false;
-  quizArea.style.display = 'block';
-  resultEl.classList.remove('show');
-  renderQuestion();
-}
-
-function renderQuestion(){
-  answered = false;
-  const q = QUIZ[quizOrder[qIndex]];
-  qTag.textContent = q.t;
-  qText.textContent = q.q;
-  qProgress.textContent = 'Question ' + (qIndex + 1) + ' of ' + quizOrder.length;
-  qScore.textContent = 'Score: ' + score;
-  barFill.style.width = ((qIndex) / quizOrder.length * 100) + '%';
-  explainEl.classList.remove('show');
-  explainEl.innerHTML = '';
-  nextQ.classList.remove('show');
-  nextQ.textContent = (qIndex === quizOrder.length - 1) ? 'See Results →' : 'Next Question →';
-
-  optsEl.innerHTML = '';
-  const letters = ['A','B','C','D'];
-  q.o.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'opt';
-    btn.innerHTML = '<span class="letter">' + letters[i] + '</span><span>' + opt + '</span>';
-    btn.addEventListener('click', () => selectAnswer(i));
-    optsEl.appendChild(btn);
-  });
-}
-
-function selectAnswer(choice){
-  if(answered) return;
-  answered = true;
-  const q = QUIZ[quizOrder[qIndex]];
-  const buttons = optsEl.querySelectorAll('.opt');
-
-  buttons.forEach((b, i) => {
-    b.classList.add('locked');
-    if(i === q.c) b.classList.add('correct');
-    if(i === choice && choice !== q.c) b.classList.add('wrong');
-  });
-
-  if(choice === q.c){
-    score++;
-    qScore.textContent = 'Score: ' + score;
-  }
-
-  explainEl.innerHTML = '<strong>' + (choice === q.c ? '✓ Correct!' : '✗ Not quite.') + '</strong> ' + q.e;
-  explainEl.classList.add('show');
-  nextQ.classList.add('show');
-}
-
-nextQ.addEventListener('click', () => {
-  if(qIndex < quizOrder.length - 1){
-    qIndex++;
-    renderQuestion();
-  } else {
-    showResults();
-  }
-});
-
-function showResults(){
-  quizArea.style.display = 'none';
-  resultEl.classList.add('show');
-  const pct = Math.round(score / quizOrder.length * 100);
-  scoreRing.textContent = pct + '%';
-  resultSub.textContent = 'You got ' + score + ' out of ' + quizOrder.length + ' correct.';
-
-  let msg = '';
-  if(pct === 100) msg = '🏆 Perfect score! You have mastered this material.';
-  else if(pct >= 85) msg = '⭐ Excellent work! Just a few details to review.';
-  else if(pct >= 70) msg = '👍 Good job! Review the missed items and try again.';
-  else if(pct >= 50) msg = '📖 Fair. Go back to the flashcards and retake the quiz.';
-  else msg = '💪 Keep studying! Use the flashcards to strengthen your recall.';
-  resultMsg.textContent = msg;
-  resultTitle.textContent = 'Quiz Complete!';
-}
-
-document.getElementById('retryBtn').addEventListener('click', initQuiz);
-
-/* =========================================================
-   TABS
-   ========================================================= */
-document.querySelectorAll('.tabs button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
-  });
-});
-
-/* =========================================================
-   INIT
-   ========================================================= */
-buildDeckBar();
-renderCard();
-initQuiz();
 </script>
+
 </body>
 </html>
