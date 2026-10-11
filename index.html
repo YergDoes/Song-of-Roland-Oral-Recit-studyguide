@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reviewer: Medieval Period &amp; The Song of Roland</title>
+<title>Story Reviewer · Roland · Augustine · Dante</title>
 <style>
   :root{
     --parchment:#fdf6e3;
@@ -15,26 +15,22 @@
     --crimson:#8b1a1a;
     --crimson-light:#b03030;
     --blue:#1f3a5f;
+    --green:#2d5016;
     --border:#d8c9a3;
     --shadow:rgba(90,70,40,.15);
   }
-
   *{box-sizing:border-box;}
-
   body{
-    margin:0;
-    padding:0;
+    margin:0;padding:0;
     background:
       radial-gradient(circle at 20% 10%, #fffdf5 0%, transparent 60%),
       radial-gradient(circle at 80% 80%, #fffdf5 0%, transparent 60%),
       var(--parchment);
     color:var(--ink);
     font-family:"Georgia","Cambria","Times New Roman",serif;
-    font-size:16px;
-    line-height:1.65;
+    font-size:16px;line-height:1.7;
   }
 
-  /* ---------- HEADER ---------- */
   header{
     background:linear-gradient(135deg,#3d2b1f 0%,#5a3d28 50%,#3d2b1f 100%);
     color:var(--parchment);
@@ -42,1282 +38,1868 @@
     text-align:center;
     border-bottom:5px solid var(--gold);
     box-shadow:0 4px 18px var(--shadow);
-    position:relative;
-    overflow:hidden;
+    position:relative;overflow:hidden;
   }
   header::before{
-    content:"⚜";
-    position:absolute;
-    font-size:220px;
-    opacity:.05;
-    top:-60px;left:50%;
-    transform:translateX(-50%);
-    pointer-events:none;
+    content:"⚔";position:absolute;font-size:240px;opacity:.05;
+    top:-70px;left:50%;transform:translateX(-50%);pointer-events:none;
   }
   header h1{
-    margin:0 0 6px;
-    font-size:clamp(1.4rem,4vw,2.3rem);
-    letter-spacing:1px;
-    text-shadow:1px 2px 4px rgba(0,0,0,.5);
+    margin:0 0 6px;font-size:clamp(1.3rem,4vw,2.2rem);
+    letter-spacing:1px;text-shadow:1px 2px 4px rgba(0,0,0,.5);
   }
   header .sub{
-    font-size:.95rem;
-    color:var(--gold-light);
-    letter-spacing:3px;
-    text-transform:uppercase;
-    font-style:italic;
+    font-size:.9rem;color:var(--gold-light);
+    letter-spacing:3px;text-transform:uppercase;font-style:italic;
   }
   header .tagline{
-    margin-top:12px;
-    font-size:.88rem;
-    color:#e8dcc0;
-    opacity:.85;
+    margin-top:12px;font-size:.86rem;color:#e8dcc0;opacity:.85;
   }
 
-  /* ---------- LAYOUT ---------- */
-  .wrap{
-    max-width:1000px;
-    margin:0 auto;
-    padding:20px 16px 80px;
-  }
+  .wrap{max-width:1000px;margin:0 auto;padding:20px 16px 80px;}
 
-  /* ---------- NAV ---------- */
   nav.toc{
-    background:var(--parchment-dark);
-    border:2px solid var(--border);
-    border-radius:10px;
-    padding:16px 20px;
-    margin:22px 0 30px;
+    background:var(--parchment-dark);border:2px solid var(--border);
+    border-radius:10px;padding:16px 20px;margin:22px 0 30px;
     box-shadow:0 2px 10px var(--shadow);
   }
   nav.toc h2{
-    margin:0 0 10px;
-    font-size:1.05rem;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    color:var(--crimson);
-    border-bottom:1px dashed var(--border);
-    padding-bottom:6px;
+    margin:0 0 10px;font-size:1.05rem;letter-spacing:1px;
+    text-transform:uppercase;color:var(--crimson);
+    border-bottom:1px dashed var(--border);padding-bottom:6px;
   }
   nav.toc ul{
-    margin:0;
-    padding:0;
-    list-style:none;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    margin:0;padding:0;list-style:none;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:6px 18px;
   }
   nav.toc a{
-    color:var(--blue);
-    text-decoration:none;
-    font-size:.94rem;
-    display:block;
-    padding:4px 0;
-    border-bottom:1px solid transparent;
+    color:var(--blue);text-decoration:none;font-size:.94rem;
+    display:block;padding:4px 0;border-bottom:1px solid transparent;
     transition:.2s;
   }
-  nav.toc a:hover{
-    color:var(--crimson);
-    border-bottom-color:var(--gold);
-    padding-left:6px;
-  }
-  nav.toc a::before{
-    content:"§ ";
-    color:var(--gold);
-    font-weight:bold;
-  }
+  nav.toc a:hover{color:var(--crimson);border-bottom-color:var(--gold);padding-left:6px;}
+  nav.toc a::before{content:"▸ ";color:var(--gold);font-weight:bold;}
 
-  /* ---------- SECTIONS ---------- */
-  section{
-    margin-bottom:34px;
-    scroll-margin-top:16px;
-  }
-
+  section{margin-bottom:40px;scroll-margin-top:16px;}
   h2.sec-title{
-    font-size:1.3rem;
-    color:#fff;
+    font-size:1.25rem;color:#fff;
     background:linear-gradient(90deg,var(--crimson) 0%,var(--crimson-light) 70%,transparent 100%);
-    padding:10px 18px;
-    margin:0 0 18px;
-    border-radius:6px 0 0 6px;
-    letter-spacing:.5px;
-    box-shadow:0 3px 8px var(--shadow);
+    padding:10px 18px;margin:0 0 18px;border-radius:6px 0 0 6px;
+    letter-spacing:.5px;box-shadow:0 3px 8px var(--shadow);
   }
+  h3{color:var(--blue);font-size:1.1rem;margin:26px 0 10px;
+    border-left:4px solid var(--gold);padding-left:10px;}
+  h4{color:var(--crimson);font-size:.98rem;margin:16px 0 6px;letter-spacing:.3px;}
 
-  h3{
-    color:var(--blue);
-    font-size:1.08rem;
-    margin:22px 0 8px;
-    border-left:4px solid var(--gold);
-    padding-left:10px;
-  }
-
-  h4{
-    color:var(--crimson);
-    font-size:.98rem;
-    margin:16px 0 6px;
-    letter-spacing:.3px;
-  }
-
-  /* ---------- CARDS ---------- */
   .card{
+    background:#fffdf7;border:1.5px solid var(--border);border-radius:8px;
+    padding:16px 20px;margin:14px 0;box-shadow:0 2px 8px var(--shadow);
+  }
+  .card.gold{border-left:6px solid var(--gold);background:linear-gradient(180deg,#fffdf5,#fdf8e8);}
+  .card.crimson{border-left:6px solid var(--crimson);background:linear-gradient(180deg,#fffafa,#fdf2f2);}
+  .card.blue{border-left:6px solid var(--blue);background:linear-gradient(180deg,#fafcff,#f2f6fc);}
+  .card.green{border-left:6px solid var(--green);background:linear-gradient(180deg,#f8fdf5,#f0f8ea);}
+
+  /* SCENE BLOCKS */
+  .scene{
     background:#fffdf7;
     border:1.5px solid var(--border);
-    border-radius:8px;
-    padding:16px 20px;
-    margin:14px 0;
-    box-shadow:0 2px 8px var(--shadow);
-  }
-
-  .card.gold{
-    border-left:6px solid var(--gold);
-    background:linear-gradient(180deg,#fffdf5,#fdf8e8);
-  }
-  .card.crimson{
-    border-left:6px solid var(--crimson);
-    background:linear-gradient(180deg,#fffafa,#fdf2f2);
-  }
-  .card.blue{
-    border-left:6px solid var(--blue);
-    background:linear-gradient(180deg,#fafcff,#f2f6fc);
-  }
-
-  /* ---------- TABLES ---------- */
-  table{
-    width:100%;
-    border-collapse:collapse;
-    margin:14px 0;
-    font-size:.92rem;
-    background:#fffdf7;
-    box-shadow:0 2px 8px var(--shadow);
-    border-radius:8px;
+    border-radius:10px;
+    padding:0;
+    margin:18px 0;
+    box-shadow:0 3px 12px var(--shadow);
     overflow:hidden;
   }
-  caption{
-    caption-side:top;
-    text-align:left;
+  .scene-header{
+    background:linear-gradient(90deg,#5a3d28,#3d2b1f);
+    color:var(--parchment);
+    padding:10px 18px;
+    font-weight:bold;
+    font-size:.95rem;
+    letter-spacing:.5px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .scene-header .lai{
+    font-size:.78rem;
+    color:var(--gold-light);
+    background:rgba(255,255,255,.1);
+    padding:2px 10px;
+    border-radius:12px;
+    letter-spacing:1px;
+  }
+  .scene-body{
+    padding:16px 20px;
+  }
+  .scene-body p{margin:8px 0;}
+  .scene-body ul{margin:8px 0;padding-left:22px;}
+  .scene-body li{margin:5px 0;}
+
+  /* STEP NUMBERS */
+  .steps{counter-reset:step;list-style:none;padding:0;margin:12px 0;}
+  .steps li{
+    counter-increment:step;
+    position:relative;
+    padding:10px 12px 10px 52px;
+    margin:8px 0;
+    background:#fdf8ec;
+    border-radius:8px;
+    border:1px solid var(--border);
+    font-size:.95rem;
+    transition:.2s;
+  }
+  .steps li:hover{background:#fdf0d8;transform:translateX(4px);}
+  .steps li::before{
+    content:counter(step);
+    position:absolute;
+    left:12px;top:50%;
+    transform:translateY(-50%);
+    width:28px;height:28px;
+    background:linear-gradient(180deg,var(--gold),#8b6508);
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:.85rem;
+    font-family:system-ui,sans-serif;
+    box-shadow:0 2px 5px rgba(0,0,0,.2);
+  }
+  .steps li strong{color:var(--crimson);}
+
+  /* DIALOGUE */
+  .dialogue{
+    margin:14px 0;
+    padding:0;
+  }
+  .dialogue .speaker{
     font-weight:bold;
     color:var(--blue);
-    padding:6px 0;
-    font-size:.95rem;
+    font-size:.85rem;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    margin-bottom:2px;
   }
-  th{
-    background:linear-gradient(180deg,#5a3d28,#3d2b1f);
-    color:var(--parchment);
-    text-align:left;
-    padding:9px 12px;
-    font-size:.88rem;
-    letter-spacing:.4px;
+  .dialogue .line{
+    background:linear-gradient(180deg,#fffbee,#fdf3d8);
+    border-left:4px solid var(--gold);
+    padding:10px 16px;
+    border-radius:0 8px 8px 0;
+    margin:6px 0 12px;
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:.93rem;
+    position:relative;
   }
-  td{
-    padding:8px 12px;
-    border-bottom:1px solid var(--border);
-    vertical-align:top;
+  .dialogue .line::before{
+    content:"“";
+    font-size:2rem;
+    color:var(--gold-light);
+    opacity:.4;
+    position:absolute;
+    left:4px;top:-8px;
+    font-family:Georgia,serif;
   }
+
+  /* QUOTES */
+  blockquote{
+    margin:14px 0;padding:14px 20px 14px 26px;
+    background:linear-gradient(180deg,#fffbee,#fdf3d8);
+    border-left:5px solid var(--gold);border-radius:0 8px 8px 0;
+    font-style:italic;color:var(--ink-soft);position:relative;
+    box-shadow:0 2px 8px var(--shadow);
+  }
+  blockquote::before{
+    content:"“";position:absolute;left:8px;top:-6px;
+    font-size:3rem;color:var(--gold-light);opacity:.5;font-family:Georgia,serif;
+  }
+  blockquote cite{display:block;margin-top:8px;font-size:.82rem;
+    font-style:normal;color:var(--crimson);letter-spacing:.5px;}
+
+  table{
+    width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;
+    background:#fffdf7;box-shadow:0 2px 8px var(--shadow);
+    border-radius:8px;overflow:hidden;
+  }
+  caption{caption-side:top;text-align:left;font-weight:bold;color:var(--blue);padding:6px 0;font-size:.95rem;}
+  th{background:linear-gradient(180deg,#5a3d28,#3d2b1f);color:var(--parchment);
+    text-align:left;padding:9px 12px;font-size:.88rem;letter-spacing:.4px;}
+  td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
   tr:nth-child(even) td{background:#fdf8ec;}
   tr:last-child td{border-bottom:none;}
   td strong{color:var(--crimson);}
 
-  /* ---------- QUOTES ---------- */
-  blockquote{
-    margin:14px 0;
-    padding:14px 20px 14px 26px;
-    background:linear-gradient(180deg,#fffbee,#fdf3d8);
-    border-left:5px solid var(--gold);
-    border-radius:0 8px 8px 0;
-    font-style:italic;
-    color:var(--ink-soft);
-    position:relative;
-    box-shadow:0 2px 8px var(--shadow);
-  }
-  blockquote::before{
-    content:"“";
-    position:absolute;
-    left:8px;top:-6px;
-    font-size:3rem;
-    color:var(--gold-light);
-    opacity:.5;
-    font-family:Georgia,serif;
-  }
-  blockquote cite{
-    display:block;
-    margin-top:8px;
-    font-size:.82rem;
-    font-style:normal;
-    color:var(--crimson);
-    letter-spacing:.5px;
-  }
-
-  /* ---------- LISTS ---------- */
   ul.checklist{list-style:none;padding-left:4px;}
   ul.checklist li{padding:3px 0 3px 26px;position:relative;}
-  ul.checklist li::before{
-    content:"✔";
-    position:absolute;left:0;
-    color:var(--gold);
-    font-weight:bold;
-  }
-
+  ul.checklist li::before{content:"✔";position:absolute;left:0;color:var(--gold);font-weight:bold;}
   ul.plain{padding-left:22px;}
   ul.plain li{margin:4px 0;}
 
-  /* ---------- COLLAPSIBLE Q&A ---------- */
   details{
-    background:#fffdf7;
-    border:1.5px solid var(--border);
-    border-radius:8px;
-    margin:10px 0;
-    box-shadow:0 2px 6px var(--shadow);
-    overflow:hidden;
-    transition:.2s;
+    background:#fffdf7;border:1.5px solid var(--border);border-radius:8px;
+    margin:10px 0;box-shadow:0 2px 6px var(--shadow);overflow:hidden;transition:.2s;
   }
-  details[open]{
-    border-color:var(--gold);
-    box-shadow:0 3px 12px rgba(184,134,11,.2);
-  }
+  details[open]{border-color:var(--gold);box-shadow:0 3px 12px rgba(184,134,11,.2);}
   summary{
-    cursor:pointer;
-    padding:12px 16px;
-    font-weight:bold;
-    color:var(--blue);
-    list-style:none;
-    position:relative;
-    padding-right:44px;
-    user-select:none;
-    transition:.2s;
+    cursor:pointer;padding:12px 16px;font-weight:bold;color:var(--blue);
+    list-style:none;position:relative;padding-right:44px;user-select:none;transition:.2s;
   }
   summary::-webkit-details-marker{display:none;}
   summary:hover{background:#fdf6e3;color:var(--crimson);}
   summary::after{
-    content:"+";
-    position:absolute;
-    right:16px;top:50%;
-    transform:translateY(-50%);
-    font-size:1.3rem;
-    color:var(--gold);
-    font-weight:bold;
-    transition:.25s;
+    content:"+";position:absolute;right:16px;top:50%;transform:translateY(-50%);
+    font-size:1.3rem;color:var(--gold);font-weight:bold;transition:.25s;
   }
-  details[open] summary::after{
-    content:"−";
-    transform:translateY(-50%) rotate(180deg);
-    color:var(--crimson);
-  }
+  details[open] summary::after{content:"−";transform:translateY(-50%) rotate(180deg);color:var(--crimson);}
   details .answer{
-    padding:0 18px 16px;
-    border-top:1px dashed var(--border);
-    margin-top:2px;
-    padding-top:12px;
-    color:var(--ink-soft);
-    font-size:.94rem;
+    padding:0 18px 16px;border-top:1px dashed var(--border);
+    margin-top:2px;padding-top:12px;color:var(--ink-soft);font-size:.94rem;
     animation:fade .25s ease;
   }
   @keyframes fade{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
 
-  /* ---------- BADGES ---------- */
   .badge{
-    display:inline-block;
-    background:var(--gold);
-    color:#fff;
-    font-size:.7rem;
-    padding:2px 9px;
-    border-radius:20px;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    vertical-align:middle;
-    margin-left:8px;
-    font-family:system-ui,sans-serif;
+    display:inline-block;background:var(--gold);color:#fff;
+    font-size:.68rem;padding:2px 9px;border-radius:20px;
+    letter-spacing:1px;text-transform:uppercase;vertical-align:middle;
+    margin-left:8px;font-family:system-ui,sans-serif;
   }
   .badge.red{background:var(--crimson);}
   .badge.blue{background:var(--blue);}
+  .badge.green{background:var(--green);}
 
-  /* ---------- GRID ---------- */
-  .grid2{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:14px;
-  }
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
 
-  /* ---------- HIGHLIGHT BOX ---------- */
   .highlight{
     background:linear-gradient(135deg,#fff8e1,#fdf0c9);
-    border:2px dashed var(--gold);
-    border-radius:10px;
-    padding:16px 20px;
-    margin:16px 0;
+    border:2px dashed var(--gold);border-radius:10px;
+    padding:16px 20px;margin:16px 0;
   }
   .highlight h4{margin-top:0;color:var(--crimson);}
-
   .tip{
     background:linear-gradient(135deg,#eef4ff,#e3ecfb);
-    border-left:6px solid var(--blue);
-    padding:14px 18px;
-    border-radius:0 8px 8px 0;
-    margin:14px 0;
-    font-size:.93rem;
+    border-left:6px solid var(--blue);padding:14px 18px;
+    border-radius:0 8px 8px 0;margin:14px 0;font-size:.93rem;
   }
   .tip strong{color:var(--blue);}
+  .tip.gold{background:linear-gradient(135deg,#fff8e1,#fdf0c9);border-left-color:var(--gold);}
+  .tip.gold strong{color:var(--crimson);}
+  .tip.red{background:linear-gradient(135deg,#fff0f0,#fde5e5);border-left-color:var(--crimson);}
+  .tip.red strong{color:var(--crimson);}
+  .tip.green{background:linear-gradient(135deg,#f0f8ea,#e5f2dc);border-left-color:var(--green);}
+  .tip.green strong{color:var(--green);}
 
-  /* ---------- BUTTONS ---------- */
   .toolbar{
-    position:fixed;
-    right:18px;bottom:18px;
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    z-index:50;
+    position:fixed;right:18px;bottom:18px;display:flex;
+    flex-direction:column;gap:8px;z-index:50;
   }
   .toolbar button{
-    background:linear-gradient(180deg,#5a3d28,#3d2b1f);
-    color:var(--parchment);
-    border:2px solid var(--gold);
-    border-radius:50%;
-    width:48px;height:48px;
-    font-size:1.15rem;
-    cursor:pointer;
-    box-shadow:0 4px 12px rgba(0,0,0,.3);
-    transition:.2s;
-    font-family:inherit;
+    background:linear-gradient(180deg,#5a3d28,#3d2b1f);color:var(--parchment);
+    border:2px solid var(--gold);border-radius:50%;width:48px;height:48px;
+    font-size:1.15rem;cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,.3);transition:.2s;font-family:inherit;
   }
-  .toolbar button:hover{
-    background:var(--gold);
-    color:#2b2118;
-    transform:scale(1.08);
-  }
+  .toolbar button:hover{background:var(--gold);color:#2b2118;transform:scale(1.08);}
 
-  /* ---------- FOOTER ---------- */
   footer{
-    text-align:center;
-    padding:26px 16px;
-    background:#3d2b1f;
-    color:#c9b896;
-    font-size:.82rem;
-    letter-spacing:1px;
+    text-align:center;padding:26px 16px;background:#3d2b1f;
+    color:#c9b896;font-size:.82rem;letter-spacing:1px;
     border-top:4px solid var(--gold);
   }
   footer strong{color:var(--gold-light);}
 
-  /* ---------- PRINT ---------- */
   @media print{
     body{background:#fff;font-size:11pt;}
     header{background:#3d2b1f !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
     .toolbar,nav.toc{display:none;}
     details{border:1px solid #999;page-break-inside:avoid;}
     details .answer{display:block !important;}
-    details[open] .answer{display:block;}
     summary::after{display:none;}
-    section{page-break-inside:auto;}
     h2.sec-title{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
     th{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-    .card,table,blockquote{page-break-inside:avoid;}
+    .scene,.card,table,blockquote{page-break-inside:avoid;}
   }
 
-  /* ---------- MOBILE ---------- */
   @media (max-width:560px){
     .wrap{padding:14px 10px 70px;}
     header{padding:22px 12px 18px;}
     table{font-size:.83rem;}
     th,td{padding:6px 8px;}
     h2.sec-title{font-size:1.05rem;padding:9px 12px;}
+    .steps li{padding-left:46px;}
+    .steps li::before{width:24px;height:24px;font-size:.78rem;left:10px;}
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="sub">English 4 · 2nd Grading</div>
-  <h1>The Medieval Period &amp; The Song of Roland</h1>
-  <div class="tagline">Oral Recitation Reviewer · Interactive Study Guide</div>
+  <div class="sub">English 4 · 2nd Grading Period</div>
+  <h1>Story Reviewer</h1>
+  <div class="tagline">The Song of Roland · St. Augustine's Confessions · Dante's Inferno</div>
 </header>
 
 <div class="wrap">
 
-  <!-- ============ TABLE OF CONTENTS ============ -->
   <nav class="toc">
-    <h2>Contents</h2>
+    <h2>Story Contents</h2>
     <ul>
-      <li><a href="#s1">1. The Medieval Period</a></li>
-      <li><a href="#s2">2. Feudalism &amp; Manor System</a></li>
-      <li><a href="#s3">3. Background of the Epic</a></li>
-      <li><a href="#s4">4. Characters</a></li>
-      <li><a href="#s5">5. Plot Summary</a></li>
-      <li><a href="#s6">6. Key Quotes</a></li>
-      <li><a href="#s7">7. Themes &amp; Values</a></li>
-      <li><a href="#s8">8. Practice Q&amp;A</a></li>
-      <li><a href="#s9">9. Cheat Sheet</a></li>
-      <li><a href="#s10">10. Recit Tips</a></li>
+      <li><a href="#s1">1. Roland — The Story Begins</a></li>
+      <li><a href="#s2">2. Roland — Ganelon's Betrayal</a></li>
+      <li><a href="#s3">3. Roland — The Battle</a></li>
+      <li><a href="#s4">4. Roland — Death &amp; Vengeance</a></li>
+      <li><a href="#s5">5. Augustine — Book II (The Pears)</a></li>
+      <li><a href="#s6">6. Augustine — Book VIII (Conversion)</a></li>
+      <li><a href="#s7">7. Dante — Canto I (Dark Wood)</a></li>
+      <li><a href="#s8">8. Dante — Canto II (Descent)</a></li>
+      <li><a href="#s9">9. Dante — Canto III (Gate)</a></li>
+      <li><a href="#s10">10. Dante — Canto IV (Limbo)</a></li>
+      <li><a href="#s11">11. Dante — Canto V (Lustful)</a></li>
+      <li><a href="#s12">12. Dante — Canto VI (Gluttons)</a></li>
+      <li><a href="#s13">13. Story Q&amp;A</a></li>
     </ul>
   </nav>
 
-  <!-- ============ 1. MEDIEVAL PERIOD ============ -->
+  <!-- ============ 1. ROLAND — STORY BEGINS ============ -->
   <section id="s1">
-    <h2 class="sec-title">1 · The Medieval Period</h2>
+    <h2 class="sec-title">1 · Roland — The Story Begins</h2>
 
-    <div class="card gold">
-      <table>
-        <caption>Quick Facts</caption>
-        <tr><th style="width:34%">Aspect</th><th>Details</th></tr>
-        <tr><td><strong>Other names</strong></td><td>Middle Ages, Dark Ages</td></tr>
-        <tr><td><strong>Timeframe</strong></td><td>Between the <em>fall of the Roman Empire</em> and the <em>Renaissance</em></td></tr>
-        <tr><td><strong>Key event</strong></td><td>Decline of Roman power → Germanic tribes invaded</td></tr>
-        <tr><td><strong>Germanic tribes</strong></td><td>Saxons, Goths, Vandals</td></tr>
-        <tr><td><strong>Result</strong></td><td>Disunited tribes, no central authority, loyalty only to local leaders</td></tr>
-      </table>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Scene: Charlemagne's Court</span>
+        <span class="lai">Lai 10–15</span>
+      </div>
+      <div class="scene-body">
+        <p>Charlemagne has been conquering Spain for <strong>7 years</strong>. He has taken every city except <strong>Saragossa</strong>, the kingdom of the Muslim King Marsilion.</p>
+
+        <p>Marsilion, terrified, sends messengers to Charlemagne. They bring:</p>
+        <ul>
+          <li>Bears, lions, hunting dogs on chains</li>
+          <li>700 camels</li>
+          <li>1,000 molting hawks</li>
+          <li>400 mules packed with gold of Araby</li>
+          <li>50 great carts</li>
+        </ul>
+
+        <p>Marsilion's offer: <strong>He will follow Charlemagne to Aix, become a Christian, and hold Spain as a fief.</strong> But Charlemagne is suspicious: <em>"What lies in his heart? I do not know."</em> The French say: "We must be on our guard!"</p>
+      </div>
     </div>
 
-    <h3>The Catholic Church</h3>
-    <div class="card">
-      <ul class="plain">
-        <li>Survived the fall of Rome.</li>
-        <li>Sent out <strong>missionaries</strong> on conversion missions.</li>
-        <li><strong>Seized territories</strong> that refused Church authority.</li>
-        <li>Became the <strong>unifying institution</strong> in a fragmented Europe.</li>
-        <li>Fought against the growing influence of <strong>Islam</strong>.</li>
-        <li>Launched the <strong>Crusades</strong> — holy wars.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Roland vs. Ganelon</span>
+        <span class="lai">Lai 14–15</span>
+      </div>
+      <div class="scene-body">
+        <p><strong>Roland</strong> stands and warns against trusting Marsilion. He reminds Charlemagne:</p>
+        <ul>
+          <li>Marsilion has betrayed them before.</li>
+          <li>He sent 15 pagans with olive branches — but they lied.</li>
+          <li>Charlemagne sent two Counts — <strong>Basan and Basile</strong> — and Marsilion beheaded them on the hills below Haltille.</li>
+        </ul>
+        <p>Roland's advice: <em>"Fight the war you came to fight! Lead the army on to Saragossa! Avenge the men this criminal murdered!"</em></p>
+
+        <p><strong>Ganelon</strong> then stands. He argues the opposite: <em>"Whoever urges that we refuse this peace, that man does not care what death we die. Let us leave fools, let us hold with wise men!"</em></p>
+
+        <p>Charlemagne bows his head and says nothing to his nephew.</p>
+      </div>
     </div>
 
-    <div class="card crimson">
-      <h4>The First Crusade (1095 AD)</h4>
-      <ul class="plain">
-        <li>Ordered by <strong>Pope Urban II</strong>.</li>
-        <li>Promised <strong>eternal salvation</strong> and <strong>pardon of sins</strong> to soldiers.</li>
-        <li>Goal: reclaim Holy Lands; fight "infidels and pagans."</li>
-        <li>Long, violent history between Christians and Muslims.</li>
-        <li>Effects still felt today — racial discrimination and religious oppression.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Ganelon Is Chosen as Messenger</span>
+        <span class="lai">Lai 20–21</span>
+      </div>
+      <div class="scene-body">
+        <p>Charlemagne asks for a volunteer to bring his message to Marsilion. <strong>Roland says: "Ganelon, my stepfather."</strong></p>
+
+        <p>The French agree — they think Ganelon is wise. But Ganelon is <strong>furious</strong>. He:</p>
+        <ul>
+          <li>Chokes with anger</li>
+          <li>Pulls off his marten furs</li>
+          <li>Stands in his silk tunic, eyes blazing with fury</li>
+          <li>Says to Roland: <em>"Madman, what makes you rave? Every man knows I am your stepfather, yet you named me to go to Marsilion. Now if God grants that I come back, you will have trouble: I'll start a feud with you till the end of your life."</em></li>
+        </ul>
+
+        <p>Roland replies: <em>"Threats don't worry me. If the King wills, I'll gladly go in your place."</em></p>
+
+        <p>Ganelon answers: <em>"You will not go for me. You're not my man, and I am not your lord. Charles commands me — I'll go to Saragossa. And I tell you, I'll play a few wild tricks before I cool the anger in me now."</em></p>
+
+        <p>Roland laughs. <strong>This is where the feud begins.</strong></p>
+      </div>
     </div>
 
-    <h3>Rise of Nations</h3>
-    <div class="card blue">
-      <ul class="plain">
-        <li>Germanic tribes brought their own traditions, culture, and beliefs.</li>
-        <li>Mingling, coexistence, and conflict → cultural diversity and unity.</li>
-        <li>Territorial claims + sense of similarity → concept of <strong>"nation"</strong> and <strong>nationalism</strong>.</li>
-        <li>Gave rise to modern European nations: <strong>France, Germany, Spain</strong>.</li>
-        <li>Shared culture, beliefs, language — yet each has a distinct identity.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Ganelon Prepares to Leave</span>
+        <span class="lai">Lai 31–36</span>
+      </div>
+      <div class="scene-body">
+        <p>Ganelon goes to his camp and puts on his best armor:</p>
+        <ul>
+          <li>Golden spurs</li>
+          <li>Sword <strong>Murgleis</strong></li>
+          <li>Battle horse <strong>Tachebrun</strong></li>
+          <li>His uncle Guinemer holds the stirrup</li>
+        </ul>
+
+        <p>His men weep and say: <em>"Baron, what bad luck for you! All your long years at court... Whoever doomed you to go down there — Charlemagne himself will not protect that man."</em></p>
+
+        <p>Ganelon says: <em>"May the Lord God forbid! It is better that I alone should die than so many good men. Go to my wife and greet her, and Pinabel, my friend, and Baldewin my son."</em></p>
+      </div>
     </div>
   </section>
 
-  <!-- ============ 2. FEUDALISM ============ -->
+  <!-- ============ 2. GANELON'S BETRAYAL ============ -->
   <section id="s2">
-    <h2 class="sec-title">2 · Feudalism &amp; the Manor System</h2>
+    <h2 class="sec-title">2 · Roland — Ganelon's Betrayal</h2>
 
-    <div class="highlight">
-      <h4>Feudalism — Definition</h4>
-      A political-economic system that revolves around <strong>land ownership</strong> and <strong>alliances</strong>.
-    </div>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Ganelon Meets Blancandrin</span>
+        <span class="lai">Lai 30</span>
+      </div>
+      <div class="scene-body">
+        <p>Ganelon rides to a tall olive tree and joins the pagan messengers. <strong>Blancandrin</strong> slows down to ride with him. They speak with great art to each other.</p>
 
-    <table>
-      <caption>The Feudal Pyramid (top → bottom)</caption>
-      <tr><th style="width:28%">Rank</th><th>Role</th></tr>
-      <tr><td><strong>King</strong></td><td>Supreme ruler; grants land.</td></tr>
-      <tr><td><strong>Church Official</strong></td><td>Religious authority; often powerful landowners.</td></tr>
-      <tr><td><strong>Noble</strong></td><td>Wealthy, powerful individuals — usually nobles or church officials.</td></tr>
-      <tr><td><strong>Knights</strong></td><td>Mounted horsemen; pledge military service to their lord in exchange for a fief.</td></tr>
-      <tr><td><strong>Peasants</strong></td><td>Landless; work the land on the manor.</td></tr>
-    </table>
+        <p>Blancandrin praises Charlemagne: <em>"An amazing man, Charles! Conquered Apulia, all of Calabria, crossed the sea into England, won tribute and Peter's pence for Rome."</em></p>
 
-    <h3>Key Terms</h3>
-    <div class="grid2">
-      <div class="card">
-        <h4>Lord</h4>
-        Landowner who grants a <em>fief</em> to a vassal in exchange for protection and other services.
-      </div>
-      <div class="card">
-        <h4>Vassal</h4>
-        Wealthy and powerful individual — usually a noble or church official — who receives the fief.
-      </div>
-      <div class="card">
-        <h4>Fief</h4>
-        The land granted by a lord to a vassal.
-      </div>
-      <div class="card">
-        <h4>Knight</h4>
-        Mounted horseman who pledges allegiance and military service to his lord in exchange for a fief.
-      </div>
-      <div class="card">
-        <h4>Peasant</h4>
-        Landless worker who works the land on the manor.
-      </div>
-      <div class="card">
-        <h4>Manor</h4>
-        The lord's estate.
+        <p>Ganelon agrees: <em>"That is the heart in him. There'll never be a man like him."</em></p>
+
+        <p>Blancandrin then says: <em>"A wild man, this Roland! Wants every nation to beg for his mercy. But what men support him?"</em></p>
+
+        <p>Ganelon: <em>"The men of France. They love him so, they will never fail him. He gives them gifts — gold, silver, mules, horses, silks."</em></p>
+
+        <p><strong>The two ride on until each pledges his faith to the other and swears to find a way to have Count Roland killed.</strong></p>
       </div>
     </div>
 
-    <h3>The Manor System</h3>
-    <div class="card gold">
-      <table>
-        <tr><th style="width:50%">The Lord Provides</th><th>The Peasants Give</th></tr>
-        <tr>
-          <td>
-            <ul class="plain">
-              <li>Protection</li>
-              <li>House</li>
-              <li>Farmland</li>
-            </ul>
-          </td>
-          <td>
-            <ul class="plain">
-              <li>Tend the lord's estate, land, and animals</li>
-              <li>A portion of their earnings</li>
-              <li>Other services to keep the lord's household efficient</li>
-            </ul>
-          </td>
-        </tr>
-      </table>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Ganelon Before Marsilion</span>
+        <span class="lai">Lai 36–38</span>
+      </div>
+      <div class="scene-body">
+        <p>In Saragossa, Ganelon is brought before King Marsilion. He delivers Charlemagne's message:</p>
+        <ul>
+          <li>Marsilion must take the Christian faith.</li>
+          <li>Charlemagne will give him half of Spain; the other half goes to Roland.</li>
+          <li>If Marsilion refuses, Charlemagne will lay siege to Saragossa, put him in chains, and bring him to Aix to be beheaded.</li>
+        </ul>
+
+        <p>Marsilion turns white with rage. He breaks the seal, reads the letter, and sees that Charlemagne mentions <strong>Basan and Basile</strong> — the two Counts he beheaded.</p>
+
+        <p>Marsilion's son says: <em>"Ganelon has spoken madness. He crossed the line; he has no right to live. Give him to me — I will do justice on him."</em></p>
+
+        <p>Ganelon brandishes his sword and runs to a pine tree, setting his back against the trunk.</p>
+
+        <p>But Marsilion takes Ganelon into the orchard. Blancandrin says: <em>"Lord, call the Frenchman back. He swore to me to keep faith with our cause."</em></p>
+
+        <p><strong>And there they plotted that criminal treason.</strong></p>
+      </div>
     </div>
 
-    <h3>Chivalry</h3>
-    <div class="card blue">
-      A code of principles followed by <strong>knights</strong> — bravery, honor, loyalty, service to lord, protection of the weak. In <em>The Song of Roland</em>, chivalry appears through Roland's bravery, Oliver's wisdom, and Turpin's religious devotion.
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Betrayal Is Planned</span>
+        <span class="lai">Lai 38–44</span>
+      </div>
+      <div class="scene-body">
+        <p>Marsilion apologizes to Ganelon and gives him sable furs worth 500 pounds. Ganelon accepts.</p>
+
+        <p>Marsilion asks: <em>"How must I kill Roland the Count?"</em></p>
+
+        <p>Ganelon tells him exactly how:</p>
+        <ul>
+          <li>Charlemagne will be at <strong>Cize</strong>, in the great passes.</li>
+          <li>He will place his <strong>rear guard</strong> at his back.</li>
+          <li>Roland will be there, with Oliver and 20,000 Franks.</li>
+          <li>Send <strong>100,000 pagans</strong> against the French in the first battle.</li>
+          <li>Then send a second battle like the first.</li>
+          <li><em>"One will get him, Roland will not escape."</em></li>
+        </ul>
+
+        <p>Marsilion gives Ganelon ten mules loaded with Arabian gold and the keys to Saragossa. Ganelon says: <em>"It's high time that I go."</em></p>
+      </div>
     </div>
 
-    <div class="tip">
-      <strong>Summary of the Medieval Period:</strong> It saw the fall of the Roman Empire and the migration of Germanic tribes. These led to (1) the increased influence and power of the Catholic Church; (2) the development of feudalism and the manor system; and (3) the code of chivalry that knights were supposed to follow.
+    <div class="scene">
+      <div class="scene-header">
+        <span>Ganelon Returns to Charlemagne</span>
+        <span class="lai">Lai 52</span>
+      </div>
+      <div class="scene-body">
+        <p>Ganelon returns to Charlemagne with a lying report:</p>
+        <ul>
+          <li>He brings the keys to Saragossa.</li>
+          <li>He brings great treasure and 20 hostages.</li>
+          <li>He claims the Algalife (Marsilion's uncle) drowned at sea with 100,000 men — they did not want the Christian faith.</li>
+          <li>He says Marsilion will follow Charlemagne to France within a month and become a Christian.</li>
+        </ul>
+
+        <p>Charlemagne thanks God: <em>"You have done well, you will be well rewarded."</em></p>
+
+        <p>They sound a thousand trumpets. The French break camp and take the road to France.</p>
+
+        <p><strong>But Ganelon has been well paid by Marsilion — gold, silver, silks, mules, horses, camels, lions.</strong></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Charlemagne's Dream</span>
+        <span class="lai">Lai 56</span>
+      </div>
+      <div class="scene-body">
+        <p>That night, Charlemagne dreams:</p>
+        <ul>
+          <li>He is at Cize, in the great passes.</li>
+          <li>He holds his great ashen lance in his fists.</li>
+          <li><strong>Ganelon tears it away from him</strong> and brandishes it with such fury that splinters fly up toward heaven.</li>
+        </ul>
+        <p>Charlemagne sleeps — his dream does not wake him.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Ganelon Volunteers Roland for the Rear Guard</span>
+        <span class="lai">Lai 58–59</span>
+      </div>
+      <div class="scene-body">
+        <p>Charlemagne says: <em>"Look at those passes, those narrow defiles. Pick me a man to command the rear guard."</em></p>
+
+        <p>Ganelon answers: <em>"Roland, here, my stepson. You have no baron as great and brave as Roland."</em></p>
+
+        <p>Charlemagne stares at him in fury: <em>"You are the living devil, a mad dog — the murderous rage in you!"</em></p>
+
+        <p>But Roland accepts. He says: <em>"Lord Stepfather, I have to cherish you! You have had the rear guard assigned to me. Charles will not lose one palfrey, one war horse while I'm alive. Charles will not lose one pack horse that has not first been bought and paid for with swords."</em></p>
+
+        <p>Ganelon answers: <em>"You speak the truth, I know."</em></p>
+
+        <p><strong>Charlemagne cannot keep from weeping. A hundred thousand Franks feel pity for him — and for Roland, an amazing fear.</strong></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Marsilion Prepares His Army</span>
+        <span class="lai">Lai 68</span>
+      </div>
+      <div class="scene-body">
+        <p>Marsilion sends for the barons of Spain — counts, viscounts, dukes, emirs. <strong>400,000 men assemble in three days.</strong></p>
+
+        <p>They beat drums in Saragossa, raise Mahumet on the highest tower. No pagan who does not worship him.</p>
+
+        <p>They ride through the land, valleys, mountains. Then they see the banners of the French.</p>
+
+        <p><strong>The rear guard of the Twelve Companions will not fail now — they'll give the pagans battle.</strong></p>
+      </div>
     </div>
   </section>
 
-  <!-- ============ 3. BACKGROUND ============ -->
+  <!-- ============ 3. ROLAND — THE BATTLE ============ -->
   <section id="s3">
-    <h2 class="sec-title">3 · Background of <em>The Song of Roland</em></h2>
+    <h2 class="sec-title">3 · Roland — The Battle at Roncevaux</h2>
 
-    <div class="card gold">
-      <table>
-        <caption>Quick Facts</caption>
-        <tr><th style="width:32%">Aspect</th><th>Details</th></tr>
-        <tr><td><strong>Title</strong></td><td><em>La Chanson de Roland</em> / <em>The Song of Roland</em></td></tr>
-        <tr><td><strong>Genre</strong></td><td><em>Chanson de geste</em> — "song of deeds"</td></tr>
-        <tr><td><strong>Subject</strong></td><td>Reign of Holy Roman Emperor <strong>Charlemagne</strong></td></tr>
-        <tr><td><strong>Nature</strong></td><td>Contains historical truths, but context is usually <strong>embellished</strong></td></tr>
-        <tr><td><strong>Author</strong></td><td><strong>Unknown</strong> — name <strong>Turold</strong> mentioned at the end</td></tr>
-        <tr><td><strong>Oldest manuscript</strong></td><td>Old French, dated <strong>1129–1165 AD</strong>, kept at <strong>Oxford University</strong></td></tr>
-        <tr><td><strong>Structure</strong></td><td>Epic; structured for <strong>oral performance</strong></td></tr>
-        <tr><td><strong>Style</strong></td><td>Unequal stanza lengths; <strong>assonance</strong> instead of rhyme</td></tr>
-        <tr><td><strong>Performer</strong></td><td><strong>Jongleur</strong> — folk song singer</td></tr>
-      </table>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Oliver Sees the Saracens</span>
+        <span class="lai">Lai 81–82</span>
+      </div>
+      <div class="scene-body">
+        <p>Oliver climbs a hill and looks right, across a grassy vale. He sees the pagan army coming:</p>
+        <ul>
+          <li>Helmets blazing, bedecked with gems in gold</li>
+          <li>Shields and hauberks sewn with brass</li>
+          <li>Spears with iron heads like flames</li>
+          <li>Too many to count</li>
+        </ul>
+
+        <p>He comes down and tells the French: <em>"I saw the Saracens — no man on earth ever saw more of them. One hundred thousand, with their shields up in front, helmets laced on, hauberks blazing. You'll get a battle, nothing like it before. My lords, my French, may God give you strength. Hold your ground now! Let them not defeat us!"</em></p>
+
+        <p>The French reply: <em>"God hate the man who runs! We may die here, but no man will fail you."</em></p>
+      </div>
     </div>
 
-    <h3>Historical Basis</h3>
-    <div class="card crimson">
-      <h4>The Real Event: Battle of Roncevaux Pass (778 AD)</h4>
-      <ul class="plain">
-        <li>Charlemagne and troops were in Spain to intervene in a conflict between two Muslim rulers.</li>
-        <li>Called back to France to address an uprising.</li>
-        <li>On the way back, Charlemagne <strong>laid waste to several towns</strong>.</li>
-        <li>His <strong>rear guard</strong> was ambushed and killed by <strong>Christian Basques</strong> who suffered from his harsh treatment.</li>
-        <li>Rear guard led by: <strong>Roland</strong> (Charlemagne's nephew), <strong>Eggihard</strong> (seneschal), and <strong>Anselm</strong> (count palatine).</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Roland Refuses to Blow the Horn</span>
+        <span class="lai">Lai 83</span>
+      </div>
+      <div class="scene-body">
+        <p>Oliver says: <em>"The pagan force is great; our French here are too few. Roland, my companion, sound your horn then — Charles will hear it, the army will come back."</em></p>
+
+        <p>Roland replies: <em>"I'd be a fool to do it. I would lose my good name all through sweet France. I will strike now, I'll strike with Durendal, the blade will be bloody to the gold from striking! These pagan traitors came to these passes doomed! I promise you, they are marked men, they'll die."</em></p>
+
+        <p>The poet tells us: <em>Roland is good, and Oliver is wise, both these vassals men of amazing courage. Once they are armed and mounted, they will not run, though they die for it, from battle.</em></p>
+
+        <p>Oliver says: <em>"Roland, look — the first ones, on top of us — and Charles is far away. You did not think it right to sound your olifant. If the King were here, we'd come out without losses. Now look up there, toward the passes of Aspre — you can see the rear guard: it will suffer. No man in that detail will be in another."</em></p>
+
+        <p>Roland replies: <em>"Don't speak such foolishness — shame on the heart gone coward in the chest. We'll hold our ground, we'll stand firm — we're the ones! We'll fight with spears, we'll fight them hand to hand!"</em></p>
+      </div>
     </div>
 
-    <table>
-      <caption>Fact vs. Fiction</caption>
-      <tr><th style="width:50%">Historical Fact</th><th>Epic Version</th></tr>
-      <tr><td>Attackers were <strong>Christian Basques</strong></td><td>Attackers are <strong>Saracens / Muslims</strong></td></tr>
-      <tr><td>Roland accompanied by <strong>Eggihard and Anselm</strong></td><td>Roland accompanied by <strong>Oliver and Archbishop Turpin</strong></td></tr>
-      <tr><td>Political conflict</td><td>Religious war — Christians vs. Muslims</td></tr>
-    </table>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Archbishop Turpin's Sermon</span>
+        <span class="lai">Lai 89</span>
+      </div>
+      <div class="scene-body">
+        <p>Archbishop Turpin spurs his horse, goes up a mountain, and summons the French. He preaches:</p>
 
-    <div class="tip">
-      <strong>Why the changes?</strong> To fit the <em>Crusading spirit</em> of the time, to portray the Christian French as more heroic, and to demonize Muslims as pagans and traitors.
+        <blockquote>
+          "Barons, my lords, Charles left us in this place. We know our duty: to die like good men for our King. Fight to defend the holy Christian faith. Now you will have a battle, you know it now, you see the Saracens with your own eyes. Confess your sins, pray to the Lord for mercy. I will absolve you all, to save your souls. If you die here, you will stand up holy martyrs, you will have seats in highest Paradise."
+        </blockquote>
+
+        <p>The French dismount, cast themselves on the ground. The Archbishop blesses them in God's name.</p>
+
+        <p><strong>He commands them to do one penance: strike.</strong></p>
+      </div>
     </div>
 
-    <h3>Manuscript &amp; Author</h3>
-    <div class="card">
-      <ul class="plain">
-        <li><strong>Date written:</strong> Unknown.</li>
-        <li><strong>Existing manuscripts:</strong> Several fragments exist.</li>
-        <li><strong>Oldest existing manuscript:</strong> Old French, 1129–1165 AD, Oxford University.</li>
-        <li><strong>Author:</strong> Unknown. The ending says: <em>"Ci falt la geste que Turoldus declinet"</em> — "Thus concludes the deeds of which Turold..."</li>
-        <li><strong>Problem:</strong> "Declinet" could mean "translate," "compose," or "recite." We know Turold is connected, but not how.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Roland Charges into Battle</span>
+        <span class="lai">Lai 91</span>
+      </div>
+      <div class="scene-body">
+        <p>Roland rides on <strong>Veillantif</strong>, his good swift-running horse. He bears his arms — the poet says: <em>"how they become this man!"</em></p>
+
+        <p>He grips his lance, swings the iron point up toward the sky, the white gonfalon laced above. His face is aglow and smiling.</p>
+
+        <p>Close behind him follows Oliver. The men of France hail Roland: <strong>"their protector!"</strong></p>
+
+        <p>Roland looks wildly toward the Saracens, and humbly and gently to the men of France. He says: <em>"Barons, my lords, easy now, keep at a walk. These pagans are searching for martyrdom. We'll get good spoils before this day is over — no king of France ever got such treasure!"</em></p>
+
+        <p>And with these words, the hosts are at each other.</p>
+      </div>
     </div>
 
-    <h3>Structure &amp; Performance</h3>
-    <div class="grid2">
-      <div class="card blue">
-        <h4>Epic</h4>
-        Long narrative poem about heroic deeds.
+    <div class="scene">
+      <div class="scene-header">
+        <span>Roland Kills Aelroth</span>
+        <span class="lai">Lai 93</span>
       </div>
-      <div class="card blue">
-        <h4>Oral Performance</h4>
-        Meant to be sung or recited by a <em>jongleur</em>.
+      <div class="scene-body">
+        <p>Marsilion's nephew <strong>Aelroth</strong> rides in front, shouting insults:</p>
+
+        <blockquote>
+          "French criminals, today you fight our men. One man should have saved you: he betrayed you. A fool, your King, to leave you in these passes. This is the day sweet France will lose its name, and Charlemagne the right arm of his body."
+        </blockquote>
+
+        <p>Roland is outraged. He spurs his horse, strikes Aelroth:</p>
+        <ul>
+          <li>Smashes his shield</li>
+          <li>Breaks his hauberk apart</li>
+          <li>Rips through his chest, shatters the bones</li>
+          <li>Knocks the whole backbone out of his back</li>
+          <li>Casts out his soul with his lance</li>
+          <li>Throws him down dead from his horse, breaking his neck in two</li>
+        </ul>
+
+        <p>Roland says: <em>"Clown! Nobody! Now you know Charles is no fool, he never was the man to love treason. It took his valor to leave us in these passes! France will not lose its name today! Brave men of France, strike hard! The first blow is ours! We're in the right, and these swine in the wrong!"</em></p>
       </div>
-      <div class="card blue">
-        <h4>Unequal Stanzas</h4>
-        Allows the jongleur to add his own twist.
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Battle Rages</span>
+        <span class="lai">Lai 105–110</span>
       </div>
-      <div class="card blue">
-        <h4>Assonance</h4>
-        Repetition of vowel sounds; every stanza has a different assonance.
+      <div class="scene-body">
+        <p>Roland rides through the field with <strong>Durendal</strong>, carving his way, bringing terrible slaughter. Blood pours on the ground, his hauberk and arms running with blood, his horse's neck and shoulders running with blood.</p>
+
+        <p>Oliver does not linger — he strikes. The Twelve Peers strike. The brave French fight with lance and sword. The pagans die by hundreds, by thousands.</p>
+
+        <p>Turpin shouts: <em>"Bless our band of brave men! Munjoie!"</em> — the war cry of King Charles.</p>
+
+        <p>The battle is fearful and full of grief. The French lose their greatest arms — they will not see their fathers, their kin again, or Charlemagne.</p>
+
+        <p><strong>A mighty storm breaks over France:</strong> whirlwind, tempests, thunder, hail, lightning. From Saint Michael-in-Peril to the Saints, from Besançon to Wissant, no house stands. Darkness at noon. Many say: <em>"The Last Day! Judgment Day! The end of the world is upon us!"</em></p>
+
+        <p>They do not know — it is the worldwide grief for the death of Roland.</p>
       </div>
-      <div class="card blue">
-        <h4>No Rhyme</h4>
-        Lines do not rhyme.
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Roland Finally Blows the Horn</span>
+        <span class="lai">Lai 130–132</span>
       </div>
-      <div class="card blue">
-        <h4>Signals</h4>
-        Assonance changes signal the audience that the stanza has changed.
+      <div class="scene-body">
+        <p>Roland says: <em>"We are in a rough battle. I'll sound the olifant, Charles will hear it."</em></p>
+
+        <p>Oliver replies: <em>"No good vassal would do it. When I urged it, friend, you did not think it right. If Charles were here, we'd come out with no losses. Those men down there — no blame can fall on them. Now by this beard of mine, if I can see my noble sister Aude once more, you will never lie in her arms!"</em></p>
+
+        <p>Roland asks: <em>"Why are you angry at me?"</em></p>
+
+        <p>Oliver answers: <em>"Companion, it is your doing. I will tell you what makes a vassal good: it is judgment, it is never madness; restraint is worth more than the raw nerve of a fool. Frenchmen are dead because of your wildness. And what service will Charles ever have from us? If you had trusted me, my lord would be here, we would have fought this battle through to the end, Marsilion would be dead, or our prisoner. Roland, your prowess — had we never seen it! And now, dear friend, we've seen the last of it. No more aid from us now for Charlemagne. You will die here, and your death will shame France. We kept faith, you and I, we were companions, and everything we were will end today. We part before evening, and it will be hard."</em></p>
+
+        <p>Turpin hears their bitter words and rides to them: <em>"You, Lord Roland, and you, Lord Oliver, I beg you in God's name do not quarrel. To sound the horn could not help us now, true, but still it is far better that you do it: let the King come, he can avenge us then. These men of Spain must not go home exulting! Our French will come, they'll find us here — we'll be dead, cut to pieces. They will lift us into coffins on the backs of mules, and weep for us, and bury us in the courts of churches; and we will not be eaten by wolves or pigs or dogs."</em></p>
+
+        <p>Roland replies: <em>"Lord, you have spoken well."</em></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Charlemagne Hears the Horn</span>
+        <span class="lai">Lai 133–135</span>
+      </div>
+      <div class="scene-body">
+        <p>Roland sounds the olifant with mighty effort. The sound echoes <strong>30 great leagues away</strong>. Charlemagne hears it and says: <em>"Our men are in a battle."</em></p>
+
+        <p>But Ganelon disputes him: <em>"Had someone else said that, I'd call him liar!"</em></p>
+
+        <p>Roland blows again. The blood leaps from his mouth, his temple bursts in his forehead. Charlemagne hears it drawing through the passes. Naimon hears it. The King says: <em>"I hear Count Roland's horn; he'd never sound it unless he had a battle."</em></p>
+
+        <p>Ganelon says: <em>"Now no more talk of battles! You are old now, your hair is white as snow. You know Roland and that wild pride of his. Remember? He took Noples without your command. He blasts his horn all day to catch a rabbit. Ride on! Why do you keep stopping? The Land of Fathers lies far ahead of us."</em></p>
+
+        <p>Naimon answers: <em>"It is a baron's breath. There is a battle there, I know there is. He betrayed him! And now asks you to fail him! Put on your armor! Lord, shout your battle cry, and save the noble barons of your house! You hear Roland's call. He is in trouble."</em></p>
+
+        <p>Charlemagne commands the horns to sound. The French dismount and put on their armor — hauberks, helmets, gold-dressed swords, handsome shields, great lances with white and red and blue gonfalons.</p>
+
+        <p>They mount their war horses and spur them hard the whole length of the pass. Every man says: <em>"If only we find Roland before he's killed, we'll stand with him, and then we'll do some fighting!"</em></p>
+
+        <p><strong>What does it matter what they say? They are too late.</strong></p>
       </div>
     </div>
   </section>
 
-  <!-- ============ 4. CHARACTERS ============ -->
+  <!-- ============ 4. ROLAND — DEATH & VENGEANCE ============ -->
   <section id="s4">
-    <h2 class="sec-title">4 · Characters</h2>
+    <h2 class="sec-title">4 · Roland — Death &amp; Vengeance</h2>
 
-    <table>
-      <tr>
-        <th style="width:20%">Character</th>
-        <th style="width:38%">Description</th>
-        <th>Role in Story</th>
-      </tr>
-      <tr>
-        <td><strong>Charlemagne</strong></td>
-        <td>King/Emperor; Roland's uncle and lord; mighty ruler</td>
-        <td>Conquers Spain; sends Ganelon; avenges Roland</td>
-      </tr>
-      <tr>
-        <td><strong>Roland</strong></td>
-        <td>Hero; brave, loyal, but <strong>prideful</strong>; leader of rear guard</td>
-        <td>Refuses to blow horn; dies as martyr</td>
-      </tr>
-      <tr>
-        <td><strong>Ganelon</strong></td>
-        <td>Roland's stepfather; <strong>betrayer</strong></td>
-        <td>Plots revenge; tells Muslims how to ambush; executed</td>
-      </tr>
-      <tr>
-        <td><strong>Oliver</strong></td>
-        <td>Roland's friend; <strong>wise and cautious</strong></td>
-        <td>Urges Roland to blow horn; represents wisdom</td>
-      </tr>
-      <tr>
-        <td><strong>Archbishop Turpin</strong></td>
-        <td>Religious leader</td>
-        <td>Encourages soldiers; promises Paradise; dies with them</td>
-      </tr>
-      <tr>
-        <td><strong>King Marsilion</strong></td>
-        <td>Muslim king of <strong>Saragossa</strong></td>
-        <td>Offers false peace; escapes</td>
-      </tr>
-      <tr>
-        <td><strong>Blancandrin</strong></td>
-        <td>Marsilion's envoy</td>
-        <td>Befriends Ganelon; helps plot betrayal</td>
-      </tr>
-    </table>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Roland Fights On</span>
+        <span class="lai">Lai 156–160</span>
+      </div>
+      <div class="scene-body">
+        <p>Roland fights well but he is hot, his body soaked with sweat. He has a great wound in his head; his temple is broken because he blew the horn. He must know whether Charlemagne will come. He draws out the olifant and sounds it — so feebly.</p>
 
-    <h3>Character Analysis</h3>
+        <p>Charlemagne halts and listens: <em>"My nephew Roland falls from our ranks today. I hear it in the horn's voice: he hasn't long. Let every man who wants to be with Roland ride fast! Sound trumpets!"</em></p>
 
-    <div class="card crimson">
-      <h4>Roland <span class="badge red">Tragic Hero</span></h4>
-      <ul class="plain">
-        <li><strong>Brave:</strong> Fights to the death; refuses to retreat.</li>
-        <li><strong>Loyal:</strong> To king, God, and France.</li>
-        <li><strong>Prideful:</strong> Refuses to blow the horn; believes he can win; doesn't want to lose his "good name."</li>
-        <li><strong>Flaw:</strong> Pride / hubris → causes destruction of the rear guard.</li>
-        <li><strong>Hero status:</strong> Dies as a martyr; angels take his soul to Paradise.</li>
-      </ul>
+        <p>Sixty thousand trumpets sound. The mountains sound and the valleys resound. The pagans hear and cry: <em>"We're getting Charles on us!"</em></p>
+
+        <p>The pagans say: <em>"We were all born unlucky! We have lost our lords and peers, and now comes Charlemagne with his great host. This Roland is a wild man, too great a fighter — what man can bring him down? Let us cast at him, and leave him there."</em></p>
+
+        <p>They throw arrows, darts, lances, spears, javelins at Roland. They strike his shield, pierce it, break it to pieces, rip his hauberk, shatter its rings of mail — <strong>but never touch his body, never his flesh.</strong> They wound Veillantif in 30 places and strike him dead under the Count.</p>
+
+        <p>The pagans flee, leaving the field to Roland. <strong>Roland stands alone, on his feet.</strong></p>
+      </div>
     </div>
 
-    <div class="card crimson">
-      <h4>Ganelon <span class="badge red">Villain</span></h4>
-      <ul class="plain">
-        <li><strong>Fears death:</strong> Scared of going to Marsilion.</li>
-        <li><strong>Revengeful:</strong> Angry at Roland for volunteering him.</li>
-        <li><strong>Traitorous:</strong> Tells Muslims how to ambush; lies to Charlemagne.</li>
-        <li><strong>Villain status:</strong> Punished by being torn apart; "died a traitor's death."</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Roland Tends to Turpin</span>
+        <span class="lai">Lai 161</span>
+      </div>
+      <div class="scene-body">
+        <p>Roland has no way to chase the fleeing pagans — he is left alone on foot. He goes to the aid of Archbishop Turpin:</p>
+        <ul>
+          <li>Unlaces the gold-dressed helmet</li>
+          <li>Lifts away his bright, light coat of mail</li>
+          <li>Cuts his under tunic into lengths</li>
+          <li>Stills his great wounds with the strips</li>
+          <li>Holds him in his arms, against his chest</li>
+          <li>Lays him down gently on the green grass</li>
+        </ul>
+
+        <p>Roland says: <em>"My noble lord, I beg you, give me leave: our companions, whom we have loved so dearly, are all dead now. We must not abandon them. I want to look for them, know them once more, and set them in ranks, side by side, before you."</em></p>
+
+        <p>Turpin says: <em>"Go then, go and come back. The field is ours, thanks be to God, yours and mine."</em></p>
+      </div>
     </div>
 
-    <div class="grid2">
-      <div class="card blue">
-        <h4>Oliver</h4>
-        <ul class="plain">
-          <li><strong>Wise:</strong> Sees the Saracens; knows they are outnumbered.</li>
-          <li><strong>Cautious:</strong> Urges Roland to blow the horn.</li>
-          <li><strong>Contrast to Roland:</strong> Represents <em>wisdom</em> vs. Roland's <em>pride</em>.</li>
-        </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Roland Finds the Dead</span>
+        <span class="lai">Lai 168</span>
       </div>
-      <div class="card blue">
-        <h4>Archbishop Turpin</h4>
-        <ul class="plain">
-          <li><strong>Religious:</strong> Preaches duty to king and God.</li>
-          <li><strong>Encouraging:</strong> Promises absolution and Paradise.</li>
-          <li><strong>Brave:</strong> Fights alongside the French.</li>
-          <li><strong>Represents:</strong> The Church's role in the Crusades.</li>
-        </ul>
+      <div class="scene-body">
+        <p>Roland feels death is very near. His brain comes spilling out through his ears. He prays to God for his peers, and for himself, to the angel Gabriel.</p>
+
+        <p>He takes the olifant — <em>"there must be no reproach!"</em> — and takes Durendal his sword in his other hand. Farther than a crossbow's farthest shot, he walks toward Spain, into a fallow land, and climbs a hill.</p>
+
+        <p>There beneath two fine trees stand four great blocks of marble. He falls back to earth on the green grass, fainting, for death is very near.</p>
       </div>
-      <div class="card blue">
-        <h4>Charlemagne</h4>
-        <ul class="plain">
-          <li><strong>Mighty:</strong> Conquered many lands.</li>
-          <li><strong>Grieving:</strong> Weeps for Roland; pulls his beard.</li>
-          <li><strong>Just:</strong> Avenges Roland; punishes Ganelon.</li>
-        </ul>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Saracen Tries to Steal Durendal</span>
+        <span class="lai">Lai 169–170</span>
       </div>
-      <div class="card blue">
-        <h4>King Marsilion</h4>
-        <ul class="plain">
-          <li><strong>Scheming:</strong> Offers false peace.</li>
-          <li><strong>Terrified:</strong> Of Charlemagne's power.</li>
-          <li><strong>Defeated:</strong> Loses his right hand; escapes.</li>
+      <div class="scene-body">
+        <p>A Saracen who has feigned death watches Roland. He has smeared blood on his face and body. He gets up and runs — a handsome man, strong, brave, and crazed with pride. He lays hands on Roland and on his arms and cries:</p>
+
+        <blockquote>
+          "Conquered! Charles's nephew conquered! I'll carry this sword home to Arabia!"
+        </blockquote>
+
+        <p>As he draws it, Roland comes round. He feels someone taking his sword. He opens his eyes and says: <em>"I don't know you, you aren't one of ours."</em></p>
+
+        <p>Roland grasps the olifant, which he will never lose, and strikes the Saracen on the helm:</p>
+        <ul>
+          <li>Shatters the steel, the head, and the bones</li>
+          <li>Sends his two eyes flying out of his head</li>
+          <li>Dumps him over, stretched out dead at his feet</li>
         </ul>
+
+        <p>Roland says: <em>"You nobody! How could you dare lay hands on me — rightly or wrongly: how? Who'll hear of this and not call you a fool? Ah! The bell-mouth of the olifant is smashed, the crystal and the gold fallen away."</em></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Roland Tries to Break Durendal</span>
+        <span class="lai">Lai 171–173</span>
+      </div>
+      <div class="scene-body">
+        <p>Roland feels his sight is gone. He gets on his feet, draws on his final strength, his color lost for good. Before him stands a rock. In rage and bitterness he strikes ten blows on the dark rock:</p>
+
+        <blockquote>
+          "Ah! Durendal, good sword, your unlucky day, for I am lost and cannot keep you in my care. The battles I have won, fighting with you, the mighty lands that holding you I conquered, that Charles rules now, our King, whose beard is white! Now you fall to another: it must not be a man who'd run before another man! For a long while a good vassal held you: there'll never be the like in France's holy land."
+        </blockquote>
+
+        <p>The rock breaks — breaks more than can be told — but <strong>Durendal will not break</strong>. The sword leaps up, rebounds toward the sky.</p>
+
+        <p>Roland laments: <em>"Ah Durendal, beautiful, and most sacred, the holy relics in this golden pommel! Saint Peter's tooth and blood of Saint Basile, a lock of hair of my lord Saint Denis, and a fragment of blessed Mary's robe: your power must not fall to the pagans, you must be served by Christian warriors. May no coward ever come to hold you!"</em></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Roland's Death</span>
+        <span class="lai">Lai 174–176</span>
+      </div>
+      <div class="scene-body">
+        <p>Roland feels death coming over him, descending from his temples to his heart. He runs under a pine tree and stretches out, face down, on the green grass. He lays beneath him his sword and the olifant.</p>
+
+        <p>He turns his head toward the Saracen hosts — <strong>so that King Charles and all his men will say he died a conqueror.</strong></p>
+
+        <p>He makes confession, beats his breast feebly, offers his glove to God for all his sins.</p>
+
+        <p>He remembers many things: how many lands he conquered; sweet France; the men of his line; Charles, his lord, who fostered him. He cannot keep from weeping and sighing, but would not be unmindful of himself.</p>
+
+        <p>He prays: <em>"Loyal Father, you who never failed us, who resurrected Saint Lazarus from the dead, now save the soul of me from every peril for the sins I committed while I still lived."</em></p>
+
+        <p>He holds out his right glove to his Lord. <strong>Saint Gabriel takes the glove from his hand.</strong> He holds his head bowed down upon his arm. He is gone, his two hands joined, to his end.</p>
+
+        <p><strong>God sends his angel Cherubin, Saint Michael (angel of the sea's Peril), and Saint Gabriel. They bear Count Roland's soul to Paradise.</strong></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Charlemagne Finds the Dead</span>
+        <span class="lai">Lai 177</span>
+      </div>
+      <div class="scene-body">
+        <p>Roland is dead; God has his soul in heaven. Charlemagne rides into Roncevaux. There is no passage, no track, no empty ground, not one foot, that does not bear French dead or pagan dead.</p>
+
+        <p>Charlemagne cries out: <em>"Dear Nephew, where are you? Where is the Archbishop? Count Oliver? Where is Gerin, his companion Gerer? Where is Otun, Count Berenger, Yves and Yvoire, men I have loved so dearly? What has become of Engeler the Gascon, Sansun the Duke, and Anseis? Where is Gerard the Old of Roussillon, and the Twelve Peers, whom I left in these passes?"</em></p>
+
+        <p><strong>No one answered.</strong></p>
+
+        <p>Charlemagne says: <em>"God! How much I must regret I was not here when the battle began."</em> He pulls his great beard, a man in grief and rage. His brave knights weep. <strong>Twenty thousand fall fainting to the ground.</strong> Duke Naimon feels the great pity of it.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Charlemagne Pursues the Pagans</span>
+        <span class="lai">Lai 180</span>
+      </div>
+      <div class="scene-body">
+        <p>God makes a great miracle for Charlemagne: <strong>the sun stands still</strong> in the sky. The pagans flee; the Franks chase them to the Vale Tenebrous, then to Saragossa, killing them with fury.</p>
+
+        <p>The waters of the Ebro lie before the pagans — very deep, amazing, swift. There is no boat, no barge, no galley. They call on Tervagant, one of their gods. Then they jump in — but no god is with them.</p>
+
+        <p>Those in full armor sink to the bottom. The others float downstream, but they have drunk so much they all drown. The French cry out: <em>"Curse the day you saw Roland!"</em></p>
+
+        <p>King Marsilion loses his right hand in the battle but escapes to Saragossa and enlists the aid of <strong>Balignant</strong>, another pagan. Charlemagne kills Balignant in combat and defeats his army. After capturing Saragossa, the emperor returns home.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Ganelon's Trial and Punishment</span>
+        <span class="lai">Lai 289</span>
+      </div>
+      <div class="scene-body">
+        <p>At Aix, the traitor Ganelon stands in iron chains before the palace. He is bound to a stake by serfs. They tie his hands with deerskin straps and thongs. They beat him hard with butcher's hooks and clubs — <em>"for what better reward has this man earned?"</em></p>
+
+        <p><strong>Pinabel</strong>, one of Ganelon's kinsmen, threatens to kill anyone who recommends that Ganelon be hanged. The emperor's advisers suggest freeing Ganelon — which enrages Charlemagne.</p>
+
+        <p>Then <strong>Tierri</strong> volunteers to fight Pinabel. Against all odds, Tierri wins. The French agree that Ganelon must die.</p>
+
+        <p><strong>The Punishment:</strong></p>
+        <ul>
+          <li>Four war horses are led out.</li>
+          <li>Ganelon's two feet and two hands are attached to the horses.</li>
+          <li>Four sergeants drive the horses toward a river in the midst of a field.</li>
+          <li>Ganelon is brought to terrible perdition.</li>
+          <li>All his mighty sinews are pulled to pieces.</li>
+          <li>The limbs of his body burst apart.</li>
+          <li>On the green grass flows that bright and famous blood.</li>
+        </ul>
+
+        <p><strong>"Ganelon died a traitor's and recreant's death. Now when one man betrays another, it is not right that he should live to boast of it."</strong></p>
       </div>
     </div>
   </section>
 
-  <!-- ============ 5. PLOT ============ -->
+  <!-- ============ 5. AUGUSTINE BOOK II ============ -->
   <section id="s5">
-    <h2 class="sec-title">5 · Plot Summary</h2>
+    <h2 class="sec-title">5 · Augustine — Book II (The Pears)</h2>
 
-    <h3>Full Synopsis</h3>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Augustine's Adolescence</span>
+        <span class="scene-body" style="font-size:.8rem;color:var(--gold-light);">Book II, Sections 1–4</span>
+      </div>
+      <div class="scene-body">
+        <p>Augustine begins by saying he will confess his past wickedness — not for love of it, but so that he may love God more.</p>
 
-    <div class="card gold">
-      <h4>Part 1 — The Peace Offer</h4>
-      <ul class="plain">
-        <li>Charlemagne has conquered Spain for <strong>7 years</strong>.</li>
-        <li>Only <strong>Saragossa</strong> (under King Marsilion) remains under Muslim rule.</li>
-        <li>Marsilion, terrified of Charlemagne, sends a messenger offering riches, conversion to Christianity, and peace.</li>
-        <li>Charlemagne agrees; looks for a messenger to relay the decision.</li>
-      </ul>
+        <p>He describes his adolescence:</p>
+        <ul>
+          <li><em>"I burned for all the satisfactions of hell."</em></li>
+          <li><em>"I sank to the animal in a succession of dark lusts."</em></li>
+          <li><em>"My beauty consumed away, and I stank in Thine eyes, yet was pleasing in my own."</em></li>
+        </ul>
+
+        <p>He says: <em>"My one delight was to love and to be loved."</em> But he could not tell the difference between love and lust: <em>"From the muddy concupiscence of the flesh and the hot imagination of puberty mists steamed up to becloud and darken my heart so that I could not distinguish the white light of love from the fog of lust."</em></p>
+
+        <p>He says God was silent: <em>"You were silent, and I... wandered further and further from You into more and more sins which could bear no fruit save sorrows."</em></p>
+      </div>
     </div>
 
-    <div class="card crimson">
-      <h4>Part 2 — Ganelon's Betrayal</h4>
-      <ul class="plain">
-        <li><strong>Roland nominates his stepfather Ganelon</strong> as messenger.</li>
-        <li>Ganelon is <strong>enraged</strong> — fears he will die at the hands of Muslims; suspects Roland wants him dead.</li>
-        <li>On the way to Saragossa, Ganelon befriends <strong>Blancandrin</strong> (Marsilion's envoy).</li>
-        <li>Ganelon tells Marsilion <strong>how to ambush the rear guard</strong>.</li>
-        <li>Marsilion gives Ganelon <strong>great treasures</strong>.</li>
-        <li>Ganelon returns with "good news" — Marsilion will keep his promise.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>His Father and Mother</span>
+        <span class="scene-body" style="font-size:.8rem;color:var(--gold-light);">Book II, Sections 3–4</span>
+      </div>
+      <div class="scene-body">
+        <p>Augustine's father saw him in the public baths one day and was excited — he looked forward to grandchildren. He told Augustine's mother in high excitement.</p>
+
+        <p>But his mother, Monica, warned him earnestly not to sin with women. Augustine says: <em>"I thought that You were silent and she was speaking; whereas You were speaking to me through her, and in ignoring her I was ignoring You."</em></p>
+
+        <p>His father was only concerned that Augustine grow in eloquence — <em>"never bothered about how I was growing towards You or how chaste or unchaste I might be."</em></p>
+      </div>
     </div>
 
-    <div class="card gold">
-      <h4>Part 3 — The Ambush</h4>
-      <ul class="plain">
-        <li>Ganelon volunteers Roland for <strong>rear-guard duty</strong>.</li>
-        <li>Charlemagne is angry, but Roland accepts.</li>
-        <li>At <strong>Roncevaux Pass</strong>, Oliver sees the Saracens coming.</li>
-        <li>Oliver urges Roland to <strong>blow the olifant</strong> so Charlemagne can return.</li>
-        <li>Roland <strong>refuses</strong> — believes they can win; doesn't want to lose his good name.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Theft of the Pears</span>
+        <span class="scene-body" style="font-size:.8rem;color:var(--gold-light);">Book II, Sections 4–9</span>
+      </div>
+      <div class="scene-body">
+        <p>Augustine asks: <em>"What was it then that in my wretched folly I loved in you, O theft of mine, deed wrought in that dark night when I was sixteen?"</em></p>
+
+        <p>He says the pears were beautiful — created by God — but it was <strong>not the pears his empty soul desired</strong>. He had better pears of his own. He plucked those only <strong>that he might steal</strong>.</p>
+
+        <p>After gathering them, he threw them away. <em>"If I took so much as a bite of any one of those pears, it was the sin that sweetened it."</em></p>
+
+        <p>He says there was no beauty in the theft. He did not want the fruit — he wanted the <strong>forbidden act itself</strong>. He loved the sin.</p>
+
+        <p>He says: <em>"I loved my own undoing, I loved the evil in me — not the thing for which I did the evil, simply the evil."</em></p>
+
+        <p>He was with a group of young blackguards. They went out at night to knock pears from a tree. <em>"Our only pleasure in doing it was that it was forbidden."</em></p>
+
+        <p>He says: <em>"I would not have done it alone. My pleasure was not in what I stole but that I stole."</em></p>
+
+        <p>He also says: <em>"Friendship unfriendly, unanalysable attraction for the mind, greediness to do damage for the mere sport and jest of it, desire for another's loss with no gain to oneself or vengeance to be satisfied!"</em></p>
+
+        <p>Someone cried: <em>"Come on, let's do it!"</em> — and they would be ashamed to be ashamed.</p>
+      </div>
     </div>
 
-    <div class="card gold">
-      <h4>Part 4 — The Battle</h4>
-      <ul class="plain">
-        <li><strong>Archbishop Turpin</strong> preaches: duty to king and God; promises <strong>Paradise</strong> to those who die.</li>
-        <li>The French fight bravely but are <strong>outnumbered</strong>.</li>
-        <li>Roland finally blows the horn — <strong>too late</strong>.</li>
-        <li>Roland's temples burst; blood pours from his mouth.</li>
-        <li>Charlemagne hears, but Ganelon tries to dissuade him.</li>
-        <li>Charlemagne realizes Ganelon's betrayal.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Augustine's Conclusion</span>
+        <span class="scene-body" style="font-size:.8rem;color:var(--gold-light);">Book II, Section 10</span>
+      </div>
+      <div class="scene-body">
+        <p>Augustine asks: <em>"Who can unravel that complex twisted knottedness?"</em></p>
+
+        <p>He says: <em>"It is unclean, I hate to think of it or look at it. I long for Thee, O Justice and Innocence, Joy and Beauty of the clear of sight, I long for Thee with unquenchable longing."</em></p>
+
+        <p>He ends: <em>"There is sure repose in Thee and untroubled. There is no fear. He that enters into Thee, enters into the joy of his Lord and shall not fear and shall be well in Him who is the Best. I went away from Thee, my God; in my youth I strayed too far from Thy sustaining power, and I became to myself a barren land."</em></p>
+      </div>
     </div>
 
-    <div class="card crimson">
-      <h4>Part 5 — Roland's Death</h4>
-      <ul class="plain">
-        <li>Roland dies on a hill beneath a pine tree, facing Spain.</li>
-        <li>Angels <strong>Cherubin, Michael, and Gabriel</strong> carry his soul to Paradise.</li>
-        <li>Charlemagne grieves and rages.</li>
-      </ul>
-    </div>
-
-    <div class="card crimson">
-      <h4>Part 6 — Vengeance</h4>
-      <ul class="plain">
-        <li>Charlemagne defeats the Muslims; captures Saragossa.</li>
-        <li>Ganelon is tried and sentenced to death.</li>
-        <li><strong>Punishment:</strong> Tied to four war horses; <strong>torn limb from limb</strong>.</li>
-        <li>"Ganelon died a traitor's and recreant's death."</li>
-      </ul>
-    </div>
-
-    <h3>Plot in 10 Beats <span class="badge">Quick Review</span></h3>
-    <div class="highlight">
-      <ol style="margin:0;padding-left:22px;">
-        <li>Charlemagne conquers Spain; only Saragossa remains.</li>
-        <li>Marsilion offers false peace.</li>
-        <li>Roland warns; Ganelon advises accepting.</li>
-        <li>Ganelon sent as messenger; plots revenge.</li>
-        <li>Ganelon tells Marsilion how to ambush rear guard.</li>
-        <li>Ganelon volunteers Roland for rear guard.</li>
-        <li>Oliver sees Saracens; urges Roland to blow horn.</li>
-        <li>Roland refuses out of pride; Turpin preaches.</li>
-        <li>Roland blows horn too late; dies; soul to Paradise.</li>
-        <li>Charlemagne avenges; Ganelon executed.</li>
-      </ol>
+    <div class="tip red">
+      <strong>Key Story Point:</strong> Augustine steals pears he does not want or need. He does it purely for the thrill of doing something forbidden. This is sin for sin's sake — the clearest example of how Augustine understands his own corruption.
     </div>
   </section>
 
-  <!-- ============ 6. QUOTES ============ -->
+  <!-- ============ 6. AUGUSTINE BOOK VIII ============ -->
   <section id="s6">
-    <h2 class="sec-title">6 · Key Quotes &amp; Analysis</h2>
+    <h2 class="sec-title">6 · Augustine — Book VIII (The Conversion)</h2>
 
-    <h3>Turpin's Sermon <span class="badge blue">Lai 89</span></h3>
-    <blockquote>
-      "Barons, my lords, Charles left us in this place. We know our duty: to die like good men for our King. Fight to defend the holy Christian faith. Now you will have a battle, you know it now, you see the Saracens with your own eyes. Confess your sins, pray to the Lord for mercy. I will absolve you all, to save your souls. If you die here, you will stand up holy martyrs, you will have seats in highest Paradise."
-    </blockquote>
-    <div class="card">
-      <h4>Analysis</h4>
-      <ul class="plain">
-        <li>Combines <strong>feudal duty</strong> (die for your King) with <strong>religious duty</strong> (defend the Christian faith).</li>
-        <li>Promises <strong>absolution</strong> and <strong>Paradise</strong> — gives soldiers hope.</li>
-        <li>Reflects the <strong>Crusading spirit</strong> of the Medieval Period.</li>
-        <li>"He commands them to do one penance: strike" — fighting is presented as a religious act.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Augustine Goes to Simplicianus</span>
+        <span class="scene-body" style="font-size:.8rem;color:var(--gold-light);">Book VIII, Sections 1–2</span>
+      </div>
+      <div class="scene-body">
+        <p>Augustine is unhappy. He wants to serve God but is held back by his <strong>need of woman</strong>. He says: <em>"What still held me tight bound was my need of woman."</em></p>
+
+        <p>He goes to <strong>Simplicianus</strong>, an old man who had lived in great love of God since his youth. Simplicianus had "begotten Ambrose into Your grace."</p>
+
+        <p>Augustine tells him all the wanderings of his error.</p>
+      </div>
     </div>
 
-    <h3>Roland's Refusal <span class="badge blue">Lai 83</span></h3>
-    <blockquote>
-      "I'd be a fool to do it. I would lose my good name all through sweet France. I will strike now, I'll strike with Durendal, the blade will be bloody to the gold from striking! These pagan traitors came to these passes doomed! I promise you, they are marked men, they'll die."
-    </blockquote>
-    <div class="card">
-      <h4>Analysis</h4>
-      <ul class="plain">
-        <li>Shows Roland's <strong>pride</strong> — fears losing his reputation more than death.</li>
-        <li><strong>Durendal</strong> — Roland's sword; represents his honor and prowess.</li>
-        <li>"Pagan traitors" — reflects Christian bias against Muslims.</li>
-        <li>This decision leads to the destruction of the rear guard.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Story of Victorinus</span>
+        <span class="scene-body" style="font-size:.8rem;color:var(--gold-light);">Book VIII, Sections 2–5</span>
+      </div>
+      <div class="scene-body">
+        <p>Simplicianus tells Augustine about <strong>Victorinus</strong>:</p>
+        <ul>
+          <li>An old man, deeply learned, trained in all the liberal sciences.</li>
+          <li>He had read and weighed many philosophers' writings.</li>
+          <li>Teacher of many distinguished senators.</li>
+          <li>He had a statue in the Roman forum — an honor the world thinks great.</li>
+          <li>He had grown old in the worship of idols and took part in sacrilegious rites.</li>
+        </ul>
+
+        <p>But Victorinus read Holy Scripture and investigated all the Christian writings. He said to Simplicianus privately: <em>"I would have you know that I am now a Christian."</em></p>
+
+        <p>Simplicianus answered: <em>"I shall not believe it nor count you among Christians unless I see you in the Church of Christ."</em></p>
+
+        <p>Victorinus asked with faint mockery: <strong>"Then is it the walls that make Christians?"</strong></p>
+
+        <p>He kept saying he was a Christian, but Simplicianus kept denying it. Victorinus feared offending his friends and worshippers of demons. But he read on, grew afraid that Christ might deny him before the angels. Finally he said to Simplicianus: <em>"Let us go to the church. I wish to be made a Christian."</em></p>
+
+        <p>He made his profession of faith <strong>publicly in the church</strong>. The congregation shouted: <em>"Victorinus, Victorinus!"</em> They took him to their heart in love and joy.</p>
+
+        <p>Augustine says: <em>"I was on fire to imitate him."</em></p>
+      </div>
     </div>
 
-    <h3>Roland's Refusal <span class="badge blue">Lai 87</span></h3>
-    <blockquote>
-      "Don't speak such foolishness — shame on the heart gone coward in the chest. We'll hold our ground, we'll stand firm — we're the ones! We'll fight with spears, we'll fight them hand to hand!"
-    </blockquote>
-    <div class="card">
-      <h4>Analysis</h4>
-      <ul class="plain">
-        <li>Roland accuses Oliver of <strong>cowardice</strong> — ironic, since Oliver is the wise one.</li>
-        <li>Shows Roland's <strong>reckless bravery</strong>.</li>
-        <li>"Shame on the heart gone coward" — reflects chivalric values.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Chain of Habit</span>
+        <span class="scene-body" style="font-size:.8rem;color:var(--gold-light);">Book VIII, Sections 5–7</span>
+      </div>
+      <div class="scene-body">
+        <p>Augustine describes his struggle:</p>
+        <ul>
+          <li><em>"The enemy held my will; and of it he made a chain and bound me."</em></li>
+          <li><em>"Because my will was perverse it changed to lust, and lust yielded to become habit, and habit not resisted became necessity."</em></li>
+          <li><em>"My two wills, one old, one new, one carnal, one spiritual, were in conflict and in their conflict wasted my soul."</em></li>
+        </ul>
+
+        <p>He describes it like sleep: <em>"I was held down as agreeably by this world's baggage as one often is by sleep... There is no one who wants to be asleep always... yet a man often postpones the effort of shaking himself awake."</em></p>
+
+        <p>He kept saying: <em>"Soon, quite soon, give me just a little while."</em> But "soon" and "quite soon" did not mean any particular time; "just a little while" went on for a long while.</p>
+      </div>
     </div>
 
-    <h3>Ganelon's Punishment <span class="badge blue">Lai 289</span></h3>
-    <blockquote>
-      "Ganelon must die, and in amazing pain. Four war horses are led out and brought forward; then they attach his two feet, his two hands. These battle horses are swift and spirited, four sergeants come and drive them on ahead toward a river in the midst of a field. Ganelon is brought to terrible perdition, all his mighty sinews are pulled to pieces, and the limbs of his body burst apart; on the green grass flows that bright and famous blood. Ganelon died a traitor's and recreant's death."
-    </blockquote>
-    <div class="card">
-      <h4>Analysis</h4>
-      <ul class="plain">
-        <li>Shows <strong>medieval justice</strong> — severe punishment for treachery.</li>
-        <li><strong>Public execution</strong> — deterrence and shame.</li>
-        <li>"Traitor's and recreant's death" — reinforces the gravity of betrayal.</li>
-        <li>Contrast with Roland's death: Roland dies as a <strong>martyr</strong>; Ganelon dies as a <strong>traitor</strong>.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Ponticianus Tells About Antony</span>
+        <span class="scene-body" style="font-size:.8rem;color:var(--gold-light);">Book VIII, Sections 14–15</span>
+      </div>
+      <div class="scene-body">
+        <p><strong>Ponticianus</strong> — a fellow African, Christian, official in the Emperor's court — comes to visit Augustine and Alypius. He notices a book on the gaming table: it is the Apostle Paul.</p>
+
+        <p>He tells them the story of <strong>Antony</strong>, the Egyptian monk, whose name was held in high honor among God's servants — <em>but Alypius and Augustine had never heard of him.</em></p>
+
+        <p>Ponticianus tells of a monastery at Milan, outside the city walls, full of worthy brethren under Ambrose — <em>and they had not heard of it.</em></p>
+
+        <p>He tells the story of two state officials at Treves. They went walking in gardens near the city walls. They found a small book — the life of Antony. One began to read and was inflamed by it.</p>
+
+        <p>He said to his friend: <em>"Tell me, please, what is the goal of our ambition in all these labours of ours? What are we aiming at? What is our motive in being in the public service? Have we any higher hope at court than to be friends of the Emperor? And at that level, is not everything uncertain and full of perils? But if I should choose to be a friend of God, I can become one now."</em></p>
+
+        <p>He read on and was changed inwardly. He broke out in heavy weeping, saw the better way and chose it. He said to his friend: <em>"Now I have broken from that hope we had and have decided to serve God; and I enter upon that service from this hour, in this place. If you have no will to imitate me, at least do not try to dissuade me."</em></p>
+
+        <p>The other replied that he would remain his companion. Both were betrothed; when the two women heard of it, they likewise dedicated their virginity to God.</p>
+      </div>
     </div>
 
-    <h3>Oliver's Warning <span class="badge blue">Lai 82</span></h3>
-    <blockquote>
-      "I saw the Saracens, no man on earth saw more of them — one hundred thousand, with their shields, up in front, helmets laced on, hauberks blazing on them, the shafts straight up, the iron heads like flames — you'll get a battle, nothing like it before. My lords, my French, may God give you the strength. Hold your ground now! Let them not defeat us!"
-    </blockquote>
-    <div class="card">
-      <h4>Analysis</h4>
-      <ul class="plain">
-        <li><strong>Foreshadowing</strong> — Oliver knows they are outnumbered.</li>
-        <li>"One hundred thousand" — exaggeration typical of epic.</li>
-        <li>Oliver's <strong>wisdom</strong> contrasts with Roland's <strong>pride</strong>.</li>
-      </ul>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Augustine's Torment</span>
+        <span class="scene-body" style="font-size:.8rem;color:var(--gold-light);">Book VIII, Sections 16–19</span>
+      </div>
+      <div class="scene-body">
+        <p>While Ponticianus speaks, God turns Augustine back toward himself. He sees how vile he is — <em>"twisted and unclean and spotted and ulcerous."</em> He is horrified but cannot flee from himself.</p>
+
+        <p>He compares himself to the two officials: <em>"The unlearned arise and take heaven by force, and here are we with all our learning, stuck fast in flesh and blood!"</em></p>
+
+        <p>He remembers: for <strong>twelve years or more</strong> since he was nineteen and read Cicero's <em>Hortensius</em>, he had been postponing the giving up of this world's happiness.</p>
+
+        <p>He recalls begging God for chastity: <strong>"Grant me chastity and continence, but not yet."</strong> He was afraid God would hear his prayer too soon, and too soon heal him from the disease of lust which he wanted satisfied rather than extinguished.</p>
+
+        <p>He goes into a garden, Alypius close behind. He is <em>"frantic in mind, in a frenzy of indignation at myself for not going over to Your law and Your covenant."</em></p>
+
+        <p>He describes the paradox: the mind commands the hand to move and it obeys instantly. But the mind commands itself to will — and it resists. <em>"Why this monstrousness? And what is the root of it?"</em></p>
+
+        <p>He says: <em>"The trouble is that it does not totally will: therefore it does not totally command."</em></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Temptations Speak</span>
+        <span class="scene-body" style="font-size:.8rem;color:var(--gold-light);">Book VIII, Sections 25–27</span>
+      </div>
+      <div class="scene-body">
+        <p>Augustine says his old mistresses — "those trifles of all trifles, and vanities of vanities" — held him back, plucking at his garment of flesh and murmuring softly:</p>
+
+        <blockquote>
+          "Are you sending us away? And, from this moment shall we not be with you, now or forever? And, from this moment shall this or that not be allowed you, now or forever?"
+        </blockquote>
+
+        <p>But their voice was growing fainter. In the direction he had turned, he could see <strong>Continence</strong> — "the austere beauty of Continence, serene and indeed joyous but not evil." She stretched forth loving hands to receive and embrace him, full of multitudes of good examples.</p>
+
+        <p>She smiled and said: <em>"Can you not do what these men have done, what these women have done? Or could men or women have done such in themselves, and not in the Lord their God? The Lord their God gave me to them. Why do you stand upon yourself and so not stand at all? Cast yourself upon Him and be not afraid; He will not draw away and let you fall. Cast yourself without fear, He will receive you and heal you."</em></p>
+
+        <p>But Augustine was still ashamed. He still heard the murmuring of those vanities. He still hung hesitant.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Garden — "Take and Read"</span>
+        <span class="scene-body" style="font-size:.8rem;color:var(--gold-light);">Book VIII, Sections 28–30</span>
+      </div>
+      <div class="scene-body">
+        <p>Augustine goes far enough from Alypius to weep alone. He flings himself down under a fig tree and lets his tears pour forth.</p>
+
+        <p>He cries: <em>"And Thou, O Lord, how long? How long, Lord; wilt Thou be angry forever? Remember not our former iniquities."</em></p>
+
+        <p>He continues: <em>"How long, how long shall I go on saying tomorrow and again tomorrow? Why not now, why not have an end to my uncleanness this very hour?"</em></p>
+
+        <p>Suddenly he hears a voice from a nearby house — a boy's voice or a girl's voice, he does not know — chanting over and over: <strong>"Take and read, take and read."</strong></p>
+
+        <p>He ceases weeping. He tries to remember if children chant these words in any game — he cannot remember ever hearing such a thing.</p>
+
+        <p>He interprets it as a divine command to open his book of Scripture and read the first passage he finds. He remembers that Antony was converted by a Gospel passage he happened upon.</p>
+
+        <p>He returns to where Alypius is sitting, snatches up the Apostle's book, opens it, and reads in silence the first passage his eyes fall on:</p>
+
+        <blockquote>
+          "Not in rioting and drunkenness, not in chambering and impurities, not in contention and envy, but put ye on the Lord Jesus Christ and make not provision for the flesh in its concupiscences."
+        </blockquote>
+
+        <p>He says: <em>"I had no wish to read further, and no need. For in that instant, with the very ending of the sentence, it was as though a light of utter confidence shone in all my heart, and all the darkness of uncertainty vanished away."</em></p>
+
+        <p>He tells Alypius what happened. Alypius asks to see what he read. He reads further than Augustine had and finds the next line: <em>"Now him that is weak in faith, take unto you."</em> Alypius applies it to himself.</p>
+
+        <p>They go to Monica and tell her. She is filled with triumphant exultation and praises God. <strong>God had given her more than she had ever asked for.</strong></p>
+      </div>
+    </div>
+
+    <div class="tip green">
+      <strong>Key Story Point:</strong> Augustine's conversion comes after years of struggle between two wills. The child's voice ("Take and read") and Romans 13:13–14 finally break the chain of habit. Grace, not willpower, sets him free.
     </div>
   </section>
 
-  <!-- ============ 7. THEMES ============ -->
+  <!-- ============ 7. DANTE CANTO I ============ -->
   <section id="s7">
-    <h2 class="sec-title">7 · Themes &amp; Medieval Values</h2>
+    <h2 class="sec-title">7 · Dante — Canto I (The Dark Wood)</h2>
 
-    <table>
-      <caption>Major Themes</caption>
-      <tr><th style="width:24%">Theme</th><th style="width:38%">Explanation</th><th>Evidence</th></tr>
-      <tr>
-        <td><strong>Loyalty vs. Betrayal</strong></td>
-        <td>Roland is loyal to king and God; Ganelon betrays them.</td>
-        <td>Ganelon tells Muslims how to ambush; Roland fights to the death.</td>
-      </tr>
-      <tr>
-        <td><strong>Pride / Hubris</strong></td>
-        <td>Roland's refusal to blow the horn causes destruction.</td>
-        <td>"I'd be a fool to do it. I would lose my good name."</td>
-      </tr>
-      <tr>
-        <td><strong>Chivalry</strong></td>
-        <td>Bravery, honor, service to lord.</td>
-        <td>Roland accepts rear-guard duty; fights bravely.</td>
-      </tr>
-      <tr>
-        <td><strong>Religious Devotion / Crusades</strong></td>
-        <td>Christians vs. Muslims; dying in battle earns salvation.</td>
-        <td>Turpin's sermon; angels take Roland's soul.</td>
-      </tr>
-      <tr>
-        <td><strong>Feudalism</strong></td>
-        <td>Lord-vassal relationship; loyalty and service.</td>
-        <td>Roland serves Charlemagne; Ganelon violates his oath.</td>
-      </tr>
-      <tr>
-        <td><strong>Good vs. Evil</strong></td>
-        <td>Christians portrayed as heroic; Muslims as pagans/traitors.</td>
-        <td>"Pagan traitors came to these passes doomed."</td>
-      </tr>
-      <tr>
-        <td><strong>Justice</strong></td>
-        <td>Treachery is severely punished.</td>
-        <td>Ganelon torn limb from limb.</td>
-      </tr>
-      <tr>
-        <td><strong>Oral Tradition</strong></td>
-        <td>Assonance, unequal stanzas, jongleur performance.</td>
-        <td>Structure of the epic.</td>
-      </tr>
-    </table>
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Dark Wood</span>
+        <span class="lai">Canto I</span>
+      </div>
+      <div class="scene-body">
+        <p>Dante begins: <em>"Midway in our life's journey, I went astray from the straight road and woke to find myself alone in a dark wood."</em></p>
 
-    <h3>Medieval Values in the Epic</h3>
-    <div class="grid2">
-      <div class="card gold">
-        <h4>Feudalism</h4>
-        Roland is Charlemagne's vassal; owes military service. Ganelon's betrayal violates the feudal oath.
+        <p>He describes the wood:</p>
+        <ul>
+          <li>So drear, so rank, so arduous a wilderness</li>
+          <li>Its very memory gives shape to fear</li>
+          <li>Death could scarce be more bitter than that place</li>
+        </ul>
+
+        <p>He does not know how he came to it — he was "so drugged and loose with sleep" when he first wandered from the True Way.</p>
+
+        <p>But at the far end of that valley of evil, he finds himself before a little hill. He lifts his eyes. Its shoulders glow with the sweet rays of the planet whose virtue leads men straight on every road. The shining strengthens him against the fright.</p>
+
+        <p>Like a swimmer who flounders ashore from perilous seas and turns to memorize the water, Dante turns to stare down that pass that none had ever left alive. He rests, then rises and pushes up the dead slope.</p>
       </div>
-      <div class="card gold">
-        <h4>Chivalry</h4>
-        Roland's bravery, Oliver's wisdom, Turpin's devotion.
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Three Beasts</span>
+        <span class="lai">Canto I</span>
       </div>
-      <div class="card gold">
-        <h4>Religious Devotion</h4>
-        Turpin promises Paradise; Roland's soul taken to heaven.
+      <div class="scene-body">
+        <p>Almost at the beginning of the rise, Dante faces:</p>
+
+        <table>
+          <tr><th>Beast</th><th>Description</th><th>Symbol</th></tr>
+          <tr>
+            <td><strong>Leopard</strong></td>
+            <td>Spotted, all tremor and flow and gaudy pelt. Would not pass, blocking every turn.</td>
+            <td>Fraud / Lust</td>
+          </tr>
+          <tr>
+            <td><strong>Lion</strong></td>
+            <td>Great Lion, raging with hunger, enormous head held high as if to strike mortal terror into the air.</td>
+            <td>Violence / Pride</td>
+          </tr>
+          <tr>
+            <td><strong>She-Wolf</strong></td>
+            <td>Starved horror, ravening and wasted beyond all belief. A rack for avarice, gaunt and craving.</td>
+            <td>Avarice / Incontinence</td>
+          </tr>
+        </table>
+
+        <p>The She-Wolf brings such heaviness upon Dante's spirit that he <strong>dies from every hope of the high summit</strong>. Like a miser who has lost everything, he wavered back — and the beast pursued, forcing him back into the sunless wood.</p>
       </div>
-      <div class="card gold">
-        <h4>Crusading Spirit</h4>
-        Muslims portrayed as enemies of Christ; war is holy.
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Virgil Appears</span>
+        <span class="lai">Canto I</span>
       </div>
-      <div class="card gold">
-        <h4>Patriarchy</h4>
-        Male-dominated society; women are absent or background figures.
+      <div class="scene-body">
+        <p>As Dante falls to his soul's ruin, a figure gathers before him in the discoloured air — <em>"one who seemed hoarse from long silence."</em></p>
+
+        <p>Dante cries: <em>"Have pity on me, whatever thing you are, whether shade or living man."</em></p>
+
+        <p>The figure replies: <em>"Not man, though man I once was, and my blood was Lombard, both my parents Mantuan. I was born, though late, sub Julio, and bred in Rome under Augustus in the noon of the false and lying gods. I was a poet and sang of old Anchises' noble son who came to Rome after the burning of Troy."</em></p>
+
+        <p>The figure asks: <em>"But you — why do you return to these distresses instead of climbing that shining Mount of Joy which is the seat and first cause of man's bliss?"</em></p>
+
+        <p>Dante recognizes him: <strong>"And are you then that Virgil and that fountain of purest speech?"</strong> His voice grows tremulous: <em>"Glory and light of poets! Now may that zeal and love's apprenticeship that I poured out in your heroic verses serve me well! For you are my true master and first author, the sole maker from whom I drew the breath of that sweet style whose measures have brought me honour."</em></p>
+
+        <p>Dante begs: <em>"See there, immortal sage, the beast I flee. For my soul's salvation, I beg you, guard me from her, for she has struck a mortal tremor through me."</em></p>
       </div>
-      <div class="card gold">
-        <h4>Honor / Reputation</h4>
-        Roland fears losing his "good name" more than death.
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Virgil's Prophecy &amp; Offer</span>
+        <span class="lai">Canto I</span>
       </div>
-      <div class="card gold">
-        <h4>Justice</h4>
-        Trial by combat; Ganelon's execution.
-      </div>
-      <div class="card gold">
-        <h4>Martyrdom</h4>
-        Dying in battle for God and king earns eternal salvation.
+      <div class="scene-body">
+        <p>Virgil explains that the She-Wolf suffers no man to pass. She tracks down all, kills all, and knows no glut — feeding, she grows hungrier. She mates with any beast and will mate with more before the <strong>Greyhound</strong> comes to hunt her down.</p>
+
+        <p>Virgil prophesies: <em>"He will not feed on lands nor loot, but honour and love and wisdom will make straight his way. He will rise between Feltro and Feltro, and in him shall be the resurrection and new day of that sad Italy... He shall hunt her through every nation of sick pride till she is driven back forever to Hell whence Envy first released her on the world."</em></p>
+
+        <p>Virgil offers: <em>"Therefore, for your own good, I think it well you follow me and I will be your guide and lead you forth through an eternal place. There you shall see the ancient spirits tried in endless pain, and hear their lamentation as each bemoans the second death of souls. Next you shall see upon a burning mountain souls in free and yet content in fire, knowing that whensoever it may be they yet will mount into the blessed choir. To which, if it is still your wish to climb, a worthier spirit shall be sent to guide you."</em></p>
+
+        <p>Dante replies: <em>"Poet, by that God to you unknown, lead me this way. Beyond this present ill and worse to dread, lead me to Peter's gate and be my guide through the sad halls of Hell."</em></p>
+
+        <p>Virgil says: <strong>"Follow."</strong> And he moves ahead in silence, and Dante follows.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ 8. Q&A ============ -->
+  <!-- ============ 8. DANTE CANTO II ============ -->
   <section id="s8">
-    <h2 class="sec-title">8 · Practice Q&amp;A <span class="badge">Tap to Reveal</span></h2>
+    <h2 class="sec-title">8 · Dante — Canto II (The Descent)</h2>
 
-    <h3>A · The Medieval Period</h3>
+    <div class="scene">
+      <div class="scene-header">
+        <span>Dante's Doubt</span>
+        <span class="lai">Canto II</span>
+      </div>
+      <div class="scene-body">
+        <p>The light is departing. Dante prepares to face "the double war of the journey and the pity." He invokes the Muses and High Genius.</p>
+
+        <p>Dante says to Virgil: <em>"Poet, you who must guide me, before you trust me to that arduous passage, look to me and look through me — can I be worthy?"</em></p>
+
+        <p>He compares himself to Aeneas and Paul:</p>
+        <ul>
+          <li>Aeneas — while still in corruptible flesh, won to the other world, and was chosen father of Mother Rome.</li>
+          <li>Paul — the chosen vessel, bearing confirmation of the Faith.</li>
+        </ul>
+
+        <p>Dante says: <em>"But I — how could I dare? By whose permission? I am not Aeneas. I am not Paul. Who could believe me worthy of the vision? How, then, may I presume to this high quest and not fear my own brashness?"</em></p>
+
+        <p>He hangs back, balking on the dim coast, until thinking wears out his enterprise — <em>"so stout at starting and so early lost."</em></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Virgil's Reply — Beatrice's Story</span>
+        <span class="lai">Canto II</span>
+      </div>
+      <div class="scene-body">
+        <p>Virgil answers: <em>"I understand from your words and the look in your eyes, your soul is sunken in that cowardice that bears down many men... To free you of this dread I will tell you all of why I came to you and what I heard when I first pitied you."</em></p>
+
+        <p>Virgil says he was among the souls of Limbo when a Lady — <strong>so blessed and so beautiful</strong> — called to him. Her eyes were kindled from the lamps of Heaven. Her voice reached through him, tender, sweet, and low. An angel's voice:</p>
+
+        <blockquote>
+          "O gracious Mantuan whose melodies live in earth's memory and shall live on till the last motion ceases in the skies, my dearest friend, and fortune's foe, has strayed onto a friendless shore and stands beset by such distresses that he turns afraid from the True Way... Fly to him and with your high counsel, pity, and with whatever need be for his good and soul's salvation, help him, and solace me. It is I, Beatrice, who send you to him. I come from the blessed height for which I yearn. Love called me here. When amid Seraphim I stand again before my Lord, your praises shall sound in Heaven."
+        </blockquote>
+
+        <p>Virgil says: <em>"She spoke and turned away to hide a tear that, shining, urged me faster. So I came and freed you from the beast that drove you there, blocking the near way to the Heavenly Height. And now what ails you? Why do you lag? Why this heartsick hesitation and pale fright when three such blessed Ladies lean from Heaven in their concern for you?"</em></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Three Blessed Ladies</span>
+        <span class="lai">Canto II</span>
+      </div>
+      <div class="scene-body">
+        <p>Virgil explains that three blessed ladies care for Dante:</p>
+
+        <table>
+          <tr><th>Lady</th><th>Role</th></tr>
+          <tr><td><strong>Mary</strong> (Lady in Heaven)</td><td>So concerned for Dante that for her sake the strict decree is broken. She called Lucia.</td></tr>
+          <tr><td><strong>Lucia</strong> (soul of light, foe of all cruelty)</td><td>Rose and came to Beatrice where she sat with ancient Rachel. Said: "Beatrice, true praise of God, why dost thou not help him who loved thee so?"</td></tr>
+          <tr><td><strong>Beatrice</strong></td><td>Descended from Heaven to Limbo to ask Virgil to help Dante.</td></tr>
+        </table>
+
+        <p>Beatrice said to Virgil: <em>"No soul of earth was ever as rapt to seek its good or flee its injury as I was when I had heard my sweet Lucia speak — to descend from Heaven and my blessed seat to you, laying my trust in that high speech that honours you and all who honour it."</em></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Dante Is Reassured</span>
+        <span class="lai">Canto II</span>
+      </div>
+      <div class="scene-body">
+        <p>Dante's wilted spirits rise again. A heat of zeal surges through his veins. He feels <strong>born anew</strong>.</p>
+
+        <p>He says: <em>"Blessed be that Lady of infinite pity, and blessed be thy taxed and courteous spirit that came so promptly on the word she gave thee. Thy words have moved my heart to its first purpose. My Guide! My Lord! My Master! Now lead on: One will shall serve the two of us in this."</em></p>
+
+        <p>Virgil turns, and Dante enters on that hard and perilous track behind him.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. DANTE CANTO III ============ -->
+  <section id="s9">
+    <h2 class="sec-title">9 · Dante — Canto III (The Gate of Hell)</h2>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Inscription</span>
+        <span class="lai">Canto III</span>
+      </div>
+      <div class="scene-body">
+        <p>Dante reads the inscription cut into stone above a gate:</p>
+
+        <blockquote>
+          "I AM THE WAY INTO THE CITY OF WOE.<br>
+          I AM THE WAY TO A FORSAKEN PEOPLE.<br>
+          I AM THE WAY INTO ETERNAL SORROW.<br><br>
+          SACRED JUSTICE MOVED MY ARCHITECT.<br>
+          I WAS RAISED HERE BY DIVINE OMNIPOTENCE,<br>
+          PRIMORDIAL LOVE AND ULTIMATE INTELLECT.<br><br>
+          ONLY THOSE ELEMENTS TIME CANNOT WEAR<br>
+          WERE MADE BEFORE ME, AND BEYOND TIME I STAND.<br>
+          ABANDON ALL HOPE YE WHO ENTER HERE."
+        </blockquote>
+
+        <p>Dante turns to Virgil: <em>"Master, what is the meaning of this harsh inscription?"</em></p>
+
+        <p>Virgil answers: <em>"Here must you put by all division of spirit and gather your soul against all cowardice. This is the place I told you to expect. Here you shall pass among the fallen people, souls who have lost the good of intellect."</em></p>
+
+        <p>He puts forth his hand and leads Dante through the gate of mystery with a gentle and encouraging smile.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Opportunists / Neutrals</span>
+        <span class="lai">Canto III</span>
+      </div>
+      <div class="scene-body">
+        <p>Inside, Dante hears sighs and cries and wails coiled and recoiled on the starless air. A confusion of tongues, voices hoarse and shrill, sounds of blows — tumult and pandemonium.</p>
+
+        <p>Dante cries: <em>"Sweet Spirit, what souls are these who run through this black haze?"</em></p>
+
+        <p>Virgil answers: <em>"These are the nearly soulless whose lives concluded neither blame nor praise. They are mixed here with that despicable corps of angels who were neither for God nor Satan, but only for themselves. The High Creator scourged them from Heaven for its perfect beauty, and Hell will not receive them since the wicked might feel some glory over them."</em></p>
+
+        <p>Dante asks: <em>"Master, what gnaws at them so hideously?"</em></p>
+
+        <p>Virgil: <em>"They have no hope of death, and in their blind and unattaining state their miserable lives have sunk so low that they must envy every other fate. No word of them survives their living season. Mercy and Justice deny them even a name. Let us not speak of them: look, and pass on."</em></p>
+
+        <p>Dante sees a banner circling endlessly in the mist. A never-ending rout of souls in pain follows it. <em>"I had not thought death had undone so many."</em></p>
+
+        <p>Among them, Dante recognizes <strong>"the shadow of that soul who, in his cowardice, made the Great Denial"</strong> — likely Pope Celestine V, who abdicated.</p>
+
+        <p>These wretches run naked in a swarm of wasps and hornets that goad them. Their faces stream with bloody gouts of pus and tears that dribble to their feet, to be swallowed by worms and maggots.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Charon and the River Acheron</span>
+        <span class="lai">Canto III</span>
+      </div>
+      <div class="scene-body">
+        <p>Dante sees a throng assembled on the beach of a wide river. Virgil says: <em>"All this shall be made known to you when we stand on the joyless beach of Acheron."</em></p>
+
+        <p>An old man with a white bush of hair comes steering an ancient ferry. He bellows:</p>
+
+        <blockquote>
+          "Woe to you depraved souls! Bury here and forever all hope of Paradise: I come to lead you to the other shore, into eternal dark, into fire and ice. And you who are living yet, I say begone from these who are dead."
+        </blockquote>
+
+        <p>But when he sees Dante standing against his violence, he says: <em>"By other windings and other steerage shall you cross to that other shore. Not here! Not here! A lighter craft than mine must give passage."</em></p>
+
+        <p>Virgil answers: <em>"Charon, bite back your spleen: This has been willed where what is willed must be, and is not yours to ask what it may mean."</em></p>
+
+        <p>Charon stifles his rage. The naked spirits turn pale with fear, their teeth chatter. They blaspheme God, their parents, their time on earth, the race of Adam, the day, the hour, the place, the seed, and the womb that gave them birth.</p>
+
+        <p>They draw to the grim shore. Charon herds them on with eyes like burning coals, flailing stragglers with his oar.</p>
+
+        <p>Like leaves in autumn that loosen and stream down until the branch stands bare, the evil seed of Adam casts itself from the shore at his signal and streams away like birds who hear their call.</p>
+
+        <p>Virgil says: <em>"All who die in the shadow of God's wrath converge to this from every clime and country. And all pass over eagerly, for here Divine Justice transforms and spurs them so their dread turns wish: they yearn for what they fear. No soul in Grace comes ever to this crossing."</em></p>
+
+        <p>When Virgil had spoken, the twilight country shakes so violently that Dante is bathed in sweat. The tear-soaked ground gives out a sigh of wind that spews itself in flame on a red sky. All his shattered senses leave him. Blind, like one whom sleep comes over in a swoon, he stumbles into darkness and goes down.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. DANTE CANTO IV ============ -->
+  <section id="s10">
+    <h2 class="sec-title">10 · Dante — Canto IV (Limbo)</h2>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Awakening in Limbo</span>
+        <span class="lai">Canto IV</span>
+      </div>
+      <div class="scene-body">
+        <p>A monstrous clap of thunder breaks apart the swoon. Dante leaps up with a start. He finds himself on the very brink of the valley called the <strong>Dolorous Abyss</strong> — so depthless-deep and nebulous and dim that it gives back no feature and no bottom.</p>
+
+        <p>Virgil is death-pale. Dante cries: <em>"How can I go this way when you who are my strength in doubt turn pale with terror?"</em></p>
+
+        <p>Virgil answers: <em>"The pain of these below us here drains the colour from my face for pity, and leaves this pallor you mistake for fear. Now let us go, for a long road awaits us."</em></p>
+
+        <p>He enters and leads Dante into the first circle and ledge of the abyss.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Virtuous Pagans</span>
+        <span class="lai">Canto IV</span>
+      </div>
+      <div class="scene-body">
+        <p>No tortured wailing rises here — but sounds of sighing from every side. A grief breathed out of untormented sadness. <em>"The passive state of those who dwelled apart, men, women, children — a dim and endless congress."</em></p>
+
+        <p>Virgil says: <em>"These are sinless. And still their merits fail, for they lacked Baptism's grace, which is the door of the true faith you were born to. Their birth fell before the age of the Christian mysteries, and so they did not worship God's Trinity in fullest duty. I am one of these. For such defects are we lost, though spared the fire and suffering Hell in one affliction only: That without hope we live on in desire."</em></p>
+
+        <p>Dante asks: <em>"Has any, by his own or another's merit, gone ever from this place to blessedness?"</em></p>
+
+        <p>Virgil answers: <em>"I was still new to this estate of tears when a Mighty One descended here among us, crowned with the sign of His victorious years. He took from us the shade of our first parent, of Abel, his pure son, of ancient Noah, of Moses, the bringer of law, the obedient. Father Abraham, David the King, Israel with his father and his children, Rachel, the holy vessel of His blessing, and many more He chose for elevation among the elect. And before these, you must know, no human soul had ever won salvation."</em></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Great Poets</span>
+        <span class="lai">Canto IV</span>
+      </div>
+      <div class="scene-body">
+        <p>Dante makes out a radiance before them that strikes away a hemisphere of dark. A voice rings on the air: <em>"Honour the Prince of Poets; the soul and glory that went from us returns. He is here! He is here!"</em></p>
+
+        <p>Four mighty presences come toward them — with neither joy nor sorrow in their bearing. Virgil says: <em>"Note well that soul that leads the rest with sword in hand as if he were their captain and champion. It is Homer, singing master of the earth. Next after him is Horace, the satirist, Ovid is the third, and Lucan is the fourth."</em></p>
+
+        <p>Virgil explains: <em>"Since all of these have part in the high name the voice proclaimed, calling me Prince of Poets, the honour that they do me honours them."</em></p>
+
+        <p>After they talk together a while, they turn and welcome Dante most graciously. They include him in their own number, <strong>making him sixth in that high company</strong>.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Great Citadel</span>
+        <span class="lai">Canto IV</span>
+      </div>
+      <div class="scene-body">
+        <p>They reach the base of a great Citadel circled by seven towering battlements and by a sweet brook. They pass over it as if it were firm ground. Through seven gates Dante enters with the sages and comes to a green meadow blooming round.</p>
+
+        <p>There, with a solemn and majestic poise, stand many people gathered in the light, speaking infrequently and with muted voice.</p>
+
+        <p>Dante sees:</p>
+        <table>
+          <tr><th>Category</th><th>Figures</th></tr>
+          <tr><td><strong>Heroes &amp; Legends</strong></td><td>Electra, Hector, Aeneas, Caesar in armour, Camilla, the Queen Amazon, the Latian King with his daughter, the good Brutus, Lucrezia, Julia, Marcia, Cornelia</td></tr>
+          <tr><td><strong>By himself apart</strong></td><td>Saladin</td></tr>
+          <tr><td><strong>Philosophers</strong></td><td>Aristotle (master of those who know), Socrates, Plato, Democritus, Diogenes, Thales, Anaxagoras, Zeno, Heraclitus, Empedocles</td></tr>
+          <tr><td><strong>Others</strong></td><td>Dioscorides, Orpheus, Tully, Linus, Seneca the moralist, Euclid, Ptolemy, Hippocrates, Galen, Avicenna, Averrhoes</td></tr>
+        </table>
+
+        <p>Dante says: <em>"I cannot count so much nobility; my longer theme pursues me so that often the world falls short of the reality."</em></p>
+
+        <p>The company of six is reduced by four. Virgil leads Dante by another road out of that serenity to the roar and trembling air of Hell. <strong>Dante passes from the light into the kingdom of eternal night.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11. DANTE CANTO V ============ -->
+  <section id="s11">
+    <h2 class="sec-title">11 · Dante — Canto V (The Lustful)</h2>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Minos and the Second Circle</span>
+        <span class="lai">Canto V</span>
+      </div>
+      <div class="scene-body">
+        <p>Dante and Virgil go down to the second ledge. A smaller circle of so much greater pain. The voice of the damned rises in a bestial moan.</p>
+
+        <p><strong>Minos</strong> sits there — grinning, grotesque, and hale. He examines each lost soul as it arrives and delivers his verdict with his coiling tail. When the ill-fated soul appears before him, it confesses all. Minos decides which place in Hell shall be its end, then wraps his twitching tail about himself <strong>one coil for each degree it must descend</strong>. The soul descends and others take its place.</p>
+
+        <p>Minos cries out when he sees Dante: <em>"O you who come into this camp of woe, watch where you go once you have entered here, and to whom you turn! Do not be misled by that wide and easy passage!"</em></p>
+
+        <p>Virgil answers: <em>"That is not your concern; it is his fate to enter every door. This has been willed where what is willed must be, and is not yours to question. Say no more."</em></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Storm of the Lustful</span>
+        <span class="lai">Canto V</span>
+      </div>
+      <div class="scene-body">
+        <p>Dante comes to a place stripped bare of every light and roaring on the naked dark like seas wracked by a war of winds. Their hellish flight of storm and counterstorm sweeps the souls of the damned before its charge. Whirling and battering it drives them on.</p>
+
+        <p>When they pass the ruined gap of Hell through which Dante and Virgil had come, their shrieks begin anew. There they blaspheme the power of God eternal.</p>
+
+        <p>Dante learns: <strong>this is the punishment of those who sinned in the flesh, the carnal and lusty who betrayed reason to their appetite.</strong></p>
+
+        <p>As the wings of wintering starlings bear them on in their great wheeling flight, so the blast wherries these evil souls through time foregone. Here, there, up, down, they whirl and, whirling, strain — with never a hope of hope to comfort them, not of release, but even of less pain.</p>
+
+        <p>As cranes go over sounding their harsh cry, leaving the long streak of their flight in air, so come these spirits, wailing as they fly.</p>
+
+        <p>Dante asks: <em>"Master, what souls are these the very air lashes with its black whips from side to side?"</em></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Famous Lovers</span>
+        <span class="lai">Canto V</span>
+      </div>
+      <div class="scene-body">
+        <p>Virgil names the souls:</p>
+        <table>
+          <tr><th>Soul</th><th>Story</th></tr>
+          <tr><td><strong>Semiramis</strong></td><td>Empress of many tongues. Mad sensuality corrupted her so that to hide the guilt of her debauchery she licensed all depravity alike — lust and law were one in her decree.</td></tr>
+          <tr><td><strong>Dido</strong></td><td>Faithless to the ashes of Sichaeus, she killed herself for love.</td></tr>
+          <tr><td><strong>Cleopatra</strong></td><td>Sense-drugged.</td></tr>
+          <tr><td><strong>Helen</strong></td><td>From whom such ill arose.</td></tr>
+          <tr><td><strong>Achilles</strong></td><td>Who fought at last with love in the house of prayer.</td></tr>
+          <tr><td><strong>Paris</strong></td><td>—</td></tr>
+          <tr><td><strong>Tristan</strong></td><td>—</td></tr>
+        </table>
+
+        <p>Virgil points out more than a thousand shades of those torn from the mortal life by love. Dante is swept by pity and confusion.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Francesca and Paolo</span>
+        <span class="lai">Canto V</span>
+      </div>
+      <div class="scene-body">
+        <p>Dante says: <em>"Poet, I should be glad to speak a word with those two swept together so lightly on the wind and still so sad."</em></p>
+
+        <p>Virgil: <em>"Watch them. When next they pass, call to them in the name of love that drives and damns them here. In that name they will pause."</em></p>
+
+        <p>As the wind brings them around, Dante calls: <em>"O wearied souls! If none forbid it, pause and speak to us."</em></p>
+
+        <p>As mating doves that love calls to their nest glide through the air with motionless raised wings, so those spirits turn toward Dante. Such was the power of pity in his cry.</p>
+
+        <p><strong>Francesca speaks:</strong></p>
+        <blockquote>
+          "O living creature, gracious, kind, and good, going this pilgrimage through the sick night, visiting us who stained the earth with blood, were the King of Time our friend, we would pray His peace on you who have pitied us. As long as the wind will let us pause, ask of us what you please. The town where I was born lies by the shore where the Po descends into its ocean rest with its attendant streams in one long murmur. Love, which in gentlest hearts will soonest bloom, seized my lover with passion for that sweet body from which I was torn unshriven to my doom. Love, which permits no loved one not to love, took me so strongly with delight in him that we are one in Hell, as we were above. Love led us to one death. In the depths of Hell Caina waits for him who took our lives."
+        </blockquote>
+
+        <p>Dante bows his head. Virgil asks: <em>"What painful thoughts are these your lowered brow covers?"</em></p>
+
+        <p>Dante answers: <em>"Alas! What sweetest thoughts, what green and young desire led these two lovers to this sorry pass."</em></p>
+
+        <p>Then he says to Francesca: <em>"Francesca, what you suffer here melts me to tears of pity and of pain. But tell me: in the time of your sweet sighs, by what appearances found love the way to lure you to his perilous paradise?"</em></p>
+
+        <p><strong>Francesca's answer:</strong></p>
+        <blockquote>
+          "The double grief of a lost bliss is to recall its happy hour in pain. Your Guide and Teacher knows the truth to this. But if there is indeed a soul in Hell to ask of the beginning of our love out of his pity, I will weep and tell: On a day for dalliance we read the rhyme of Lancelot, how love had mastered him. We were alone with innocence and dim time. Pause after pause that high old story drew our eyes together while we blushed and paled; but it was one soft passage overthrew our caution and our hearts. For when we read how her fond smile was kissed by such a lover, he who is one with me alive and dead breathed on my lips the tremor of his kiss. That book, and he who wrote it, was a pander. That day we read no further."
+        </blockquote>
+
+        <p>As she says this, the other spirit — Paolo — weeps so piteously that Dante feels his senses reel. He is swept by such a swoon as death is, and he falls, <strong>as a corpse might fall, to the dead floor of Hell.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12. DANTE CANTO VI ============ -->
+  <section id="s12">
+    <h2 class="sec-title">12 · Dante — Canto VI (The Gluttons)</h2>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Third Circle</span>
+        <span class="lai">Canto VI</span>
+      </div>
+      <div class="scene-body">
+        <p>Dante's senses return. He wakes gradually and sees new torments and new souls in pain everywhere. Wherever he turns away from grief, he turns to grief again.</p>
+
+        <p>He is in the <strong>Third Circle</strong>. Here, to all time, with neither pause nor change, the frozen rain of Hell descends in torrents. Huge hailstones, dirty water, and black snow pour from the dismal air to putrefy the putrid slush below.</p>
+
+        <p><strong>Cerberus</strong> — the ravening beast — howls through his triple throats like a mad dog over the spirits sunk in that foul paste. His eyes are red, his beard greased with phlegm, his belly swollen, his hands claws to rip and flay and mangle.</p>
+
+        <p>The souls howl like dogs in the freezing storm, turning and turning from it as if they thought one naked side could keep the other warm.</p>
+
+        <p>When Cerberus discovers Dante and Virgil, his dragon-jaws yaw wide, his lips draw back in a grin of fangs. Virgil bends down, seizes in either fist a clod of stinking dirt, and flings it down the gullet of the beast. As a hungry dog is silenced when thrown a bone, so the three ugly heads of Cerberus choke on the putrid sops and stop their fuss.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Ciacco the Hog</span>
+        <span class="lai">Canto VI</span>
+      </div>
+      <div class="scene-body">
+        <p>Dante and Virgil make their way across the sodden mess. When their steps fall on a body, they sink through emptiness. One wraith sits up abruptly and calls:</p>
+
+        <blockquote>
+          "O you who are led this journey through the shade of Hell's abyss, do you recall this face? You had been made before I was unmade."
+        </blockquote>
+
+        <p>Dante answers: <em>"Perhaps the pain you suffer here distorts your image from my recollection. I do not know you as you now appear."</em></p>
+
+        <p>The soul says: <em>"Your own city, so rife with hatred that the bitter cup flows over, was mine too in that other, clearer life. Your citizens nicknamed me Ciacco, The Hog: Gluttony was my offense, and for it I lie here rotting like a swollen log. Nor am I lost in this alone — all these you see about you in this painful death have wallowed in the same indecencies."</em></p>
+
+        <p>Dante says: <em>"Ciacco, your agony weighs on my heart and calls my soul to tears; but tell me, if you can, what is to be for the citizens of that divided state, and whether there are honest men among them, and for what reasons we are torn by hate."</em></p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>Ciacco's Prophecy</span>
+        <span class="lai">Canto VI</span>
+      </div>
+      <div class="scene-body">
+        <p>Ciacco prophesies about Florence:</p>
+
+        <ul>
+          <li><em>"After many words given and taken it shall come to blood; White shall rise over Black and rout the dark lord's force, battered and shaken."</em></li>
+          <li><em>"Then it shall come to pass within three suns that the fallen shall arise, and by the power of one now gripped by many hesitations Black shall ride on White for many years, loading it down with burdens and oppressions and humbling of proud names and helpless tears."</em></li>
+          <li><em>"Two are honest, but none will heed them. There, Pride, avarice, and envy are the tongues men know and heed, a Babel of despair."</em></li>
+        </ul>
+
+        <p>Dante asks about famous Florentines: <em>"Farinata and Tegghiaio, men of good blood, Jacopo Rusticucci, Arrigo, Mosca, and the other who set their hearts on doing good — where are they now? Does Heaven soothe or Hell envenom them?"</em></p>
+
+        <p>Ciacco answers: <em>"They lie below in a blacker lair. A heavier guilt draws them to greater pain. If you descend so far you may see them there. But when you move again among the living, oh speak of my name to the memory of men! Having answered all, I say no more."</em></p>
+
+        <p>He shakes his head, looks up at Dante cross-eyed, bows his head, and falls away among the other blind souls.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-header">
+        <span>The Question of the Resurrection</span>
+        <span class="lai">Canto VI</span>
+      </div>
+      <div class="scene-body">
+        <p>Virgil says: <em>"He will not wake again until the angel trumpet sounds the day on which the host shall come to judge all men. Then shall each soul before the seat of Mercy return to its sad grace and flesh and form to hear the edict of Eternity."</em></p>
+
+        <p>Dante asks: <em>"Master, when the great clairon fades into the voice of the thundering Omniscience, what of these agonies? Will they be the same, or more, or less, after the final sentence?"</em></p>
+
+        <p>Virgil answers: <em>"Look to your science again where it is written: the more a thing is perfect the more it feels of pleasure and of pain. As for these souls, though they can never soar to true perfection, still in the new time they will be nearer it than they were before."</em></p>
+
+        <p>They walk the rim of the great ledge speaking of pain and joy and much more. Then they reach the edge where the descent begins. <strong>There, suddenly, they come on Plutus, the great enemy.</strong></p>
+      </div>
+    </div>
+
+    <div class="tip red">
+      <strong>Cliffhanger:</strong> Canto VI ends with the appearance of Plutus — the guardian of the Fourth Circle (Avaricious and Prodigal). The story continues in Canto VII.
+    </div>
+  </section>
+
+  <!-- ============ 13. STORY Q&A ============ -->
+  <section id="s13">
+    <h2 class="sec-title">13 · Story Q&amp;A <span class="badge">Tap to Reveal</span></h2>
+
+    <h3>A · The Song of Roland — Story Events</h3>
 
     <details>
-      <summary>What is the Medieval Period also known as?</summary>
-      <div class="answer">The Middle Ages or Dark Ages.</div>
+      <summary>What does Marsilion offer Charlemagne?</summary>
+      <div class="answer">Riches (bears, lions, dogs, camels, hawks, mules with gold, carts), conversion to Christianity, and peace — if Charlemagne goes back to France.</div>
     </details>
 
     <details>
-      <summary>What event marked the beginning of the Medieval Period?</summary>
-      <div class="answer">The fall of the Roman Empire.</div>
+      <summary>Who volunteers Ganelon as messenger, and why is Ganelon angry?</summary>
+      <div class="answer">Roland volunteers him. Ganelon is angry because he fears he will die at the hands of the Muslims, and he suspects Roland wants him dead.</div>
     </details>
 
     <details>
-      <summary>What institution became the unifying force in fragmented Europe?</summary>
-      <div class="answer">The Roman Catholic Church.</div>
+      <summary>What does Ganelon do on his way to Saragossa?</summary>
+      <div class="answer">He befriends Blancandrin, Marsilion's envoy. They pledge faith to each other and swear to find a way to kill Roland.</div>
     </details>
 
     <details>
-      <summary>What were the Crusades?</summary>
-      <div class="answer">Holy wars between Christians and Muslims, started in <strong>1095 AD</strong> by <strong>Pope Urban II</strong>. He promised eternal salvation and pardon of sins to soldiers who would reclaim the Holy Lands.</div>
+      <summary>How does Ganelon tell Marsilion to kill Roland?</summary>
+      <div class="answer">Charlemagne will place his rear guard at his back — Roland, Oliver, and 20,000 Franks. Marsilion should send 100,000 pagans in a first battle, then a second battle like the first. "One will get him, Roland will not escape."</div>
     </details>
 
     <details>
-      <summary>What is feudalism?</summary>
-      <div class="answer">A political-economic system based on <strong>land ownership and alliances</strong>. Lords grant fiefs to vassals in exchange for protection and services.</div>
-    </details>
-
-    <details>
-      <summary>What is the manor system?</summary>
-      <div class="answer">An economic system where the <strong>lord</strong> provides peasants with protection, house, and farmland in exchange for their labor, a portion of their earnings, and other services.</div>
-    </details>
-
-    <details>
-      <summary>What is chivalry?</summary>
-      <div class="answer">A code of principles followed by knights — bravery, honor, loyalty, and service.</div>
-    </details>
-
-    <details>
-      <summary>What role did the Catholic Church play during the Medieval Period?</summary>
-      <div class="answer">It was the <strong>unifying institution</strong>; sent missionaries, seized territories, fought against Islam, and launched the Crusades.</div>
-    </details>
-
-    <details>
-      <summary>How did the concept of "nation" emerge?</summary>
-      <div class="answer">Through territorial claims, cultural similarity, and unity among Germanic tribes. This gave rise to modern European nations like France, Germany, and Spain.</div>
-    </details>
-
-    <details>
-      <summary>What are the three main social classes in feudalism?</summary>
-      <div class="answer">Nobility (lords/vassals), knights, and peasants.</div>
-    </details>
-
-    <h3>B · The Song of Roland</h3>
-
-    <details>
-      <summary>What is a <em>chanson de geste</em>?</summary>
-      <div class="answer">A "song of deeds" — an epic poem about Charlemagne's reign, performed orally by a jongleur.</div>
-    </details>
-
-    <details>
-      <summary>What historical event is <em>The Song of Roland</em> based on?</summary>
-      <div class="answer">The <strong>Battle of Roncevaux Pass in 778 AD</strong>.</div>
-    </details>
-
-    <details>
-      <summary>How does the epic differ from history?</summary>
-      <div class="answer">Historically, <strong>Christian Basques</strong> attacked the rear guard; the epic changes them to <strong>Saracens/Muslims</strong>. Eggihard and Anselm are replaced by <strong>Oliver and Turpin</strong>.</div>
-    </details>
-
-    <details>
-      <summary>Who is the author of <em>The Song of Roland</em>?</summary>
-      <div class="answer"><strong>Unknown.</strong> The name <strong>Turold</strong> is mentioned at the end, but his connection is unclear — "declinet" could mean translate, compose, or recite.</div>
-    </details>
-
-    <details>
-      <summary>Where is the oldest existing manuscript kept?</summary>
-      <div class="answer"><strong>Oxford University.</strong> Old French, dated 1129–1165 AD.</div>
-    </details>
-
-    <details>
-      <summary>What is the structure of the epic?</summary>
-      <div class="answer">Unequal stanzas, <strong>assonance</strong> instead of rhyme, performed by a <strong>jongleur</strong>.</div>
-    </details>
-
-    <details>
-      <summary>Why does Ganelon betray Roland?</summary>
-      <div class="answer">Roland volunteers him as messenger to Marsilion, putting his life in danger. Ganelon seeks <strong>revenge</strong>.</div>
+      <summary>What dream does Charlemagne have?</summary>
+      <div class="answer">He dreams he is at Cize holding his ashen lance. Ganelon tears it away and brandishes it with such fury that splinters fly toward heaven.</div>
     </details>
 
     <details>
       <summary>Why does Roland refuse to blow the olifant?</summary>
-      <div class="answer">Out of <strong>pride</strong> — he fears losing his good name and believes they can win.</div>
+      <div class="answer">Out of pride. He says: "I'd be a fool to do it. I would lose my good name all through sweet France."</div>
     </details>
 
     <details>
-      <summary>What is Roland's flaw?</summary>
-      <div class="answer"><strong>Pride / hubris.</strong></div>
+      <summary>What does Turpin promise the French soldiers?</summary>
+      <div class="answer">Absolution and Paradise. "If you die here, you will stand up holy martyrs, you will have seats in highest Paradise."</div>
     </details>
 
     <details>
-      <summary>How does Turpin motivate the French?</summary>
-      <div class="answer">He reminds them of duty to king and God and promises <strong>absolution and Paradise</strong> if they die.</div>
+      <summary>How does Roland kill Aelroth?</summary>
+      <div class="answer">He smashes his shield, breaks his hauberk, rips through his chest, shatters the bones, knocks the backbone out of his back, casts out his soul with his lance, throws him down dead, and breaks his neck in two.</div>
+    </details>
+
+    <details>
+      <summary>Why does Oliver get angry at Roland?</summary>
+      <div class="answer">Because Roland waited too long to blow the horn. Frenchmen died because of Roland's "wildness." If Roland had trusted him, Charlemagne would have been there.</div>
+    </details>
+
+    <details>
+      <summary>How does Roland die?</summary>
+      <div class="answer">He dies beneath a pine tree, facing Spain, after confessing his sins and offering his glove to God. Angels Cherubin, Michael, and Gabriel carry his soul to Paradise.</div>
     </details>
 
     <details>
       <summary>How is Ganelon punished?</summary>
-      <div class="answer">He is <strong>torn limb from limb</strong> by four horses.</div>
+      <div class="answer">He is tied to four war horses and torn limb from limb. "Ganelon died a traitor's and recreant's death."</div>
+    </details>
+
+    <h3>B · Augustine — Story Events</h3>
+
+    <details>
+      <summary>What did Augustine steal, and why?</summary>
+      <div class="answer">He stole pears from a tree near his vineyard. He did not want the pears — he had better ones. He stole them because the act was forbidden.</div>
     </details>
 
     <details>
-      <summary>What is the significance of Roland's death?</summary>
-      <div class="answer">He dies as a <strong>martyr/hero</strong>; his soul is taken to Paradise; his death inspires Charlemagne's revenge.</div>
+      <summary>What does "Grant me chastity and continence, but not yet" mean?</summary>
+      <div class="answer">He wanted his lust satisfied, not extinguished. He was afraid God would heal him too soon.</div>
     </details>
 
     <details>
-      <summary>How does the epic portray Muslims?</summary>
-      <div class="answer">As <strong>pagans and treacherous enemies</strong> of Christ — reflects Crusade propaganda.</div>
+      <summary>Who was Victorinus, and what did he do?</summary>
+      <div class="answer">An old, learned professor of Rhetoric in Rome. He converted to Christianity and made his profession of faith publicly in the church, preferring to give up his school of rhetoric rather than the word of God.</div>
     </details>
 
     <details>
-      <summary>What is assonance?</summary>
-      <div class="answer">Repetition of vowel sounds; used instead of rhyme in <em>The Song of Roland</em>.</div>
+      <summary>What did Ponticianus tell Augustine about?</summary>
+      <div class="answer">He told him about Antony, the Egyptian monk, and about two state officials at Treves who converted after reading the life of Antony.</div>
     </details>
 
     <details>
-      <summary>Who is Oliver? How does he contrast with Roland?</summary>
-      <div class="answer">Oliver is Roland's friend and the <strong>wise, cautious</strong> one. He urges Roland to blow the horn. He contrasts with Roland's <strong>pride and recklessness</strong>.</div>
+      <summary>What did the two officials at Treves do?</summary>
+      <div class="answer">One read the life of Antony, was inflamed, wept, and decided to serve God. His friend joined him. Both were betrothed; their fiancées also dedicated their virginity to God.</div>
     </details>
 
     <details>
-      <summary>What is the significance of the olifant?</summary>
-      <div class="answer">It is Roland's horn, used to call for help. His refusal to blow it represents his <strong>pride</strong>; his eventual blowing of it is <strong>too late</strong>.</div>
+      <summary>What did Augustine hear in the garden?</summary>
+      <div class="answer">A child's voice chanting "Take and read, take and read."</div>
     </details>
 
     <details>
-      <summary>What is Durendal?</summary>
-      <div class="answer">Roland's sword; represents his <strong>honor and prowess</strong>. He tries to break it on a rock so it won't fall into pagan hands.</div>
+      <summary>What Scripture passage did Augustine read?</summary>
+      <div class="answer">Romans 13:13–14: "Not in rioting and drunkenness... but put ye on the Lord Jesus Christ, and make not provision for the flesh."</div>
     </details>
 
     <details>
-      <summary>How does the epic end?</summary>
-      <div class="answer">Charlemagne defeats the Muslims, captures Saragossa, and executes Ganelon. Roland's soul is taken to Paradise.</div>
+      <summary>What happened to Alypius?</summary>
+      <div class="answer">He also converted. He read further in the Scripture and found "Now him that is weak in faith, take unto you." He applied it to himself.</div>
+    </details>
+
+    <h3>C · Dante — Story Events</h3>
+
+    <details>
+      <summary>Where does Dante find himself at the beginning?</summary>
+      <div class="answer">In a dark wood, midway in life's journey, having gone astray from the straight road.</div>
     </details>
 
     <details>
-      <summary>What is the role of Archbishop Turpin?</summary>
-      <div class="answer">He encourages the French, promises them Paradise, and fights alongside them. He represents the <strong>Church's role in the Crusades</strong>.</div>
+      <summary>What three beasts block Dante's path?</summary>
+      <div class="answer">A leopard (fraud/lust), a lion (violence/pride), and a she-wolf (avarice/incontinence).</div>
     </details>
 
     <details>
-      <summary>What are the main themes of <em>The Song of Roland</em>?</summary>
-      <div class="answer">Loyalty vs. betrayal, pride/hubris, chivalry, religious devotion, feudalism, good vs. evil, and justice.</div>
+      <summary>Who appears to help Dante?</summary>
+      <div class="answer">Virgil — the Roman poet, author of the Aeneid. He represents reason.</div>
     </details>
-  </section>
 
-  <!-- ============ 9. CHEAT SHEET ============ -->
-  <section id="s9">
-    <h2 class="sec-title">9 · Cheat Sheet <span class="badge red">Last-Minute Review</span></h2>
+    <details>
+      <summary>Why does Virgil come to Dante?</summary>
+      <div class="answer">Beatrice descended to Limbo and asked him to help Dante. Three blessed ladies care for Dante: Mary, Lucia, and Beatrice.</div>
+    </details>
 
-    <div class="grid2">
-      <div class="card gold">
-        <h4>Names to Know</h4>
-        <ul class="checklist">
-          <li><strong>Charlemagne</strong> — King/Emperor; Roland's uncle</li>
-          <li><strong>Roland</strong> — Hero; prideful; dies at Roncevaux</li>
-          <li><strong>Ganelon</strong> — Stepfather; betrayer; executed</li>
-          <li><strong>Oliver</strong> — Wise friend; urges Roland to blow horn</li>
-          <li><strong>Turpin</strong> — Archbishop; promises Paradise</li>
-          <li><strong>Marsilion</strong> — Muslim king of Saragossa</li>
-          <li><strong>Blancandrin</strong> — Marsilion's envoy</li>
-        </ul>
-      </div>
+    <details>
+      <summary>What is written on the Gate of Hell?</summary>
+      <div class="answer">"Abandon all hope, ye who enter here."</div>
+    </details>
 
-      <div class="card gold">
-        <h4>Places to Know</h4>
-        <ul class="checklist">
-          <li><strong>Roncevaux Pass</strong> — Where the ambush happens</li>
-          <li><strong>Saragossa</strong> — Marsilion's kingdom</li>
-          <li><strong>Spain</strong> — Setting of the epic</li>
-          <li><strong>France</strong> — Charlemagne's kingdom</li>
-        </ul>
-      </div>
+    <details>
+      <summary>Who are the Opportunists/Neutrals?</summary>
+      <div class="answer">Souls who lived without blame or praise — neither for God nor Satan, but only for themselves. They chase a blank banner and are stung by wasps and hornets.</div>
+    </details>
 
-      <div class="card gold">
-        <h4>Terms to Know</h4>
-        <ul class="checklist">
-          <li><strong>Chanson de geste</strong> — "Song of deeds"</li>
-          <li><strong>Feudalism</strong> — Land ownership and alliances</li>
-          <li><strong>Chivalry</strong> — Knight's code</li>
-          <li><strong>Manor system</strong> — Lord-peasant economic system</li>
-          <li><strong>Assonance</strong> — Vowel repetition</li>
-          <li><strong>Jongleur</strong> — Folk song singer</li>
-          <li><strong>Crusades</strong> — Holy wars</li>
-          <li><strong>Trial by combat</strong> — Legal duel</li>
-          <li><strong>Olifant</strong> — Roland's horn</li>
-          <li><strong>Durendal</strong> — Roland's sword</li>
-        </ul>
-      </div>
+    <details>
+      <summary>Who is Charon?</summary>
+      <div class="answer">The ferryman of the river Acheron. He ferries souls across to Hell.</div>
+    </details>
 
-      <div class="card gold">
-        <h4>Dates to Know</h4>
-        <ul class="checklist">
-          <li><strong>778 AD</strong> — Battle of Roncevaux Pass</li>
-          <li><strong>1095 AD</strong> — First Crusade</li>
-          <li><strong>1129–1165 AD</strong> — Oldest manuscript</li>
-        </ul>
-      </div>
+    <details>
+      <summary>Who is in Limbo?</summary>
+      <div class="answer">Virtuous Pagans — sinless but unbaptized. They have no hope of Heaven but suffer no torment. Includes Homer, Horace, Ovid, Lucan, Aristotle, Socrates, Plato, and others.</div>
+    </details>
 
-      <div class="card crimson">
-        <h4>Flaws &amp; Virtues</h4>
-        <ul class="checklist">
-          <li><strong>Roland</strong> — Pride (flaw); bravery (virtue)</li>
-          <li><strong>Ganelon</strong> — Betrayal (flaw)</li>
-          <li><strong>Oliver</strong> — Wisdom (virtue)</li>
-          <li><strong>Turpin</strong> — Faith (virtue)</li>
-        </ul>
-      </div>
+    <details>
+      <summary>Who is Minos?</summary>
+      <div class="answer">The judge of the second circle. He examines each soul and delivers his verdict by coiling his tail — one coil for each degree it must descend.</div>
+    </details>
 
-      <div class="card crimson">
-        <h4>Quotes to Memorize</h4>
-        <ol class="plain" style="padding-left:20px;">
-          <li><strong>Turpin:</strong> "If you die here, you will stand up holy martyrs, you will have seats in highest Paradise."</li>
-          <li><strong>Roland:</strong> "I'd be a fool to do it. I would lose my good name all through sweet France."</li>
-          <li><strong>Ganelon's punishment:</strong> "Ganelon died a traitor's and recreant's death."</li>
-        </ol>
-      </div>
-    </div>
-  </section>
+    <details>
+      <summary>Who are Francesca and Paolo?</summary>
+      <div class="answer">Lovers in the second circle (Lustful). They read the story of Lancelot, kissed, and were killed by Francesca's husband. Dante faints from pity.</div>
+    </details>
 
-  <!-- ============ 10. TIPS ============ -->
-  <section id="s10">
-    <h2 class="sec-title">10 · Oral Recit Tips</h2>
+    <details>
+      <summary>Who is Ciacco?</summary>
+      <div class="answer">A glutton in the third circle. His name means "The Hog." He prophesies Florence's division: White vs. Black, two honest men, and the city's suffering from pride, avarice, and envy.</div>
+    </details>
 
-    <h3>How to Answer — Use P-E-S</h3>
-    <div class="grid2">
-      <div class="card blue">
-        <h4>P — Point</h4>
-        State your answer clearly.
-      </div>
-      <div class="card blue">
-        <h4>E — Evidence</h4>
-        Give a quote or detail from the text.
-      </div>
-      <div class="card blue">
-        <h4>S — Significance</h4>
-        Explain why it matters — connect to the Medieval Period or a theme.
-      </div>
-    </div>
-
-    <div class="tip">
-      <strong>Example:</strong><br>
-      <strong>Q: Why does Roland refuse to blow the olifant?</strong><br>
-      <strong>P:</strong> Roland refuses out of pride.<br>
-      <strong>E:</strong> He says, "I'd be a fool to do it. I would lose my good name all through sweet France."<br>
-      <strong>S:</strong> This shows his <em>hubris</em> — he values his reputation more than the safety of his men. This flaw leads to the destruction of the rear guard, making him a tragic hero.
-    </div>
-
-    <h3>Key Connections to Make</h3>
-    <div class="card gold">
-      <ul class="checklist">
-        <li>Connect <strong>Roland's pride</strong> to the <strong>tragic hero</strong> concept.</li>
-        <li>Connect <strong>Ganelon's betrayal</strong> to <strong>feudal disloyalty</strong> and <strong>medieval justice</strong>.</li>
-        <li>Connect <strong>Turpin's sermon</strong> to the <strong>Crusading spirit</strong> and <strong>religious devotion</strong>.</li>
-        <li>Connect <strong>the epic's portrayal of Muslims</strong> to <strong>Crusade propaganda</strong> and <strong>medieval bias</strong>.</li>
-        <li>Connect <strong>Roland's death</strong> to <strong>martyrdom</strong> and <strong>salvation</strong>.</li>
-      </ul>
-    </div>
-
-    <h3>What to Do If You Get Stuck</h3>
-    <div class="card crimson">
-      <ul class="plain">
-        <li>Summarize the plot briefly.</li>
-        <li>Define a key term (feudalism, chanson de geste, etc.).</li>
-        <li>Compare two characters (Roland vs. Oliver; Roland vs. Ganelon).</li>
-        <li>Connect to a theme (loyalty, pride, chivalry).</li>
-        <li>Use a quote you remember.</li>
-      </ul>
-    </div>
-
-    <h3>Final Review Checklist</h3>
-    <div class="card gold">
-      <ul class="checklist">
-        <li>Can I define the Medieval Period and its key features?</li>
-        <li>Can I explain feudalism, the manor system, and chivalry?</li>
-        <li>Can I summarize the plot of <em>The Song of Roland</em> in 10 beats?</li>
-        <li>Can I describe the main characters and their roles?</li>
-        <li>Can I quote Turpin's sermon and Roland's refusal?</li>
-        <li>Can I explain Roland's flaw and Ganelon's betrayal?</li>
-        <li>Can I connect the epic to Medieval values?</li>
-        <li>Can I answer the practice Q&amp;A?</li>
-      </ul>
-    </div>
+    <details>
+      <summary>What happens at the end of Canto VI?</summary>
+      <div class="answer">Dante and Virgil reach the edge where the descent begins. They suddenly come on Plutus, the great enemy — the guardian of the Fourth Circle.</div>
+    </details>
   </section>
 
 </div>
 
-<!-- FLOATING TOOLBAR -->
+<!-- TOOLBAR -->
 <div class="toolbar">
   <button onclick="expandAll()" title="Expand all answers">＋</button>
   <button onclick="collapseAll()" title="Collapse all answers">−</button>
@@ -1326,24 +1908,19 @@
 </div>
 
 <footer>
-  <strong>English 4 · Reviewer</strong><br>
-  Medieval Period &amp; The Song of Roland<br>
+  <strong>English 4 · Story Reviewer</strong><br>
+  The Song of Roland · St. Augustine's Confessions · Dante's Inferno<br>
   <em>Good luck on your oral recitation!</em>
 </footer>
 
 <script>
-  function expandAll(){
-    document.querySelectorAll('details').forEach(d => d.open = true);
-  }
-  function collapseAll(){
-    document.querySelectorAll('details').forEach(d => d.open = false);
-  }
-  // Smooth scroll for TOC links
-  document.querySelectorAll('nav.toc a').forEach(a => {
-    a.addEventListener('click', e => {
+  function expandAll(){document.querySelectorAll('details').forEach(d=>d.open=true);}
+  function collapseAll(){document.querySelectorAll('details').forEach(d=>d.open=false);}
+  document.querySelectorAll('nav.toc a').forEach(a=>{
+    a.addEventListener('click',e=>{
       e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
     });
   });
 </script>
